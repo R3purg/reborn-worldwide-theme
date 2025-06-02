@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "presets": {
     "Polaris": {
@@ -194,5 +203,102 @@
       "color_product_buy_bg": "#5F6DC7",
       "color_product_buy_text": "#fff"
     }
+  },
+  "current": {
+    "ajax_cart_method": "drawer",
+    "social_facebook_link": "https://www.facebook.com/people/Reborn-Worldwide/61575225881125",
+    "social_instagram_link": "https://www.instagram.com/reborn.wxrldwide/",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "show_announcement_bar": "home",
+          "announcement_text": "",
+          "announcement_text_mobile": "",
+          "text_alignment": "center",
+          "announcement_link": "",
+          "main_menu": "main-menu",
+          "main_menu_alignment": "left",
+          "header_show_search": false
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "settings": {
+          "title": "Reborn Worldwide",
+          "text": "",
+          "alignment": "center",
+          "text_alignment": "center",
+          "text_width": "1-3",
+          "mobile_centered": true,
+          "full_height": true,
+          "mobile_height": 400,
+          "desktop_height": 600,
+          "enable_custom_styles": true,
+          "title_color": "",
+          "text_color": "",
+          "title_font_size": 52,
+          "text_font_size": 28,
+          "spacing_top": 50,
+          "spacing_bottom": 50,
+          "background_color": "",
+          "background_image_style": "cover",
+          "parallax": false,
+          "darken": 0
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "footer-menu",
+            "settings": {
+              "title": "Menu",
+              "menu_id": "footer"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0"
+        ],
+        "settings": {
+          "show_payment_icons": true,
+          "footer_copyright": "<p>©</p>"
+        }
+      },
+      "page-template": {
+        "type": "page-template",
+        "blocks": {
+          "page-template-0": {
+            "type": "page-content",
+            "settings": {
+              "content_width": "2-3",
+              "enable_custom_styles": true,
+              "background_color": "",
+              "text_color": "",
+              "text_font_size": 16,
+              "spacing_top": 50,
+              "spacing_bottom": 50
+            }
+          }
+        },
+        "block_order": [
+          "page-template-0"
+        ],
+        "settings": {
+          "display_page_header": true,
+          "underline_title": false,
+          "enable_custom_styles": true,
+          "height": 250,
+          "title_color": "",
+          "alignment": "center",
+          "background_color": "",
+          "background_image_style": "cover",
+          "parallax": false,
+          "darken": 0
+        }
+      }
+    },
+    "content_for_index": []
   }
 }
