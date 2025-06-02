@@ -11,10 +11,55 @@
   "sections": {
     "template-homepage": {
       "type": "hero",
-      "settings": {}
+      "settings": {
+        "title": "Introduce Your Brand",
+        "text": "<p>Add a slogan text here.</p>",
+        "alignment": "center",
+        "text_alignment": "center",
+        "text_width": "2-3",
+        "mobile_centered": false,
+        "full_height": true,
+        "mobile_height": 400,
+        "desktop_height": 600,
+        "enable_custom_styles": true,
+        "title_color": "",
+        "text_color": "",
+        "title_font_size": 52,
+        "text_font_size": 28,
+        "spacing_top": 50,
+        "spacing_bottom": 50,
+        "background_color": "",
+        "background_image": "shopify://shop_images/general-clothes-bold-6.jpg",
+        "background_image_style": "cover",
+        "parallax": true,
+        "darken": 69
+      }
+    },
+    "image_text_Jqrf9f": {
+      "type": "image-text",
+      "name": "Image With Text",
+      "settings": {
+        "the_image": "shopify://shop_images/general-clothes-minimal-2.jpg",
+        "image_width": 600,
+        "alignment": "right",
+        "align_horizontally": true,
+        "text_width": "1-2",
+        "title": "STORY BEHIND",
+        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis scelerisque tellus, a convallis arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempus mollis porttitor. Nunc eget ipsum aliquam lectus sagittis facilisis. Aenean nec lectus a nisi malesuada blandit eu sed ipsum. Morbi justo risus, sodales eget vehicula vitae, fringilla gravida neque. Donec venenatis sapien nisi, a gravida urna posuere ut.</p><p>Duis ac tristique tellus. Integer eu tempor sem, et malesuada justo. Cras molestie, lacus nec pulvinar condimentum, nulla arcu placerat ligula, quis ultrices lorem erat et risus. Nulla sed nulla ut tellus finibus ultricies vel et dui. Proin vel diam convallis, ornare ante et, luctus mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vehicula placerat dictum. Maecenas id porta ligula. Fusce sollicitudin nisi justo, vitae sollicitudin neque laoreet tincidunt. In eget mauris eros. Nam ut quam et felis accumsan malesuada id sodales magna.</p>",
+        "mobile_centered": true,
+        "enable_custom_styles": true,
+        "background_color": "#ffffff",
+        "title_color": "",
+        "text_color": "",
+        "title_font_size": 28,
+        "text_font_size": 16,
+        "spacing_top": 50,
+        "spacing_bottom": 50
+      }
     }
   },
   "order": [
-    "template-homepage"
+    "template-homepage",
+    "image_text_Jqrf9f"
   ]
 }
