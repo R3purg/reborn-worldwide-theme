@@ -31,8 +31,8 @@
         "background_color": "",
         "background_image": "shopify://shop_images/20250613_202403.jpg",
         "background_image_style": "cover",
-        "parallax": true,
-        "scroll_effect": "parallax",
+        "parallax": false,
+        "scroll_effect": "sliding",
         "darken": 70
       }
     },
