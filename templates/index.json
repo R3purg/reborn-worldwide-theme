@@ -29,11 +29,11 @@
         "spacing_top": 50,
         "spacing_bottom": 50,
         "background_color": "",
-        "background_image": "shopify://shop_images/general-clothes-bold-6.jpg",
+        "background_image": "shopify://shop_images/20250613_202403.jpg",
         "background_image_style": "cover",
         "parallax": true,
         "scroll_effect": "parallax",
-        "darken": 69
+        "darken": 40
       }
     },
     "ss_featured_review_slider_KyJJTL": {
