@@ -205,6 +205,9 @@
     }
   },
   "current": {
+    "color_bg": "#ffffff",
+    "color_sections_text": "#ffffff",
+    "color_field_bg": "#000000",
     "ajax_cart_method": "drawer",
     "social_facebook_link": "https://www.facebook.com/people/Reborn-Worldwide/61575225881125",
     "social_instagram_link": "https://www.instagram.com/reborn.wxrldwide/",
@@ -212,7 +215,7 @@
       "header": {
         "type": "header",
         "settings": {
-          "show_announcement_bar": "home",
+          "show_announcement_bar": "hide",
           "announcement_text": "",
           "announcement_text_mobile": "",
           "text_alignment": "center",
