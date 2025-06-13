@@ -33,8 +33,7 @@
         "background_image_style": "cover",
         "parallax": true,
         "scroll_effect": "parallax",
-        "darken": 20,
-        "enable_hero_animation": true
+        "darken": 20
       }
     },
     "ss_featured_review_slider_KyJJTL": {
@@ -350,6 +349,7 @@
         "image_A9rLwf",
         "image_tzcL8e"
       ],
+      "disabled": true,
       "name": "SS - Image Gallery #2",
       "settings": {
         "heading": "",
@@ -371,7 +371,7 @@
         "image_border_thickness": 0,
         "heading_color": "#000000",
         "image_border_color": "#000000",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "background_gradient": "",
         "border_color": "#000000",
         "margin_top": 0,
