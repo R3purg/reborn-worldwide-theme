@@ -33,7 +33,8 @@
         "background_image_style": "cover",
         "parallax": true,
         "scroll_effect": "parallax",
-        "darken": 20
+        "darken": 20,
+        "enable_hero_animation": true
       }
     },
     "ss_featured_review_slider_KyJJTL": {
