@@ -559,3 +559,17 @@ var ajaxCart = (function(module, $) {
   return module;
 
 }(ajaxCart || {}, jQuery));
+
+document.addEventListener('DOMContentLoaded', function() {
+  var hero = document.querySelector('.hero-section');
+  if (!hero) return;
+  function onScroll() {
+    var rect = hero.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      hero.classList.add('slide-in');
+      window.removeEventListener('scroll', onScroll);
+    }
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+});

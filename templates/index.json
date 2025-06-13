@@ -77,19 +77,19 @@
         "word_XUrdVT": {
           "type": "word",
           "settings": {
-            "text": "Counter"
+            "text": "  Reborn"
           }
         },
         "word_4GWXW8": {
           "type": "word",
           "settings": {
-            "text": "Is Back"
+            "text": " Worldwide"
           }
         },
         "word_UUb9RJ": {
           "type": "word",
           "settings": {
-            "text": "Shopify"
+            "text": "Coming Soon"
           }
         }
       },
@@ -500,11 +500,11 @@
   },
   "order": [
     "template-homepage",
+    "ss_featured_collection_14_6WKfqE",
     "image_text_Jqrf9f",
     "ss_back_to_top_button_hMdzAM",
     "ss_counter_GC4Yjm",
     "ss_gallery_7_rm3M6x",
     "ss_instafeed_xVTKMF",
-    "ss_featured_collection_14_6WKfqE"
   ]
 }

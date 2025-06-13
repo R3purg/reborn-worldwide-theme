@@ -801,6 +801,17 @@ a, .pagination a {
   }
 }
 
+/* Slide-in animation for homepage hero */
+.hero-section {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.hero-section.slide-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .video-section .video__cover,
 .map__container, .image-text__img img {
   border-radius: $border-radius;
