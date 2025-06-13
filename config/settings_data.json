@@ -221,7 +221,7 @@
           "text_alignment": "center",
           "announcement_link": "",
           "main_menu": "main-menu",
-          "main_menu_alignment": "left",
+          "main_menu_alignment": "center",
           "header_show_search": false
         }
       },
