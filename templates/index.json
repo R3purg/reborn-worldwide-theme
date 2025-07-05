@@ -1,1 +1,416 @@
-{"sections":{"image_banner":{"type":"image-banner","blocks":{"heading":{"type":"heading","settings":{"heading":"Limited as f*ck.","heading_size":"hxxl"}}},"block_order":["heading"],"settings":{"image":"shopify:\/\/shop_images\/20250613_202408.jpg","image_overlay_opacity":60,"image_height":"small","image_behavior":"fixed","desktop_content_position":"bottom-center","desktop_content_alignment":"center","show_text_box":false,"color_scheme":"scheme-4","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":false}},"ss_flexible_tabs_zpX39t":{"type":"ss-flexible-tabs","blocks":{"tab_4Xi69b":{"type":"tab","settings":{"title":"\/\/ Eastern Europe","icon":"globe"}},"icon_text_Fm4CVb":{"type":"icon_text","settings":{"full_width":false,"horizontal_align":"start","horizontal_align_mobile":"start","text":"Chapter 1: The Anti-Hero Awakens.","text_custom":false,"text_font":"oswald_n4","text_size":40,"text_size_mobile":40,"text_height":150,"text_color":"#1a1a1a","icon":"globe","icon_size":40,"icon_size_mobile":40,"icon_color":"#1a1a1a"}},"content_6AHVXA":{"type":"content","settings":{"full_width":false,"content":"<p>He doesn't live in a swamp, he owns it. Cheap cigarettes and cheaper dreams. The hero they never asked for, the problem they can't ignore.<\/p>","text_custom":false,"text_font":"montserrat_n4","text_size":16,"text_size_mobile":16,"text_height":150,"text_align":"left","text_align_mobile":"left","text_color":"#1a1a1a"}},"image_wpKQKG":{"type":"image","settings":{"full_width":false,"image":"shopify:\/\/shop_images\/CHAOS_B_MySwamp.png","image_width":50,"image_width_mobile":50,"horizontal_align":"right","horizontal_align_mobile":"right","image_radius":0,"image_border_thickness":0,"image_border_color":"#f0f0f0"}},"tab_PBeiby":{"type":"tab","settings":{"title":"\/\/ Tokyo","icon":"airplane"}},"content_JD6N8A":{"type":"content","settings":{"full_width":false,"content":"<p>Coming Soon<\/p><p>Be Patient You F*ck<\/p>","text_custom":false,"text_font":"montserrat_n4","text_size":16,"text_size_mobile":16,"text_height":150,"text_align":"left","text_align_mobile":"left","text_color":"#131313"}},"tab_CwHdzd":{"type":"tab","settings":{"title":"\/\/ *","icon":"mobile"}},"content_QncU9k":{"type":"content","settings":{"full_width":false,"content":"<p>Coming Soon<\/p><p>Be Patient You F*ck<\/p>","text_custom":false,"text_font":"montserrat_n4","text_size":16,"text_size_mobile":16,"text_height":150,"text_align":"center","text_align_mobile":"left","text_color":"#131313"}},"nested_tabs_A1B2C3":{"type":"nested_tabs","settings":{"full_width":false,"nested_tab_1_title":"Sub Tab 1","nested_tab_1_content":"<p>This is the content for the first nested tab inside your flexible tabs.</p>","nested_tab_2_title":"Sub Tab 2","nested_tab_2_content":"<p>This is the content for the second nested tab.</p>","nested_tab_3_title":"Sub Tab 3","nested_tab_3_content":"<p>This is the content for the third nested tab.</p>","nested_tabs_count":3}}},"block_order":["tab_4Xi69b","icon_text_Fm4CVb","content_6AHVXA","image_wpKQKG","tab_PBeiby","content_JD6N8A","tab_CwHdzd","content_QncU9k","nested_tabs_A1B2C3"],"name":"SS - Flexible Tabs","settings":{"heading":"","heading_custom":false,"heading_font":"oswald_n4","heading_size":52,"heading_size_mobile":32,"heading_height":150,"heading_align":"center","heading_align_mobile":"center","toggles_gap":16,"toggles_gap_mobile":10,"toggles_mt":20,"toggles_mt_mobile":20,"toggles_pt":12,"toggles_pt_mobile":12,"toggles_pb":12,"toggles_pb_mobile":12,"toggles_padding_sides":14,"toggles_padding_sides_mobile":14,"toggles_radius":100,"toggles_border_thickness":0,"toggles_border_full":false,"toggles_align":"center","toggles_align_mobile":"center","button_custom":false,"button_font":"montserrat_n4","button_size":18,"button_size_mobile":14,"button_height":110,"button_padding_vertical":12,"button_padding_horizontal":20,"button_radius":100,"button_border_thickness":0,"button_top_radius":false,"body_padding_vertical":20,"body_padding_vertical_mobile":10,"body_padding_horizontal":20,"body_padding_horizontal_mobile":10,"body_gap":20,"body_gap_mobile":16,"body_mt":16,"body_radius":0,"body_radius_mobile":0,"body_radius_top":false,"icon_size":20,"icon_size_mobile":16,"toggles_bg_color":"#1c1c1c","toggles_border_color":"#f0f0f0","button_color":"#f0f0f0","button_hover_color":"#ffffff","button_active_color":"#ffffff","button_bg_color":"#8a2be2","button_bg_hover_color":"#131313","button_bg_active_color":"#131313","button_border_color":"#131313","button_border_hover_color":"#131313","button_border_active_color":"#131313","heading_color":"#131313","body_bg_color":"#ffffff","background_color":"#ffffff","background_gradient":"","border_color":"#000000","margin_top":0,"margin_bottom":0,"padding_top":36,"padding_bottom":36,"padding_horizontal":5,"padding_horizontal_mobile":1.5,"full_width":false,"content_width":120,"border_thickness":0,"lazy":true}},"ss_featured_collection_14_PyEQAw":{"type":"ss-featured-collection-14","blocks":{"image_aDft8F":{"type":"image","settings":{"product":"anime-fan","custom_badge":"","custom_title":"Anime Fan","url":""}},"image_CfcJbB":{"type":"image","settings":{"product":"monsters-drink","custom_badge":"","custom_title":"Monsters Drink","url":""}},"image_D4iXdX":{"type":"image","settings":{"product":"my-swamp","custom_badge":"","custom_title":"My Swamp","url":""}}},"block_order":["image_aDft8F","image_CfcJbB","image_D4iXdX"],"name":"SS - Featured collection #14","settings":{"content_align":"center","content_align_mobile":"center","sub_heading":"","sub_heading_custom":false,"sub_heading_font":"josefin_sans_n4","sub_heading_size":20,"sub_heading_size_mobile":18,"sub_heading_height":130,"heading":"<h2>REBORN \/\/ Eastern Europe<\/h2>","heading_custom":false,"heading_font":"oswald_n4","heading_size":42,"heading_size_mobile":24,"heading_height":130,"heading_mt":12,"heading_mt_mobile":8,"collection":"reborn-in-eastern-europe","collection_show":10,"slider_mt":24,"slider_mt_mobile":8,"product_content_align":"center","product_content_align_mobile":"center","image_radius":0,"image_border_thickness":0,"image_ratio":"square","image_ratio_mobile":"square","badge_padding_vertical":8,"badge_padding_vertical_mobile":4,"badge_padding_horizontal":8,"badge_padding_horizontal_mobile":8,"badge_radius":4,"badge_border_thickness":0,"badge_custom":false,"badge_font":"josefin_sans_n4","badge_size":12,"badge_size_mobile":12,"badge_height":100,"button":"Shop now","button_custom":false,"button_font":"josefin_sans_n4","button_size":16,"button_size_mobile":14,"button_height":100,"button_padding_vertical":14,"button_padding_vertical_mobile":14,"button_padding_horizontal":32,"button_padding_horizontal_mobile":32,"button_radius":100,"button_border_thickness":1,"button_mt_mobile":16,"button_style":"outline","title_custom":false,"title_font":"josefin_sans_n4","title_size":18,"title_size_mobile":14,"title_height":150,"title_mt":36,"title_mt_mobile":20,"price_custom":false,"price_font":"josefin_sans_n4","price_size":16,"price_size_mobile":14,"price_height":130,"price_mt":8,"price_mt_mobile":6,"navigation_align":"center","navigation_align_mobile":"center","dots_size":12,"arrow_size":56,"arrow_size_mobile":48,"arrow_icon_size":11,"arrow_icon_size_mobile":9,"arrow_border_thickness":1,"arrow_radius":100,"arrow_hover_effect":"color","arrow_show_desktop":true,"arrow_show_mobile":false,"sub_heading_color":"#000000","heading_color":"#000000","image_border_color":"#000000","title_color":"#000000","price_color":"#000000","price_original_color":"#000000","badge_color":"#000000","badge_bg_color":"#4af279","badge_border_color":"#000000","button_color":"#000000","button_hover_color":"#ffffff","button_bg_color":"#ffffff","button_bg_hover_color":"#000000","button_border_color":"#000000","button_border_hover_color":"#000000","dots_color":"#f7f7f7","arrow_color":"#2c2b2b","arrow_hover_color":"#2c2b2b","arrow_bg_color":"","arrow_bg_hover_color":"","arrow_border_color":"#c7c7c7","arrow_border_hover_color":"#c7c7c7","background_color":"#ffffff","background_gradient":"","border_color":"#000000","margin_top":0,"margin_bottom":0,"margin_horizontal":0,"margin_horizontal_mobile":0,"padding_top":36,"padding_bottom":36,"padding_horizontal":5,"padding_horizontal_mobile":1.5,"full_width":true,"content_width":1200,"border_thickness":0,"section_radius":0,"lazy":true}},"ss_instafeed_3F3K9R":{"type":"ss-instafeed","blocks":{"image_eUnRNN":{"type":"image","settings":{"gallery_photo":"shopify:\/\/shop_images\/general-clothes-bold-3.jpg","gallery_url":""}},"image_MnTaYR":{"type":"image","settings":{"gallery_photo":"shopify:\/\/shop_images\/general-clothes-bold-1.jpg","gallery_url":""}},"image_WNbETt":{"type":"image","settings":{"gallery_photo":"shopify:\/\/shop_images\/general-clothes-minimal-2.jpg","gallery_url":""}},"image_3K4JkQ":{"type":"image","settings":{"gallery_photo":"shopify:\/\/shop_images\/general-clothes-minimal-5.jpg","gallery_url":""}},"image_yWCCRR":{"type":"image","settings":{"gallery_photo":"shopify:\/\/shop_images\/general-clothes-minimal-1.jpg","gallery_url":""}},"image_atxDiU":{"type":"image","settings":{"gallery_photo":"shopify:\/\/shop_images\/general-clothes-bold-6.jpg","gallery_url":""}},"image_wz7tMr":{"type":"image","settings":{"gallery_photo":"shopify:\/\/shop_images\/general-clothes-bold-5.jpg","gallery_url":""}},"image_mFeMpj":{"type":"image","settings":{"gallery_photo":"shopify:\/\/shop_images\/general-clothes-bold-4.jpg","gallery_url":""}}},"block_order":["image_eUnRNN","image_MnTaYR","image_WNbETt","image_3K4JkQ","image_yWCCRR","image_atxDiU","image_wz7tMr","image_mFeMpj"],"name":"SS - Instafeed","settings":{"background-color":"#1c1c1c","text-color":"#f0f0f0","hide_image_mobile":0,"insta_url":"https:\/\/www.instagram.com\/reborn.wxrldwide\/","instafeed_title":"Be reborn","hashtag_title":"#RebornWxrldwide","insta_handle":"@reborn.wxrldwide","header_size":18,"hashtag_size":36,"handle_size":12,"padding_image":0,"padding_top":36,"padding_bottom":36}}},"order":["image_banner","ss_flexible_tabs_zpX39t","ss_featured_collection_14_PyEQAw","ss_instafeed_3F3K9R"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Limited as f*ck.",
+            "heading_size": "hxxl"
+          }
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/20250613_202408.jpg",
+        "image_overlay_opacity": 60,
+        "image_height": "small",
+        "image_behavior": "fixed",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "ss_flexible_tabs_zpX39t": {
+      "type": "ss-flexible-tabs",
+      "blocks": {
+        "tab_4Xi69b": {
+          "type": "tab",
+          "settings": {
+            "title": "// Eastern Europe",
+            "icon": "globe"
+          }
+        },
+        "nested_tabs_aTQiTi": {
+          "type": "nested_tabs",
+          "settings": {
+            "full_width": true,
+            "nested_tab_1_title": "Chapter 1: The Anti-Hero Awakens.",
+            "nested_tab_1_content": "<p>He doesn't live in a swamp, he owns it. Cheap cigarettes and cheaper dreams. The hero they never asked for, the problem they can't ignore.</p>",
+            "nested_tab_2_title": "Chapter 2: The Door Was Never Locked.",
+            "nested_tab_2_content": "<p>He always came back. Monsters don't knock, they just walk in, smoke in hand, and pretend it's still their home. He knew what the light meant, but monsters always find a way in.<br/></p>",
+            "nested_tab_3_title": "Chapter 3: Broadcast From a Better World.",
+            "nested_tab_3_content": "<p>In the morning, she sat in silence, but her soul was loud. The world around her changed, but she never did. Through all the winters, heartbreaks and power cuts, she held onto the only thing that never left.</p>",
+            "nested_tabs_count": 3
+          }
+        },
+        "tab_PBeiby": {
+          "type": "tab",
+          "settings": {
+            "title": "// *",
+            "icon": "mobile"
+          }
+        },
+        "content_JD6N8A": {
+          "type": "content",
+          "settings": {
+            "full_width": false,
+            "content": "<p>Coming Soon</p><p>Be Patient You F*ck</p>",
+            "text_custom": false,
+            "text_font": "montserrat_n4",
+            "text_size": 16,
+            "text_size_mobile": 16,
+            "text_height": 150,
+            "text_align": "center",
+            "text_align_mobile": "center",
+            "text_color": "#131313"
+          }
+        }
+      },
+      "block_order": [
+        "tab_4Xi69b",
+        "nested_tabs_aTQiTi",
+        "tab_PBeiby",
+        "content_JD6N8A"
+      ],
+      "name": "SS - Flexible Tabs",
+      "settings": {
+        "heading": "",
+        "heading_custom": false,
+        "heading_font": "oswald_n4",
+        "heading_size": 52,
+        "heading_size_mobile": 32,
+        "heading_height": 150,
+        "heading_align": "center",
+        "heading_align_mobile": "center",
+        "toggles_gap": 16,
+        "toggles_gap_mobile": 10,
+        "toggles_mt": 20,
+        "toggles_mt_mobile": 20,
+        "toggles_pt": 12,
+        "toggles_pt_mobile": 12,
+        "toggles_pb": 12,
+        "toggles_pb_mobile": 12,
+        "toggles_padding_sides": 14,
+        "toggles_padding_sides_mobile": 14,
+        "toggles_radius": 100,
+        "toggles_border_thickness": 0,
+        "toggles_border_full": false,
+        "toggles_align": "center",
+        "toggles_align_mobile": "center",
+        "button_custom": false,
+        "button_font": "montserrat_n4",
+        "button_size": 18,
+        "button_size_mobile": 14,
+        "button_height": 110,
+        "button_padding_vertical": 12,
+        "button_padding_horizontal": 20,
+        "button_radius": 100,
+        "button_border_thickness": 0,
+        "button_top_radius": false,
+        "body_padding_vertical": 20,
+        "body_padding_vertical_mobile": 10,
+        "body_padding_horizontal": 20,
+        "body_padding_horizontal_mobile": 10,
+        "body_gap": 20,
+        "body_gap_mobile": 16,
+        "body_mt": 16,
+        "body_radius": 0,
+        "body_radius_mobile": 0,
+        "body_radius_top": false,
+        "icon_size": 20,
+        "icon_size_mobile": 16,
+        "toggles_bg_color": "#1c1c1c",
+        "toggles_border_color": "#f0f0f0",
+        "button_color": "#f0f0f0",
+        "button_hover_color": "#ffffff",
+        "button_active_color": "#ffffff",
+        "button_bg_color": "#8a2be2",
+        "button_bg_hover_color": "#131313",
+        "button_bg_active_color": "#131313",
+        "button_border_color": "#131313",
+        "button_border_hover_color": "#131313",
+        "button_border_active_color": "#131313",
+        "heading_color": "#131313",
+        "body_bg_color": "#ffffff",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": false,
+        "content_width": 120,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    },
+    "ss_featured_collection_14_PyEQAw": {
+      "type": "ss-featured-collection-14",
+      "blocks": {
+        "image_aDft8F": {
+          "type": "image",
+          "settings": {
+            "product": "anime-fan",
+            "custom_badge": "",
+            "custom_title": "Anime Fan",
+            "url": ""
+          }
+        },
+        "image_CfcJbB": {
+          "type": "image",
+          "settings": {
+            "product": "monsters-drink",
+            "custom_badge": "",
+            "custom_title": "Monsters Drink",
+            "url": ""
+          }
+        },
+        "image_D4iXdX": {
+          "type": "image",
+          "settings": {
+            "product": "my-swamp",
+            "custom_badge": "",
+            "custom_title": "My Swamp",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_aDft8F",
+        "image_CfcJbB",
+        "image_D4iXdX"
+      ],
+      "name": "SS - Featured collection #14",
+      "settings": {
+        "content_align": "center",
+        "content_align_mobile": "center",
+        "sub_heading": "",
+        "sub_heading_custom": false,
+        "sub_heading_font": "josefin_sans_n4",
+        "sub_heading_size": 20,
+        "sub_heading_size_mobile": 18,
+        "sub_heading_height": 130,
+        "heading": "<h2>REBORN // Eastern Europe</h2>",
+        "heading_custom": false,
+        "heading_font": "oswald_n4",
+        "heading_size": 42,
+        "heading_size_mobile": 24,
+        "heading_height": 130,
+        "heading_mt": 12,
+        "heading_mt_mobile": 8,
+        "collection": "reborn-in-eastern-europe",
+        "collection_show": 10,
+        "slider_mt": 24,
+        "slider_mt_mobile": 8,
+        "product_content_align": "center",
+        "product_content_align_mobile": "center",
+        "image_radius": 0,
+        "image_border_thickness": 0,
+        "image_ratio": "square",
+        "image_ratio_mobile": "square",
+        "badge_padding_vertical": 8,
+        "badge_padding_vertical_mobile": 4,
+        "badge_padding_horizontal": 8,
+        "badge_padding_horizontal_mobile": 8,
+        "badge_radius": 4,
+        "badge_border_thickness": 0,
+        "badge_custom": false,
+        "badge_font": "josefin_sans_n4",
+        "badge_size": 12,
+        "badge_size_mobile": 12,
+        "badge_height": 100,
+        "button": "Shop now",
+        "button_custom": false,
+        "button_font": "josefin_sans_n4",
+        "button_size": 16,
+        "button_size_mobile": 14,
+        "button_height": 100,
+        "button_padding_vertical": 14,
+        "button_padding_vertical_mobile": 14,
+        "button_padding_horizontal": 32,
+        "button_padding_horizontal_mobile": 32,
+        "button_radius": 100,
+        "button_border_thickness": 1,
+        "button_mt_mobile": 16,
+        "button_style": "outline",
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 18,
+        "title_size_mobile": 14,
+        "title_height": 150,
+        "title_mt": 36,
+        "title_mt_mobile": 20,
+        "price_custom": false,
+        "price_font": "josefin_sans_n4",
+        "price_size": 16,
+        "price_size_mobile": 14,
+        "price_height": 130,
+        "price_mt": 8,
+        "price_mt_mobile": 6,
+        "navigation_align": "center",
+        "navigation_align_mobile": "center",
+        "dots_size": 12,
+        "arrow_size": 56,
+        "arrow_size_mobile": 48,
+        "arrow_icon_size": 11,
+        "arrow_icon_size_mobile": 9,
+        "arrow_border_thickness": 1,
+        "arrow_radius": 100,
+        "arrow_hover_effect": "color",
+        "arrow_show_desktop": true,
+        "arrow_show_mobile": false,
+        "sub_heading_color": "#000000",
+        "heading_color": "#000000",
+        "image_border_color": "#000000",
+        "title_color": "#000000",
+        "price_color": "#000000",
+        "price_original_color": "#000000",
+        "badge_color": "#000000",
+        "badge_bg_color": "#4af279",
+        "badge_border_color": "#000000",
+        "button_color": "#000000",
+        "button_hover_color": "#ffffff",
+        "button_bg_color": "#ffffff",
+        "button_bg_hover_color": "#000000",
+        "button_border_color": "#000000",
+        "button_border_hover_color": "#000000",
+        "dots_color": "#f7f7f7",
+        "arrow_color": "#2c2b2b",
+        "arrow_hover_color": "#2c2b2b",
+        "arrow_bg_color": "",
+        "arrow_bg_hover_color": "",
+        "arrow_border_color": "#c7c7c7",
+        "arrow_border_hover_color": "#c7c7c7",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 1200,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": true
+      }
+    },
+    "ss_instafeed_3F3K9R": {
+      "type": "ss-instafeed",
+      "blocks": {
+        "image_eUnRNN": {
+          "type": "image",
+          "settings": {
+            "gallery_photo": "shopify://shop_images/general-clothes-bold-3.jpg",
+            "gallery_url": ""
+          }
+        },
+        "image_MnTaYR": {
+          "type": "image",
+          "settings": {
+            "gallery_photo": "shopify://shop_images/general-clothes-bold-1.jpg",
+            "gallery_url": ""
+          }
+        },
+        "image_WNbETt": {
+          "type": "image",
+          "settings": {
+            "gallery_photo": "shopify://shop_images/general-clothes-minimal-2.jpg",
+            "gallery_url": ""
+          }
+        },
+        "image_3K4JkQ": {
+          "type": "image",
+          "settings": {
+            "gallery_photo": "shopify://shop_images/general-clothes-minimal-5.jpg",
+            "gallery_url": ""
+          }
+        },
+        "image_yWCCRR": {
+          "type": "image",
+          "settings": {
+            "gallery_photo": "shopify://shop_images/general-clothes-minimal-1.jpg",
+            "gallery_url": ""
+          }
+        },
+        "image_atxDiU": {
+          "type": "image",
+          "settings": {
+            "gallery_photo": "shopify://shop_images/general-clothes-bold-6.jpg",
+            "gallery_url": ""
+          }
+        },
+        "image_wz7tMr": {
+          "type": "image",
+          "settings": {
+            "gallery_photo": "shopify://shop_images/general-clothes-bold-5.jpg",
+            "gallery_url": ""
+          }
+        },
+        "image_mFeMpj": {
+          "type": "image",
+          "settings": {
+            "gallery_photo": "shopify://shop_images/general-clothes-bold-4.jpg",
+            "gallery_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_eUnRNN",
+        "image_MnTaYR",
+        "image_WNbETt",
+        "image_3K4JkQ",
+        "image_yWCCRR",
+        "image_atxDiU",
+        "image_wz7tMr",
+        "image_mFeMpj"
+      ],
+      "name": "SS - Instafeed",
+      "settings": {
+        "background-color": "#1c1c1c",
+        "text-color": "#f0f0f0",
+        "hide_image_mobile": 0,
+        "insta_url": "https://www.instagram.com/reborn.wxrldwide/",
+        "instafeed_title": "Be reborn",
+        "hashtag_title": "#RebornWxrldwide",
+        "insta_handle": "@reborn.wxrldwide",
+        "header_size": 18,
+        "hashtag_size": 36,
+        "handle_size": 12,
+        "padding_image": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "ss_flexible_tabs_zpX39t",
+    "ss_featured_collection_14_PyEQAw",
+    "ss_instafeed_3F3K9R"
+  ]
+}
