@@ -497,7 +497,6 @@
 {% for block in section.blocks %}
   {% if block.type == 'image' %}
     <style>
-
       .flexible-image-{{ block.id }} {
         width: 100%;
         max-width: {{ block.settings.image_width_mobile }}%;
@@ -1001,6 +1000,42 @@
         .flexible-tab-spacer-{{ block.id }} {
           height: {{ block.settings.space }}px;
         }
+      }
+    </style>
+
+  {% elsif block.type == 'nested_tabs' %}
+    <style>
+      .nested-tabs-{{ block.id }} {
+        width: 100%;
+      }
+      .nested-tabs-{{ block.id }} .nested-tab-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .nested-tabs-{{ block.id }} .nested-tab-button {
+        padding: 10px 20px;
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .nested-tabs-{{ block.id }} .nested-tab-button.active {
+        background: #8a2be2;
+        color: white;
+        border-color: #8a2be2;
+      }
+      .nested-tabs-{{ block.id }} .nested-tab-content {
+        display: none;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .nested-tabs-{{ block.id }} .nested-tab-content.active {
+        display: block;
       }
     </style>
   {% endif %}
@@ -1554,6 +1589,43 @@
             </div>
           {% endif %}
         {% endif %}
+
+        <!-- Add nested tabs rendering -->
+        {% if block.type == 'nested_tabs' %}
+          <div class="nested-tabs-{{ block.id }}{% if block.settings.full_width %} flexible-tab-full-width{% endif %}">
+            <div class="nested-tab-buttons">
+              {% for i in (1..block.settings.nested_tabs_count) %}
+                {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
+                {% assign tab_title = block.settings[tab_title_key] %}
+                {% if tab_title != blank %}
+                  <div
+                    class="nested-tab-button{% if forloop.first %} active{% endif %}"
+                    data-tab="nested-tab-{{ block.id }}-{{ i }}"
+                  >
+                    {{ tab_title }}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <div class="nested-tab-contents">
+              {% for i in (1..block.settings.nested_tabs_count) %}
+                {% assign tab_content_key = 'nested_tab_' | append: i | append: '_content' %}
+                {% assign tab_content = block.settings[tab_content_key] %}
+                {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
+                {% assign tab_title = block.settings[tab_title_key] %}
+                {% if tab_title != blank %}
+                  <div
+                    class="nested-tab-content{% if forloop.first %} active{% endif %}"
+                    id="nested-tab-{{ block.id }}-{{ i }}"
+                  >
+                    {{ tab_content }}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
       {% endif %}
     {% endfor %}
 
@@ -1568,80 +1640,69 @@
 
 <script>
   function initFlexibleTabs() {
-    
     let toggles = document.querySelectorAll('.flexible-tabs-toggle-{{ section.id }}');
-    if(toggles) {
-      toggles.forEach(el => {
+    if (toggles) {
+      toggles.forEach((el) => {
         let id = el.id;
         let blocks = document.querySelectorAll('.flexible-tab-container-{{ section.id }}');
         el.addEventListener('click', () => {
-          toggles.forEach(element => {
+          toggles.forEach((element) => {
             element.classList.remove('active');
           });
           el.classList.add('active');
-          if(blocks) {
-            blocks.forEach(element => {
+          if (blocks) {
+            blocks.forEach((element) => {
               element.classList.remove('active');
               let dataId = element.getAttribute('data-id');
-              if(id === dataId) {
+              if (id === dataId) {
                 element.classList.add('active');
               }
-            })
+            });
           }
-        })
-      })
+        });
+      });
     }
 
-    document.querySelectorAll('.flexible-video-{{ section.id }}').forEach(el => {
+    document.querySelectorAll('.flexible-video-{{ section.id }}').forEach((el) => {
       let btn = el.querySelector('.flexible-video-action-{{ section.id }}');
       let frame = el.querySelector('iframe');
       let src;
-      if(frame) {
-        src = frame.getAttribute("data-src2");
+      if (frame) {
+        src = frame.getAttribute('data-src2');
       }
       let video = el.querySelector('video');
-      if(btn) {
-         btn.addEventListener('click', () => {
+      if (btn) {
+        btn.addEventListener('click', () => {
           btn.classList.toggle('active');
-          if(btn.classList.contains('active')) {
-            if(frame) {
+          if (btn.classList.contains('active')) {
+            if (frame) {
               frame.src = src;
             }
-            if(video) {
+            if (video) {
               video.muted = false;
-              video.setAttribute("mute", "false"); 
+              video.setAttribute('mute', 'false');
             }
           } else {
-            if(frame) {
-              frame.src += "&mute=1";
+            if (frame) {
+              frame.src += '&mute=1';
             }
-            if(video) {
+            if (video) {
               video.muted = true;
-              video.setAttribute("mute", "true"); 
+              video.setAttribute('mute', 'true');
             }
           }
-        }) 
+        });
       }
-    })
+    });
 
     const answerPaddingTop = 10;
     const answerPaddingBottom = 10;
 
-    const faqs = document.querySelectorAll(
-      '.flexible-tab-accordion-{{ section.id }}'
-    );
-    const buttons = document.querySelectorAll(
-      '.flexible-tab-accordion-question-{{ section.id }}'
-    );
-    const answers = document.querySelectorAll(
-      '.flexible-tab-accordion-answer-{{ section.id }}'
-    );
-    const answersHeightCalElements = document.querySelectorAll(
-      '.flexible-tab-height-cal-{{ section.id }}'
-    );
-    const icons = document.querySelectorAll(
-      '.flexible-tab-accordion-arrow-{{ section.id }}'
-    );
+    const faqs = document.querySelectorAll('.flexible-tab-accordion-{{ section.id }}');
+    const buttons = document.querySelectorAll('.flexible-tab-accordion-question-{{ section.id }}');
+    const answers = document.querySelectorAll('.flexible-tab-accordion-answer-{{ section.id }}');
+    const answersHeightCalElements = document.querySelectorAll('.flexible-tab-height-cal-{{ section.id }}');
+    const icons = document.querySelectorAll('.flexible-tab-accordion-arrow-{{ section.id }}');
 
     let activeIndex = -1;
 
@@ -1652,7 +1713,7 @@
       setTimeout(() => {
         answers[index].style.paddingTop = `${answerPaddingTop}px`;
         answers[index].style.paddingBottom = `${answerPaddingBottom}px`;
-        answers[index].style.height = `${height }px`;
+        answers[index].style.height = `${height}px`;
         icons[index].style.setProperty('--rotate', '180deg');
       });
     }
@@ -1705,10 +1766,49 @@
   }
 
   document.addEventListener('DOMContentLoaded', initFlexibleTabs);
-  
+
   if (Shopify.designMode) {
-     document.addEventListener('shopify:section:unload', initFlexibleTabs);
-     document.addEventListener('shopify:section:load', initFlexibleTabs);
+    document.addEventListener('shopify:section:unload', initFlexibleTabs);
+    document.addEventListener('shopify:section:load', initFlexibleTabs);
+  }
+
+  // Nested tabs functionality
+  function initNestedTabs() {
+    const nestedTabButtons = document.querySelectorAll('.nested-tab-button');
+
+    nestedTabButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        const targetTab = this.getAttribute('data-tab');
+        const parentContainer = this.closest('[class*="nested-tabs-"]');
+
+        // Remove active class from all buttons in this container
+        parentContainer.querySelectorAll('.nested-tab-button').forEach((btn) => {
+          btn.classList.remove('active');
+        });
+
+        // Remove active class from all content in this container
+        parentContainer.querySelectorAll('.nested-tab-content').forEach((content) => {
+          content.classList.remove('active');
+        });
+
+        // Add active class to clicked button
+        this.classList.add('active');
+
+        // Add active class to target content
+        const targetContent = document.getElementById(targetTab);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
+      });
+    });
+  }
+
+  // Initialize nested tabs
+  document.addEventListener('DOMContentLoaded', initNestedTabs);
+
+  if (Shopify.designMode) {
+    document.addEventListener('shopify:section:unload', initNestedTabs);
+    document.addEventListener('shopify:section:load', initNestedTabs);
   }
 </script>
 
@@ -1884,14 +1984,14 @@
       "default": 14
     },
     {
-       "type": "range",
-       "id": "toggles_radius",
-       "min": 0,
-       "max": 100,
-       "step": 2,
-       "unit": "px",
-       "label": "Toggle Buttons Container Border Radius",
-       "default": 100
+      "type": "range",
+      "id": "toggles_radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Toggle Buttons Container Border Radius",
+      "default": 100
     },
     {
       "type": "range",
@@ -2005,34 +2105,34 @@
       "default": 12
     },
     {
-       "type": "range",
-       "id": "button_padding_horizontal",
-       "min": 0,
-       "max": 100,
-       "step": 2,
-       "unit": "px",
-       "label": "Button Padding Horizontal",
-       "default": 20
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Padding Horizontal",
+      "default": 20
     },
     {
-       "type": "range",
-       "id": "button_radius",
-       "min": 0,
-       "max": 100,
-       "step": 2,
-       "unit": "px",
-       "label": "Button Border Radius",
-       "default": 100
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 100
     },
     {
-       "type": "range",
-       "id": "button_border_thickness",
-       "min": 0,
-       "max": 10,
-       "step": 1,
-       "unit": "px",
-       "label": "Button Border Thickness",
-       "default": 0
+      "type": "range",
+      "id": "button_border_thickness",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Thickness",
+      "default": 0
     },
     {
       "type": "checkbox",
@@ -2170,7 +2270,7 @@
       "type": "color",
       "label": "Toggle Buttons Background Color",
       "id": "toggles_bg_color",
-      "default":"#F5F5F5"
+      "default": "#F5F5F5"
     },
     {
       "type": "color",
@@ -2304,14 +2404,14 @@
       "default": 36
     },
     {
-       "type": "range",
-       "id": "padding_bottom",
-       "min": 0,
-       "max": 100,
-       "step": 4,
-       "unit": "px",
-       "label": "Padding bottom",
-       "default": 36
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
     },
     {
       "type": "range",
@@ -2980,24 +3080,24 @@
           "default": true
         },
         {
-           "type": "range",
-           "id": "video_width",
-           "min": 0,
-           "max": 100,
-           "step": 1,
-           "unit": "%",
-           "label": "Video Width",
-           "default": 100
+          "type": "range",
+          "id": "video_width",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Video Width",
+          "default": 100
         },
         {
-           "type": "range",
-           "id": "video_width_mobile",
-           "min": 0,
-           "max": 100,
-           "step": 1,
-           "unit": "%",
-           "label": "Video Width - Mobile",
-           "default": 100
+          "type": "range",
+          "id": "video_width_mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Video Width - Mobile",
+          "default": 100
         },
         {
           "type": "select",
@@ -3061,24 +3161,24 @@
           "label": "Image"
         },
         {
-           "type": "range",
-           "id": "image_width",
-           "min": 0,
-           "max": 100,
-           "step": 1,
-           "unit": "%",
-           "label": "Image Width",
-           "default": 100
+          "type": "range",
+          "id": "image_width",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Image Width",
+          "default": 100
         },
         {
-           "type": "range",
-           "id": "image_width_mobile",
-           "min": 0,
-           "max": 100,
-           "step": 1,
-           "unit": "%",
-           "label": "Image Width - Mobile",
-           "default": 100
+          "type": "range",
+          "id": "image_width_mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Image Width - Mobile",
+          "default": 100
         },
         {
           "type": "select",
@@ -3121,24 +3221,24 @@
           ]
         },
         {
-           "type": "range",
-           "id": "image_radius",
-           "min": 0,
-           "max": 100,
-           "step": 2,
-           "unit": "px",
-           "label": "Image Border Radius",
-           "default": 0
+          "type": "range",
+          "id": "image_radius",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Image Border Radius",
+          "default": 0
         },
         {
-           "type": "range",
-           "id": "image_border_thickness",
-           "min": 0,
-           "max": 10,
-           "step": 1,
-           "unit": "px",
-           "label": "Image Border Thickness",
-           "default": 0
+          "type": "range",
+          "id": "image_border_thickness",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "Image Border Thickness",
+          "default": 0
         },
         {
           "type": "color",
@@ -3358,44 +3458,44 @@
           "default": 10
         },
         {
-           "type": "range",
-           "id": "button_padding_horizontal",
-           "min": 0,
-           "max": 100,
-           "step": 2,
-           "unit": "px",
-           "label": "Button Padding Horizontal",
-           "default": 20
+          "type": "range",
+          "id": "button_padding_horizontal",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Padding Horizontal",
+          "default": 20
         },
         {
-           "type": "range",
-           "id": "button_padding_horizontal_mobile",
-           "min": 0,
-           "max": 100,
-           "step": 2,
-           "unit": "px",
-           "label": "Button Padding Horizontal - Mobile",
-           "default": 20
+          "type": "range",
+          "id": "button_padding_horizontal_mobile",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Padding Horizontal - Mobile",
+          "default": 20
         },
         {
-           "type": "range",
-           "id": "button_radius",
-           "min": 0,
-           "max": 100,
-           "step": 2,
-           "unit": "px",
-           "label": "Button Border Radius",
-           "default": 0
+          "type": "range",
+          "id": "button_radius",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Border Radius",
+          "default": 0
         },
         {
-           "type": "range",
-           "id": "button_border_thickness",
-           "min": 0,
-           "max": 10,
-           "step": 1,
-           "unit": "px",
-           "label": "Button Border Thickness",
-           "default": 1
+          "type": "range",
+          "id": "button_border_thickness",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Border Thickness",
+          "default": 1
         },
         {
           "type": "header",
@@ -3438,7 +3538,7 @@
         }
       ]
     },
-          {
+    {
       "type": "accordion",
       "name": "Accordion",
       "settings": [
@@ -3812,6 +3912,67 @@
           "type": "liquid",
           "id": "liquid",
           "label": "Custom Liquid"
+        }
+      ]
+    },
+    {
+      "type": "nested_tabs",
+      "name": "Nested Tabs",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Nested Tabs Settings"
+        },
+        {
+          "type": "checkbox",
+          "label": "Full Width",
+          "id": "full_width",
+          "info": "Use this checkbox to make the nested tabs full width"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_1_title",
+          "label": "Tab 1 Title",
+          "default": "Tab 1"
+        },
+        {
+          "type": "richtext",
+          "id": "nested_tab_1_content",
+          "label": "Tab 1 Content",
+          "default": "<p>Content for tab 1</p>"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_2_title",
+          "label": "Tab 2 Title",
+          "default": "Tab 2"
+        },
+        {
+          "type": "richtext",
+          "id": "nested_tab_2_content",
+          "label": "Tab 2 Content",
+          "default": "<p>Content for tab 2</p>"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_3_title",
+          "label": "Tab 3 Title",
+          "default": "Tab 3"
+        },
+        {
+          "type": "richtext",
+          "id": "nested_tab_3_content",
+          "label": "Tab 3 Content",
+          "default": "<p>Content for tab 3</p>"
+        },
+        {
+          "type": "range",
+          "id": "nested_tabs_count",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "label": "Number of Tabs",
+          "default": 2
         }
       ]
     }
