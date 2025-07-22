@@ -1,1 +1,18 @@
-{"layout":"theme","sections":{"ecom-reborn-product-product":{"type":"ecom-reborn-product-product","settings":{}}},"order":["ecom-reborn-product-product"]}
+{
+  "layout": "theme",
+  "sections": {
+    "ecom-reborn-product-product": {
+      "type": "ecom-reborn-product-product",
+      "settings": {}
+    },
+    "product-tabs": {
+      "type": "ss-product-tabs-5",
+      "disabled": false,
+      "settings": {}
+    }
+  },
+  "order": [
+    "ecom-reborn-product-product",
+    "product-tabs"
+  ]
+}
