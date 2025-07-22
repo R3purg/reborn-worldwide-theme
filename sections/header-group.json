@@ -35,7 +35,7 @@
       "type": "ss-header-1",
       "name": "SS - Header #1",
       "settings": {
-        "show_type": "always",
+        "show_type": "scroll_up",
         "transparent_bg": "none",
         "body_gap": 40,
         "body_gap_mobile": 12,
