@@ -1,14 +1,14 @@
 {% comment %}
-  ---------------------------------------------------------
-  Copyright © 2023 Section Store. All rights reserved.
-  Unauthorized copying, modification, distribution, or use
-  of this code or any portion of it, is strictly prohibited.
-  Violators will be prosecuted to the fullest extent of the law.
-  For inquiries or permissions, contact daniel@section.store
-  ---------------------------------------------------------
+---------------------------------------------------------
+Copyright © 2023 Section Store. All rights reserved.
+Unauthorized copying, modification, distribution, or use
+of this code or any portion of it, is strictly prohibited.
+Violators will be prosecuted to the fullest extent of the law.
+For inquiries or permissions, contact daniel@section.store
+---------------------------------------------------------
 {% endcomment %}
 
-{%- liquid
+{%- liquid 
   assign padding_horizontal = section.settings.padding_horizontal
   assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile
   assign padding_top = section.settings.padding_top
@@ -86,25 +86,26 @@
   assign icon_size = section.settings.icon_size
 
   assign use_search = section.settings.use_search
-  assign search_text = section.settings.search_text
-  assign search_icon_desktop = section.settings.search_icon_desktop
+  assign search_text  = section.settings.search_text
+  assign search_icon_desktop  = section.settings.search_icon_desktop
   assign search_menu_mobile = section.settings.search_menu_mobile
 
   assign use_account = section.settings.use_account
-  assign account_text = section.settings.account_text
-  assign account_icon_desktop = section.settings.account_icon_desktop
+  assign account_text  = section.settings.account_text
+  assign account_icon_desktop  = section.settings.account_icon_desktop
   assign account_menu_mobile = section.settings.account_menu_mobile
 
-  assign use_cart = section.settings.use_cart
-  assign cart_text = section.settings.cart_text
-  assign cart_icon_desktop = section.settings.cart_icon_desktop
+  assign cart_text  = section.settings.cart_text
+  assign cart_icon_desktop  = section.settings.cart_icon_desktop
+  
 -%}
 
 {%- style -%}
+
   {{ link_font | font_face: font_display: 'swap' }}
   {{ name_font | font_face: font_display: 'swap' }}
   {{ right_link_font | font_face: font_display: 'swap' }}
-
+  
   .section-{{ section.id }} {
     border-top: solid {{ border_color }} {{ border_thickness }}px;
     border-bottom: solid {{ border_color }} {{ border_thickness }}px;
@@ -115,7 +116,7 @@
     position: relative;
     z-index: 999;
   }
-
+  
   .section-{{ section.id }}-settings {
     margin: 0 auto;
     padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
@@ -123,7 +124,7 @@
     padding-left: {{ padding_horizontal_mobile }}rem;
     padding-right: {{ padding_horizontal_mobile }}rem;
   }
-
+  
   {% if transparent_bg == "all" %}
     .header-{{ section.id }}.transparent {
       background-color: transparent !important;
@@ -460,7 +461,7 @@
   .header-account-{{ section.id }} {
     text-decoration: none;
   }
-
+  
   .header-search-{{ section.id }} {
     padding: 0px;
     margin: 0px;
@@ -483,7 +484,7 @@
     .header-{{ section.id }}:not(.onscroll).transparent .header-logo-first-{{ section.id }} {
       display: none !important;
     }
-
+  
     .header-{{ section.id }}.open.transparent .header-logo-first-{{ section.id }} {
       display: block !important;
     }
@@ -491,7 +492,7 @@
     .header-{{ section.id }}:not(.onscroll).transparent .header-logo-second-{{ section.id }} {
       display: block !important;
     }
-
+  
     .header-{{ section.id }}.open.transparent .header-logo-second-{{ section.id }} {
       display: none !important;
     }
@@ -500,7 +501,7 @@
       .header-{{ section.id }}:not(.onscroll).transparent .header-logo-first-{{ section.id }} {
         display: none !important;
       }
-
+    
       .header-{{ section.id }}.open.transparent .header-logo-first-{{ section.id }} {
         display: block !important;
       }
@@ -508,7 +509,7 @@
       .header-{{ section.id }}:not(.onscroll).transparent .header-logo-second-{{ section.id }} {
         display: block !important;
       }
-
+    
       .header-{{ section.id }}.open.transparent .header-logo-second-{{ section.id }} {
         display: none !important;
       }
@@ -569,7 +570,7 @@
   .header-menu-mobile-inner-{{ section.id }}::-webkit-scrollbar {
     display: none;
   }
-
+  
   .header-menu-mobile-inner-{{ section.id }} .header-menu-item-{{ section.id }} {
     display: flex;
     flex-direction: column;
@@ -676,7 +677,7 @@
     margin-top: 16px;
     gap: 16px;
   }
-
+  
   @media(min-width: 1024px) {
 
     .section-{{ section.id }} {
@@ -685,7 +686,7 @@
       margin-right: {{ margin_horizontal }}rem;
       border-radius: {{ section_radius }}px;
     }
-
+    
     .section-{{ section.id }}-settings {
       padding: 0 5rem;
       padding-top: {{ padding_top }}px;
@@ -697,7 +698,7 @@
     .header-{{ section.id }}.transparent {
       width: calc(100% - {{ margin_horizontal | times: 2 }}rem);
     }
-
+  
     .header-{{ section.id }}.fixed {
       width: calc(100% - {{ margin_horizontal | times: 2 }}rem);
     }
@@ -886,8 +887,9 @@
     .header-logo-mobile-{{ section.id }} {
       display: none;
     }
-
+    
   }
+  
 {%- endstyle -%}
 
 {% unless full_width %}
@@ -905,7 +907,7 @@
       border-left: solid {{ border_color }} {{ border_thickness }}px;
       border-right: solid {{ border_color }} {{ border_thickness }}px;
     }
-
+    
     @media(min-width: 1024px) {
       .section-{{ section.id }} {
         border-left: 0px;
@@ -958,14 +960,14 @@
   </style>
 {% endif %}
 
-{% if logo_position == 'center' %}
+{% if logo_position == "center" %}
   <style>
     @media(min-width: 1024px) {
 
       .header-body-{{ section.id }} {
         grid-template-columns: 1fr {{ logo_width }}px 1fr;
       }
-
+      
       .header-menu-{{ section.id }} {
         order: 1;
       }
@@ -983,7 +985,7 @@
       .header-body-{{ section.id }} {
         grid-template-columns: {{ logo_width }}px 1fr 1fr;
       }
-
+      
       .header-menu-{{ section.id }} {
         order: 2;
       }
@@ -1067,7 +1069,7 @@
 {% endif %}
 
 {% comment %} FOR FREE THEMES{% endcomment %}
-{%- if settings.cart_type == 'drawer' -%}
+{%- if settings.cart_type == "drawer" -%}
   {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
   {{ 'component-cart.css' | asset_url | stylesheet_tag }}
   {{ 'component-totals.css' | asset_url | stylesheet_tag }}
@@ -1076,44 +1078,34 @@
 {%- endif -%}
 {% comment %} FOR FREE THEMES{% endcomment %}
 
-<div
-  class="section-{{ section.id }} header-{{ section.id }} {% if transparent_bg != "none" %}transparent{% endif %} {% if show_type == "always" %}fixed{% elsif show_type == "scroll_up" %}scroll fixed{% else %}top{% endif %}"
-  style="background-color:{{ background_color }};"
->
-  <div class="section-{{ section.id }}-settings">
-    <nav class="header-body-{{ section.id }}">
-      <div class="header-menu-{{ section.id }}">
-        {% if menu != blank %}
-          <span class="header-menu-icon-{{ section.id }}">
-            <svg width="25" height="18" viewBox="0 0 22 14" fill="" xmlns="http://www.w3.org/2000/svg">
-              <rect y="6" width="22" height="2" rx="1"></rect>
-              <rect y="12" width="22" height="2" rx="1"></rect>
-              <rect width="22" height="2" rx="1"></rect>
-            </svg>
-          </span>
-          <ul class="header-menu-list-{{ section.id }}">
-            {% for link in menu.links %}
-              <li class="header-menu-item-{{ section.id }} {% if link.links.size > 0 %}header-menu-item-parent-{{ section.id }}{% endif %}">
-                <a href="{{ link.url }}" class="header-menu-link-{{ section.id }}">{{ link.title }}</a>
+<div class="section-{{ section.id }} header-{{ section.id }} {% if transparent_bg != "none" %}transparent{% endif %} {% if show_type == "always" %}fixed{% elsif show_type == "scroll_up" %}scroll fixed{% else %}top{% endif %}" style="background-color:{{ background_color }};">
+    <div class="section-{{ section.id }}-settings">
+      <nav class="header-body-{{ section.id }}">
+        <div class="header-menu-{{ section.id }}">
+          {% if menu != blank %}
+            <span class="header-menu-icon-{{ section.id }}">
+              <svg width="25" height="18" viewBox="0 0 22 14" fill="" xmlns="http://www.w3.org/2000/svg">
+                <rect y="6" width="22" height="2" rx="1"></rect>
+                <rect y="12" width="22" height="2" rx="1"></rect>
+                <rect width="22" height="2" rx="1"></rect>
+              </svg>
+            </span>
+            <ul class="header-menu-list-{{ section.id }}">
+              {% for link in menu.links %}
+                <li class="header-menu-item-{{ section.id }} {% if link.links.size > 0 %}header-menu-item-parent-{{ section.id }}{% endif %}">
+                  <a href="{{ link.url }}" class="header-menu-link-{{ section.id }}">{{ link.title }}</a>
 
                 {% if link.links.size > 0 %}
                   <div class="header-mega-menu-{{ section.id }} header-menu-list-{{ section.id }}">
                     <div class="{% for child_link in link.links %}{% if child_link.links.size > 0 %} header-mega-menu-container-row-{{ section.id }}{% endif %}{% endfor %} header-mega-menu-container-{{ section.id }}">
                       {% for child_link in link.links %}
                         <div class="header-menu-item-{{ section.id }}">
-                          <a href="{{ child_link.url }}" class="header-menu-link-{{ section.id }}">
-                            {{- child_link.title -}}
-                          </a>
+                          <a href="{{ child_link.url }}" class="header-menu-link-{{ section.id }}">{{ child_link.title }}</a>
                           {% if child_link.links.size > 0 %}
                             <div class="header-mega-menu-child-list-{{ section.id }}">
                               {% for child_child_link in child_link.links %}
                                 <div class="header-menu-item-{{ section.id }}">
-                                  <a
-                                    href="{{ child_child_link.url }}"
-                                    class="header-menu-link-{{ section.id }} header-menu-child-link-{{ section.id }}"
-                                  >
-                                    {{- child_child_link.title -}}
-                                  </a>
+                                  <a href="{{ child_child_link.url }}" class="header-menu-link-{{ section.id }} header-menu-child-link-{{ section.id }}">{{ child_child_link.title }}</a>
                                 </div>
                               {% endfor %}
                             </div>
@@ -1123,204 +1115,126 @@
                     </div>
                   </div>
                 {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
+                </li>
+              {% endfor %}
+            </ul>
 
-          <div class="header-menu-mobile-{{ section.id }}">
-            <div class="header-menu-mobile-inner-{{ section.id }}">
-              <div class="header-menu-list-{{ section.id }}">
-                {% for link in menu.links %}
-                  {% if link.links.size > 0 %}
-                    <div class="header-tab-{{ section.id }}">
-                      <div class="header-tab-toggle-{{ section.id }}">
-                        <div class="header-tab-toggle-left-{{ section.id }}">
-                          <a href="{{ link.url }}" class="header-menu-link-{{ section.id }}">{{ link.title }}</a>
+            <div class="header-menu-mobile-{{ section.id }}">
+              <div class="header-menu-mobile-inner-{{ section.id }}">
+                <div class="header-menu-list-{{ section.id }}">
+                  {% for link in menu.links %}
+                    {% if link.links.size > 0 %}
+                      <div class="header-tab-{{ section.id }}">
+                        <div class="header-tab-toggle-{{ section.id }}">
+                          <div class="header-tab-toggle-left-{{ section.id }}">
+                            <a href="{{ link.url }}" class="header-menu-link-{{ section.id }}">{{ link.title }}</a>
+                          </div>
+                          <svg class="header-tab-toggle-arrow-{{ section.id }}" xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 143.000000 83.000000" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,83.000000) scale(0.100000,-0.100000)" fill="" stroke="none">
+                            <path d="M57 772 l-57 -57 360 -360 360 -360 357 357 358 358 -63 62 -62 63 -298 -298 -297 -297 -295 295 c-162 162 -297 295 -300 295 -3 0 -31 -26 -63 -58z"></path>
+                            </g>
+                          </svg>
                         </div>
-                        <svg
-                          class="header-tab-toggle-arrow-{{ section.id }}"
-                          xmlns="http://www.w3.org/2000/svg"
-                          version="1.0"
-                          viewBox="0 0 143.000000 83.000000"
-                          preserveAspectRatio="xMidYMid meet"
-                        >
-                          <g transform="translate(0.000000,83.000000) scale(0.100000,-0.100000)" fill="" stroke="none">
-                          <path d="M57 772 l-57 -57 360 -360 360 -360 357 357 358 358 -63 62 -62 63 -298 -298 -297 -297 -295 295 c-162 162 -297 295 -300 295 -3 0 -31 -26 -63 -58z"></path>
-                          </g>
-                        </svg>
+                        <div class="header-tab-text-{{ section.id }}" style="display: none; height: 0px; padding-top: 0px; padding-bottom: 0px;padding-left:5px;">
+                          <ul class="header-menu-list-{{ section.id }}">
+                            {% for child_link in link.links %}
+                              <li class="header-menu-item-{{ section.id }}">
+                                <a href="{{ child_link.url }}" class="header-menu-link-{{ section.id }}">{{ child_link.title }}</a>
+                                {% if child_link.links.size > 0 %}
+                                  {% for child_child_link in child_link.links %}
+                                    <a href="{{ child_child_link.url }}" class="header-menu-link-{{ section.id }} header-menu-child-link-{{ section.id }}">{{ child_child_link.title }}</a>
+                                  {% endfor %}
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
                       </div>
-                      <div
-                        class="header-tab-text-{{ section.id }}"
-                        style="display: none; height: 0px; padding-top: 0px; padding-bottom: 0px;padding-left:5px;"
-                      >
-                        <ul class="header-menu-list-{{ section.id }}">
-                          {% for child_link in link.links %}
-                            <li class="header-menu-item-{{ section.id }}">
-                              <a href="{{ child_link.url }}" class="header-menu-link-{{ section.id }}">
-                                {{- child_link.title -}}
-                              </a>
-                              {% if child_link.links.size > 0 %}
-                                {% for child_child_link in child_link.links %}
-                                  <a
-                                    href="{{ child_child_link.url }}"
-                                    class="header-menu-link-{{ section.id }} header-menu-child-link-{{ section.id }}"
-                                  >
-                                    {{- child_child_link.title -}}
-                                  </a>
-                                {% endfor %}
-                              {% endif %}
-                            </li>
-                          {% endfor %}
-                        </ul>
+                      {% comment %} Only for calculating height: {% endcomment %}
+                      <div class="header-tab-height-cal-{{ section.id }}">
+                         <ul class="header-menu-list-{{ section.id }}">
+                            {% for child_link in link.links %}
+                              <li class="header-menu-item-{{ section.id }}">
+                                <a href="{{ child_link.url }}" class="header-menu-link-{{ section.id }}">{{ child_link.title }}</a>
+                                {% if child_link.links.size > 0 %}
+                                  {% for child_child_link in child_link.links %}
+                                    <a href="{{ child_child_link.url }}" class="header-menu-link-{{ section.id }}">{{ child_child_link.title }}</a>
+                                  {% endfor %}
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
                       </div>
-                    </div>
-                    {% comment %} Only for calculating height: {% endcomment %}
-                    <div class="header-tab-height-cal-{{ section.id }}">
-                      <ul class="header-menu-list-{{ section.id }}">
-                        {% for child_link in link.links %}
-                          <li class="header-menu-item-{{ section.id }}">
-                            <a href="{{ child_link.url }}" class="header-menu-link-{{ section.id }}">
-                              {{- child_link.title -}}
-                            </a>
-                            {% if child_link.links.size > 0 %}
-                              {% for child_child_link in child_link.links %}
-                                <a href="{{ child_child_link.url }}" class="header-menu-link-{{ section.id }}">
-                                  {{- child_child_link.title -}}
-                                </a>
-                              {% endfor %}
-                            {% endif %}
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  {% else %}
-                    <div class="header-menu-item-{{ section.id }}">
-                      <a href="{{ link.url }}" class="header-menu-link-{{ section.id }}">{{ link.title }}</a>
-                    </div>
+                    {% else %}
+                      <div class="header-menu-item-{{ section.id }}">
+                        <a href="{{ link.url }}" class="header-menu-link-{{ section.id }}">{{ link.title }}</a>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                  {% if use_search and search_menu_mobile %}
+                     <div class="header-menu-item-{{ section.id }}">
+                       <a href="{{ routes.search_url }}" class="header-menu-link-{{ section.id }}">{{ search_text }}</a>
+                     </div>
                   {% endif %}
-                {% endfor %}
-                {% if use_search and search_menu_mobile %}
-                  <div class="header-menu-item-{{ section.id }}">
-                    <a href="{{ routes.search_url }}" class="header-menu-link-{{ section.id }}">{{ search_text }}</a>
-                  </div>
-                {% endif %}
-                {% if use_account and account_menu_mobile %}
-                  <div class="header-menu-item-{{ section.id }}">
-                    <a href="{{ routes.account_url }}" class="header-menu-link-{{ section.id }}">{{ account_text }}</a>
-                  </div>
-                {% endif %}
+                  {% if use_account and account_menu_mobile %}
+                     <div class="header-menu-item-{{ section.id }}">
+                       <a href="{{ routes.account_url }}" class="header-menu-link-{{ section.id }}">{{ account_text }}</a>
+                     </div>
+                  {% endif %}
+                </div>
               </div>
             </div>
-          </div>
-        {% endif %}
-      </div>
+          {% endif %}
+        </div>
 
-      <div class="header-logo-{{ section.id }}">
-        {% if logo != blank %}
-          <a
-            href="{{ shop.url }}"
-            class="header-logo-image-{{ section.id }} {% if logo_mobile != blank %}header-logo-desktop-{{ section.id }}{% endif %}"
-          >
-            <img
-              src="{{ logo | image_url }}"
-              alt="{{ logo.alt }}"
-              {% if lazy %}
-                loading="lazy"
-              {% endif %}
+        <div class="header-logo-{{ section.id }}">
+          {% if logo != blank %}
+            <a href="{{ shop.url }}" class="header-logo-image-{{ section.id }} {% if logo_mobile != blank %}header-logo-desktop-{{ section.id }}{% endif %}">
+              <img src="{{ logo | image_url }}" alt="{{ logo.alt }}" {% if lazy %}loading="lazy"{% endif %} {% if second_logo != blank %}class="header-logo-first-{{ section.id }}"{% endif %}>
               {% if second_logo != blank %}
-                class="header-logo-first-{{ section.id }}"
-              {% endif %}
-            >
-            {% if second_logo != blank %}
-              <img
-                src="{{ second_logo | image_url }}"
-                alt="{{ second_logo.alt }}"
-                {% if lazy %}
-                  loading="lazy"
-                {% endif %}
-                class="header-logo-second-{{ section.id }}"
-              >
-            {% endif %}
-          </a>
-          {% if logo_mobile != blank %}
-            <a href="{{ shop.url }}" class="header-logo-image-{{ section.id }} header-logo-mobile-{{ section.id }}">
-              <img
-                src="{{ logo_mobile | image_url }}"
-                alt="{{ logo_mobile.alt }}"
-                {% if lazy %}
-                  loading="lazy"
-                {% endif %}
-                {% if second_logo_mobile != blank %}
-                  class="header-logo-first-{{ section.id }}"
-                {% endif %}
-              >
-              {% if second_logo_mobile != blank %}
-                <img
-                  src="{{ second_logo_mobile | image_url }}"
-                  alt="{{ second_logo_mobile.alt }}"
-                  {% if lazy %}
-                    loading="lazy"
-                  {% endif %}
-                  class="header-logo-second-{{ section.id }}"
-                >
+                <img src="{{ second_logo | image_url }}" alt="{{ second_logo.alt }}" {% if lazy %}loading="lazy"{% endif %} class="header-logo-second-{{ section.id }}">
               {% endif %}
             </a>
+            {% if logo_mobile != blank %}
+              <a href="{{ shop.url }}" class="header-logo-image-{{ section.id }} header-logo-mobile-{{ section.id }}">
+                <img src="{{ logo_mobile | image_url }}" alt="{{ logo_mobile.alt }}" {% if lazy %}loading="lazy"{% endif %} {% if second_logo_mobile != blank %}class="header-logo-first-{{ section.id }}"{% endif %}>
+                {% if second_logo_mobile != blank %}
+                  <img src="{{ second_logo_mobile | image_url }}" alt="{{ second_logo_mobile.alt }}" {% if lazy %}loading="lazy"{% endif %} class="header-logo-second-{{ section.id }}">
+                {% endif %}
+              </a>
+            {% endif %}
+          {% else %}
+            <a href="{{ shop.url }}" class="header-logo-text-{{ section.id }}">{{ shop.name }}</a>
           {% endif %}
-        {% else %}
-          <a href="{{ shop.url }}" class="header-logo-text-{{ section.id }}">{{ shop.name }}</a>
-        {% endif %}
-      </div>
+        </div>
 
-      <div class="header-right-{{ section.id }}">
-        {% if use_search %}
-          <a href="{{ routes.search_url }}" class="header-search-{{ section.id }}">
-            <span class="header-search-icon-{{ section.id }}">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                version="1.1"
-                id="Layer_1"
-                x="0px"
-                y="0px"
-                viewBox="0 0 17.6 18.9"
-                style="enable-background:new 0 0 17.6 18.9;"
-                xml:space="preserve"
-              >
-                <path class="st0" d="M2.2,7.1c0-2.7,2.2-4.9,4.9-4.9c2.7,0,4.9,2.2,4.9,4.9C12,9.8,9.8,12,7.1,12C4.4,12,2.2,9.8,2.2,7.1z M7.1,0.2  c-3.8,0-6.9,3.1-6.9,6.9c0,3.8,3.1,6.9,6.9,6.9c1.2,0,2.3-0.3,3.3-0.9l5.3,5.3c0.4,0.4,1,0.4,1.4,0c0.4-0.4,0.4-1,0-1.4L12,11.9  c1.2-1.2,2-2.9,2-4.8C14,3.3,10.9,0.2,7.1,0.2z"></path>
-              </svg>
-            </span>
-            <span class="header-search-text-{{ section.id }}">{{ search_text }}</span>
-          </a>
-        {% endif %}
+        <div class="header-right-{{ section.id }}">
+          {% if use_search %}
+            <a href="{{ routes.search_url }}" class="header-search-{{ section.id }}">
+              <span class="header-search-icon-{{ section.id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 17.6 18.9" style="enable-background:new 0 0 17.6 18.9;" xml:space="preserve">
+                  <path class="st0" d="M2.2,7.1c0-2.7,2.2-4.9,4.9-4.9c2.7,0,4.9,2.2,4.9,4.9C12,9.8,9.8,12,7.1,12C4.4,12,2.2,9.8,2.2,7.1z M7.1,0.2  c-3.8,0-6.9,3.1-6.9,6.9c0,3.8,3.1,6.9,6.9,6.9c1.2,0,2.3-0.3,3.3-0.9l5.3,5.3c0.4,0.4,1,0.4,1.4,0c0.4-0.4,0.4-1,0-1.4L12,11.9  c1.2-1.2,2-2.9,2-4.8C14,3.3,10.9,0.2,7.1,0.2z"></path>
+                </svg>
+              </span>
+              <span class="header-search-text-{{ section.id }}">{{ search_text }}</span>
+            </a>
 
-        {%- if shop.customer_accounts_enabled and use_account -%}
-          <a
-            href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-            class="header-account-{{ section.id }}"
-          >
-            <span class="header-account-icon-{{ section.id }}">
-              <svg fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 512">
-                <path d="M349.692 274.16C374.816 254.422 393.152 227.361 402.153 196.737C411.155 166.111 410.372 133.447 399.913 103.286C389.457 73.1276 369.842 46.9725 343.8 28.4604C317.758 9.9483 286.586 0 254.62 0C222.652 0 191.48 9.9483 165.44 28.4604C139.399 46.9725 119.784 73.1276 109.327 103.286C98.8684 133.447 98.0835 166.111 107.086 196.737C116.086 227.361 134.423 254.422 159.547 274.16C116.499 291.379 78.9358 319.939 50.8662 356.796C22.7944 393.655 5.26893 437.425 0.153868 483.446C-0.214608 486.805 0.0797365 490.205 1.026 493.449C1.97226 496.697 3.54864 499.723 5.66793 502.361C9.94356 507.688 16.1662 511.099 22.9623 511.846C29.7584 512.592 36.5741 510.611 41.9072 506.342C47.2425 502.071 50.6591 495.861 51.4069 489.076C57.0344 439.06 80.9199 392.869 118.5 359.327C156.082 325.784 204.724 307.241 255.133 307.241C305.542 307.241 354.181 325.784 391.766 359.327C429.346 392.869 453.231 439.06 458.859 489.076C459.554 495.36 462.559 501.166 467.292 505.372C472.026 509.577 478.15 511.885 484.484 511.846H487.303C494.019 511.073 500.159 507.683 504.386 502.409C508.607 497.139 510.574 490.412 509.854 483.703C504.715 437.551 487.096 393.668 458.878 356.752C430.665 319.839 392.921 291.289 349.692 274.16ZM254.62 255.994C234.348 255.994 214.528 249.992 197.672 238.746C180.814 227.498 167.677 211.516 159.918 192.816C152.16 174.117 150.13 153.539 154.085 133.686C158.04 113.835 167.804 95.5995 182.14 81.2866C196.473 66.9736 214.738 57.2256 234.62 53.2767C254.507 49.3279 275.116 51.3546 293.845 59.1021C312.576 66.8474 328.584 79.9652 339.85 96.7946C351.111 113.624 357.122 133.412 357.122 153.652C357.122 180.796 346.325 206.827 327.099 226.018C307.877 245.211 281.807 255.994 254.62 255.994Z"></path>
-              </svg>
-            </span>
-            <span class="header-account-text-{{ section.id }}">{{ account_text }}</span>
-          </a>
-        {%- endif -%}
+          {% endif %}
 
-        {% if use_cart %}
+          {%- if shop.customer_accounts_enabled and use_account -%}
+            <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header-account-{{ section.id }}">
+              <span class="header-account-icon-{{ section.id }}">
+                  <svg fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 512">
+                    <path d="M349.692 274.16C374.816 254.422 393.152 227.361 402.153 196.737C411.155 166.111 410.372 133.447 399.913 103.286C389.457 73.1276 369.842 46.9725 343.8 28.4604C317.758 9.9483 286.586 0 254.62 0C222.652 0 191.48 9.9483 165.44 28.4604C139.399 46.9725 119.784 73.1276 109.327 103.286C98.8684 133.447 98.0835 166.111 107.086 196.737C116.086 227.361 134.423 254.422 159.547 274.16C116.499 291.379 78.9358 319.939 50.8662 356.796C22.7944 393.655 5.26893 437.425 0.153868 483.446C-0.214608 486.805 0.0797365 490.205 1.026 493.449C1.97226 496.697 3.54864 499.723 5.66793 502.361C9.94356 507.688 16.1662 511.099 22.9623 511.846C29.7584 512.592 36.5741 510.611 41.9072 506.342C47.2425 502.071 50.6591 495.861 51.4069 489.076C57.0344 439.06 80.9199 392.869 118.5 359.327C156.082 325.784 204.724 307.241 255.133 307.241C305.542 307.241 354.181 325.784 391.766 359.327C429.346 392.869 453.231 439.06 458.859 489.076C459.554 495.36 462.559 501.166 467.292 505.372C472.026 509.577 478.15 511.885 484.484 511.846H487.303C494.019 511.073 500.159 507.683 504.386 502.409C508.607 497.139 510.574 490.412 509.854 483.703C504.715 437.551 487.096 393.668 458.878 356.752C430.665 319.839 392.921 291.289 349.692 274.16ZM254.62 255.994C234.348 255.994 214.528 249.992 197.672 238.746C180.814 227.498 167.677 211.516 159.918 192.816C152.16 174.117 150.13 153.539 154.085 133.686C158.04 113.835 167.804 95.5995 182.14 81.2866C196.473 66.9736 214.738 57.2256 234.62 53.2767C254.507 49.3279 275.116 51.3546 293.845 59.1021C312.576 66.8474 328.584 79.9652 339.85 96.7946C351.111 113.624 357.122 133.412 357.122 153.652C357.122 180.796 346.325 206.827 327.099 226.018C307.877 245.211 281.807 255.994 254.62 255.994Z"></path>
+                  </svg>
+              </span>
+              <span class="header-account-text-{{ section.id }}">{{ account_text }}</span>
+            </a>
+          {%- endif -%}
+
           <a href="{{ routes.cart_url }}" class="header-cart-{{ section.id }}">
             <span class="header-cart-icon-{{ section.id }}">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                version="1.1"
-                id="Layer_1"
-                x="0px"
-                y="0px"
-                viewBox="0 0 21.3 19.3"
-                style="enable-background:new 0 0 21.3 19.3;"
-                xml:space="preserve"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 21.3 19.3" style="enable-background:new 0 0 21.3 19.3;" xml:space="preserve">
                 <path class="st0" d="M20.4,0.2c-0.5-0.1-1.1,0.2-1.2,0.7l-2.9,11.2h-7l-2.5-12H1.1c-0.6,0-1,0.4-1,1c0,0.6,0.4,1,1,1h4.1l2.5,12  h10.2l3.3-12.8C21.3,0.8,20.9,0.3,20.4,0.2z M10.1,17.6c0,0.8-0.7,1.5-1.5,1.5c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5  C9.5,16.1,10.1,16.8,10.1,17.6z M16.6,19.1c0.8,0,1.5-0.7,1.5-1.5s-0.7-1.5-1.5-1.5c-0.8,0-1.5,0.7-1.5,1.5S15.8,19.1,16.6,19.1z"></path>
               </svg>
             </span>
@@ -1333,12 +1247,9 @@
               </div>
             {%- endif -%}
           </a>
-        {% else %}
-          {% render 'password-modal' %}
-        {%- endif -%}
-      </div>
-    </nav>
-  </div>
+        </div>
+      </nav>
+    </div>
 </div>
 
 <script>
@@ -1515,705 +1426,699 @@ if (Shopify.designMode) {
 </script>
 
 {% schema %}
-{
-  "name": "SS - Header #1",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Header settings"
-    },
-    {
-      "type": "select",
-      "id": "show_type",
-      "label": "Reveal menu",
-      "default": "always",
-      "options": [
-        {
-          "label": "Scroll up",
-          "value": "scroll_up"
-        },
-        {
-          "label": "Always/sticky",
-          "value": "always"
-        },
-        {
-          "label": "Only top",
-          "value": "top"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "transparent_bg",
-      "label": "Transparent background",
-      "default": "home",
-      "options": [
-        {
-          "label": "All pages",
-          "value": "all"
-        },
-        {
-          "label": "Home page",
-          "value": "home"
-        },
-        {
-          "label": "None",
-          "value": "none"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Layout settings"
-    },
-    {
-      "type": "range",
-      "id": "body_gap",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Logo spacing",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "body_gap_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Logo spacing - mobile",
-      "default": 12
-    },
-    {
-      "type": "header",
-      "content": "Menu settings"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "range",
-      "id": "mega_menu_radius",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Mega menu roundness bottom - desktop",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "mega_menu_radius_top",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Mega menu roundness top - desktop",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "mega_menu_margin_top",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Mega menu margin top - desktop",
-      "default": 30
-    },
-    {
-      "type": "header",
-      "content": "Menu list settings"
-    },
-    {
-      "type": "range",
-      "id": "list_gap",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Gap",
-      "default": 44
-    },
-    {
-      "type": "range",
-      "id": "list_gap_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Gap - mobile",
-      "default": 24
-    },
-    {
-      "type": "header",
-      "content": "Menu link settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "link_custom",
-      "label": "Use custom font",
-      "default": false
-    },
-    {
-      "type": "font_picker",
-      "id": "link_font",
-      "label": "Font family",
-      "default": "josefin_sans_n4"
-    },
-    {
-      "type": "range",
-      "id": "link_size",
-      "min": 0,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "Font size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "link_size_mobile",
-      "min": 0,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "Font size - mobile",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "link_height",
-      "min": 50,
-      "max": 200,
-      "step": 10,
-      "unit": "%",
-      "label": "Line height",
-      "default": 130
-    },
-    {
-      "type": "header",
-      "content": "Menu icon settings"
-    },
-    {
-      "type": "range",
-      "id": "menu_icon_size_mobile",
-      "min": 10,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "label": "Size - mobile",
-      "default": 22
-    },
-    {
-      "type": "header",
-      "content": "Logo settings",
-      "info": "Leave blank to display shop name instead of logo"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo"
-    },
-    {
-      "type": "image_picker",
-      "id": "second_logo",
-      "label": "Second logo",
-      "info": "Use for transparent header"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_mobile",
-      "label": "Logo - mobile"
-    },
-    {
-      "type": "image_picker",
-      "id": "second_logo_mobile",
-      "label": "Second logo - mobile",
-      "info": "Use for transparent header"
-    },
-    {
-      "type": "range",
-      "id": "logo_width",
-      "min": 50,
-      "max": 400,
-      "step": 10,
-      "unit": "px",
-      "label": "Width",
-      "default": 200
-    },
-    {
-      "type": "range",
-      "id": "logo_width_mobile",
-      "min": 50,
-      "max": 400,
-      "step": 10,
-      "unit": "px",
-      "label": "Width - mobile",
-      "default": 140
-    },
-    {
-      "type": "select",
-      "id": "logo_position",
-      "label": "Position - desktop",
-      "default": "center",
-      "options": [
-        {
-          "label": "Left",
-          "value": "left"
-        },
-        {
-          "label": "Center",
-          "value": "center"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Shop name settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "name_custom",
-      "label": "Use custom font",
-      "default": false
-    },
-    {
-      "type": "font_picker",
-      "id": "name_font",
-      "label": "Font family",
-      "default": "josefin_sans_n4"
-    },
-    {
-      "type": "range",
-      "id": "name_size",
-      "min": 0,
-      "max": 72,
-      "step": 2,
-      "unit": "px",
-      "label": "Font size",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "name_size_mobile",
-      "min": 0,
-      "max": 72,
-      "step": 2,
-      "unit": "px",
-      "label": "Font size - mobile",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "name_height",
-      "min": 50,
-      "max": 200,
-      "step": 10,
-      "unit": "%",
-      "label": "Line height",
-      "default": 130
-    },
-    {
-      "type": "header",
-      "content": "Right navigation settings"
-    },
-    {
-      "type": "range",
-      "id": "right_gap",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Gap",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "right_gap_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Gap - mobile",
-      "default": 16
-    },
-    {
-      "type": "header",
-      "content": "Right link settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "right_link_custom",
-      "label": "Use custom font",
-      "default": false
-    },
-    {
-      "type": "font_picker",
-      "id": "right_link_font",
-      "label": "Font family",
-      "default": "josefin_sans_n4"
-    },
-    {
-      "type": "range",
-      "id": "right_link_size",
-      "min": 0,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "Font size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "right_link_height",
-      "min": 50,
-      "max": 200,
-      "step": 10,
-      "unit": "%",
-      "label": "Line height",
-      "default": 130
-    },
-    {
-      "type": "header",
-      "content": "Right icon settings"
-    },
-    {
-      "type": "range",
-      "id": "icon_size",
-      "min": 10,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Size",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "icon_size_mobile",
-      "min": 10,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Size - mobile",
-      "default": 18
-    },
-    {
-      "type": "header",
-      "content": "Search settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "use_search",
-      "label": "Use search",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "search_text",
-      "label": "Text",
-      "default": "SEARCH"
-    },
-    {
-      "type": "checkbox",
-      "id": "search_icon_desktop",
-      "label": "Icon on dekstop"
-    },
-    {
-      "type": "checkbox",
-      "id": "search_menu_mobile",
-      "label": "Move search link to burger menu (mobile)",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Account settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "use_account",
-      "label": "Use account",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "account_text",
-      "label": "Text",
-      "default": "ACCOUNT"
-    },
-    {
-      "type": "checkbox",
-      "id": "account_icon_desktop",
-      "label": "Icon on dekstop"
-    },
-    {
-      "type": "checkbox",
-      "id": "account_menu_mobile",
-      "label": "Move account link to burger menu (mobile)",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Cart settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "use_cart",
-      "label": "Use cart",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "cart_text",
-      "label": "Text",
-      "default": "CART"
-    },
-    {
-      "type": "checkbox",
-      "id": "cart_icon_desktop",
-      "label": "Icon on dekstop"
-    },
-    {
-      "type": "header",
-      "content": "Menu colors"
-    },
-    {
-      "type": "color",
-      "label": "Mobile menu background color",
-      "id": "mobile_menu_bg_color",
-      "default": "#f1f0ed"
-    },
-    {
-      "type": "color",
-      "label": "Link color",
-      "id": "link_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "color",
-      "label": "Link hover color",
-      "id": "link_hover_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "color",
-      "label": "Link color over hero",
-      "id": "link_hero_color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "label": "Link hover color over hero",
-      "id": "link_hover_hero_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "header",
-      "content": "Shop name colors"
-    },
-    {
-      "type": "color",
-      "label": "Color",
-      "id": "name_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "color",
-      "label": "Color hover",
-      "id": "name_hover_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "color",
-      "label": "Color over hero",
-      "id": "name_hero_color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "label": "Color hover over hero",
-      "id": "name_hover_hero_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "header",
-      "content": "Right navigation colors"
-    },
-    {
-      "type": "color",
-      "label": "Right link color",
-      "id": "right_link_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "color",
-      "label": "Right link hover color",
-      "id": "right_link_hover_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "color",
-      "label": "Right link color over hero",
-      "id": "right_link_hero_color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "label": "Right link hover color over hero",
-      "id": "right_link_hover_hero_color",
-      "default": "#67645e"
-    },
-    {
-      "type": "header",
-      "content": "Section colors"
-    },
-    {
-      "type": "color",
-      "label": "Section background",
-      "id": "background_color",
-      "default": "#F1F0ED"
-    },
-    {
-      "type": "color",
-      "label": "Border",
-      "id": "border_color",
-      "default": "#000000"
-    },
-    {
-      "type": "header",
-      "content": "Section margin (outside)"
-    },
-    {
-      "type": "range",
-      "id": "margin_top",
-      "min": 0,
-      "max": 52,
-      "step": 4,
-      "unit": "px",
-      "label": "Margin top",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "margin_horizontal",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "rem",
-      "label": "Margin sides",
-      "default": 3
-    },
-    {
-      "type": "range",
-      "id": "margin_horizontal_mobile",
-      "min": 0,
-      "max": 15,
-      "step": 0.5,
-      "unit": "rem",
-      "label": "Margin sides mobile",
-      "default": 1
-    },
-    {
-      "type": "header",
-      "content": "Section padding (inside)"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding top",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding bottom",
-      "default": 12
-    },
-    {
-      "type": "range",
-      "id": "padding_horizontal",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "rem",
-      "label": "Padding sides",
-      "default": 5
-    },
-    {
-      "type": "range",
-      "id": "padding_horizontal_mobile",
-      "min": 0,
-      "max": 15,
-      "step": 0.5,
-      "unit": "rem",
-      "label": "Padding sides mobile",
-      "default": 2
-    },
-    {
-      "type": "header",
-      "content": "Section settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "full_width",
-      "label": "Full width",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "content_width",
-      "min": 0,
-      "max": 400,
-      "step": 10,
-      "unit": "rem",
-      "label": "Section content width",
-      "default": 120
-    },
-    {
-      "type": "range",
-      "id": "border_thickness",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Border thickness",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "section_radius",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Section roundness",
-      "default": 100
-    },
-    {
-      "type": "checkbox",
-      "id": "lazy",
-      "label": "Lazy load",
-      "info": "Lazy load images for speed optimisation",
-      "default": false
-    }
-  ],
-  "presets": [
-    {
-      "name": "SS - Header #1"
-    }
-  ]
-}
+  {
+    "name": "SS - Header #1",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Header settings"
+      },
+      {
+        "type": "select",
+        "id": "show_type",
+        "label": "Reveal menu",
+        "default": "always",
+        "options": [
+          {
+            "label": "Scroll up",
+            "value": "scroll_up"
+          },
+          {
+            "label": "Always/sticky",
+            "value": "always"
+          },
+          {
+            "label": "Only top",
+            "value": "top"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "transparent_bg",
+        "label": "Transparent background",
+        "default": "home",
+        "options": [
+          {
+            "label": "All pages",
+            "value": "all"
+          },
+          {
+            "label": "Home page",
+            "value": "home"
+          },
+          {
+            "label": "None",
+            "value": "none"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Layout settings"
+      },
+      {
+        "type": "range",
+        "id": "body_gap",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Logo spacing",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "body_gap_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Logo spacing - mobile",
+        "default": 12
+      },
+      {
+        "type": "header",
+        "content": "Menu settings"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "range",
+        "id": "mega_menu_radius",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Mega menu roundness bottom - desktop",
+        "default": 18
+      },
+      {
+        "type": "range",
+        "id": "mega_menu_radius_top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Mega menu roundness top - desktop",
+        "default": 18
+      },
+      {
+        "type": "range",
+        "id": "mega_menu_margin_top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Mega menu margin top - desktop",
+        "default": 30
+      },
+      {
+        "type": "header",
+        "content": "Menu list settings"
+      },
+      {
+        "type": "range",
+        "id": "list_gap",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Gap",
+        "default": 44
+      },
+      {
+        "type": "range",
+        "id": "list_gap_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Gap - mobile",
+        "default": 24
+      },
+      {
+        "type": "header",
+        "content": "Menu link settings"
+      },
+      {
+          "type": "checkbox",
+          "id": "link_custom",
+          "label": "Use custom font",
+          "default": false
+      },
+      {
+          "type": "font_picker",
+          "id": "link_font",
+          "label": "Font family",
+          "default": "josefin_sans_n4"
+      },
+      {
+          "type": "range",
+          "id": "link_size",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size",
+          "default": 16
+      },
+      {
+          "type": "range",
+          "id": "link_size_mobile",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size - mobile",
+          "default": 14
+      },
+      {
+          "type": "range",
+          "id": "link_height",
+          "min": 50,
+          "max": 200,
+          "step": 10,
+          "unit": "%",
+          "label": "Line height",
+          "default": 130
+      },
+      {
+        "type": "header",
+        "content": "Menu icon settings"
+      },
+      {
+          "type": "range",
+          "id": "menu_icon_size_mobile",
+          "min": 10,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Size - mobile",
+          "default": 22
+      },
+      {
+        "type": "header",
+        "content": "Logo settings",
+        "info": "Leave blank to display shop name instead of logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "second_logo",
+        "label": "Second logo",
+        "info": "Use for transparent header"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_mobile",
+        "label": "Logo - mobile"
+      },
+      {
+        "type": "image_picker",
+        "id": "second_logo_mobile",
+        "label": "Second logo - mobile",
+        "info": "Use for transparent header"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 400,
+        "step": 10,
+        "unit": "px",
+        "label": "Width",
+        "default": 200
+      },
+      {
+        "type": "range",
+        "id": "logo_width_mobile",
+        "min": 50,
+        "max": 400,
+        "step": 10,
+        "unit": "px",
+        "label": "Width - mobile",
+        "default": 140
+      },
+      {
+        "type": "select",
+        "id": "logo_position",
+        "label": "Position - desktop",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Shop name settings"
+      },
+      {
+          "type": "checkbox",
+          "id": "name_custom",
+          "label": "Use custom font",
+          "default": false
+      },
+      {
+          "type": "font_picker",
+          "id": "name_font",
+          "label": "Font family",
+          "default": "josefin_sans_n4"
+      },
+      {
+          "type": "range",
+          "id": "name_size",
+          "min": 0,
+          "max": 72,
+          "step": 2,
+          "unit": "px",
+          "label": "Font size",
+          "default": 32
+      },
+      {
+          "type": "range",
+          "id": "name_size_mobile",
+          "min": 0,
+          "max": 72,
+          "step": 2,
+          "unit": "px",
+          "label": "Font size - mobile",
+          "default": 20
+      },
+      {
+          "type": "range",
+          "id": "name_height",
+          "min": 50,
+          "max": 200,
+          "step": 10,
+          "unit": "%",
+          "label": "Line height",
+          "default": 130
+      },
+      {
+        "type": "header",
+        "content": "Right navigation settings"
+      },
+      {
+        "type": "range",
+        "id": "right_gap",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Gap",
+        "default": 48
+      },
+      {
+        "type": "range",
+        "id": "right_gap_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Gap - mobile",
+        "default": 16
+      },
+      {
+        "type": "header",
+        "content": "Right link settings"
+      },
+      {
+          "type": "checkbox",
+          "id": "right_link_custom",
+          "label": "Use custom font",
+          "default": false
+      },
+      {
+          "type": "font_picker",
+          "id": "right_link_font",
+          "label": "Font family",
+          "default": "josefin_sans_n4"
+      },
+      {
+          "type": "range",
+          "id": "right_link_size",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size",
+          "default": 16
+      },
+      {
+          "type": "range",
+          "id": "right_link_height",
+          "min": 50,
+          "max": 200,
+          "step": 10,
+          "unit": "%",
+          "label": "Line height",
+          "default": 130
+      },
+      {
+        "type": "header",
+        "content": "Right icon settings"
+      },
+      {
+          "type": "range",
+          "id": "icon_size",
+          "min": 10,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Size",
+          "default": 20
+      },
+      {
+          "type": "range",
+          "id": "icon_size_mobile",
+          "min": 10,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Size - mobile",
+          "default": 18
+      },
+      {
+        "type": "header",
+        "content": "Search settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_search",
+        "label": "Use search",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "search_text",
+        "label": "Text",
+        "default": "SEARCH"
+      },
+      {
+        "type": "checkbox",
+        "id": "search_icon_desktop",
+        "label": "Icon on dekstop",
+      },
+      {
+        "type": "checkbox",
+        "id": "search_menu_mobile",
+        "label": "Move search link to burger menu (mobile)",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Account settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_account",
+        "label": "Use account",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "account_text",
+        "label": "Text",
+        "default": "ACCOUNT"
+      },
+      {
+        "type": "checkbox",
+        "id": "account_icon_desktop",
+        "label": "Icon on dekstop",
+      },
+      {
+        "type": "checkbox",
+        "id": "account_menu_mobile",
+        "label": "Move account link to burger menu (mobile)",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Cart settings"
+      },
+      {
+        "type": "text",
+        "id": "cart_text",
+        "label": "Text",
+        "default": "CART"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_icon_desktop",
+        "label": "Icon on dekstop",
+      },
+      {
+        "type": "header",
+        "content": "Menu colors"
+      },
+      {
+        "type": "color",
+        "label": "Mobile menu background color",
+        "id": "mobile_menu_bg_color",
+        "default": "#f1f0ed"
+      },
+      {
+        "type": "color",
+        "label": "Link color",
+        "id": "link_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "color",
+        "label": "Link hover color",
+        "id": "link_hover_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "color",
+        "label": "Link color over hero",
+        "id": "link_hero_color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "label": "Link hover color over hero",
+        "id": "link_hover_hero_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "header",
+        "content": "Shop name colors"
+      },
+      {
+        "type": "color",
+        "label": "Color",
+        "id": "name_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "color",
+        "label": "Color hover",
+        "id": "name_hover_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "color",
+        "label": "Color over hero",
+        "id": "name_hero_color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "label": "Color hover over hero",
+        "id": "name_hover_hero_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "header",
+        "content": "Right navigation colors"
+      },
+      {
+        "type": "color",
+        "label": "Right link color",
+        "id": "right_link_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "color",
+        "label": "Right link hover color",
+        "id": "right_link_hover_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "color",
+        "label": "Right link color over hero",
+        "id": "right_link_hero_color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "label": "Right link hover color over hero",
+        "id": "right_link_hover_hero_color",
+        "default": "#67645e"
+      },
+      {
+        "type": "header",
+        "content": "Section colors"
+      },
+      {
+        "type": "color",
+        "label": "Section background",
+        "id": "background_color",
+        "default": "#F1F0ED"
+      },
+      {
+        "type": "color",
+        "label": "Border",
+        "id": "border_color",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Section margin (outside)"
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "min": 0,
+        "max": 52,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin top",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "margin_horizontal",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "rem",
+        "label": "Margin sides",
+        "default": 3
+      },
+      {
+        "type": "range",
+        "id": "margin_horizontal_mobile",
+        "min": 0,
+        "max": 15,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Margin sides mobile",
+        "default": 1
+      },
+      {
+        "type": "header",
+        "content": "Section padding (inside)"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 12
+      },
+      {
+         "type": "range",
+         "id": "padding_bottom",
+         "min": 0,
+         "max": 100,
+         "step": 4,
+         "unit": "px",
+         "label": "Padding bottom",
+         "default": 12
+      },
+      {
+        "type": "range",
+        "id": "padding_horizontal",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "rem",
+        "label": "Padding sides",
+        "default": 5
+      },
+      {
+        "type": "range",
+        "id": "padding_horizontal_mobile",
+        "min": 0,
+        "max": 15,
+        "step": 0.5,
+        "unit": "rem",
+        "label": "Padding sides mobile",
+        "default": 2
+      },
+      {
+        "type": "header",
+        "content": "Section settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "Full width",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "content_width",
+        "min": 0,
+        "max": 400,
+        "step": 10,
+        "unit": "rem",
+        "label": "Section content width",
+        "default": 120
+      },
+      {
+        "type": "range",
+        "id": "border_thickness",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "Border thickness",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "section_radius",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Section roundness",
+        "default": 100
+      },
+      {
+        "type": "checkbox",
+        "id": "lazy",
+        "label": "Lazy load",
+        "info": "Lazy load images for speed optimisation",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "SS - Header #1"
+      }
+    ]
+  }
 {% endschema %}

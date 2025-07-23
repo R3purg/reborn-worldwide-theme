@@ -8,16 +8,6 @@
   ---------------------------------------------------------
 {% endcomment %}
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
->
-
-<script
-  defer
-  src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"
-></script>
-
 {%- liquid
   assign padding_horizontal = section.settings.padding_horizontal
   assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile
@@ -507,6 +497,7 @@
 {% for block in section.blocks %}
   {% if block.type == 'image' %}
     <style>
+
       .flexible-image-{{ block.id }} {
         width: 100%;
         max-width: {{ block.settings.image_width_mobile }}%;
@@ -1010,420 +1001,6 @@
         .flexible-tab-spacer-{{ block.id }} {
           height: {{ block.settings.space }}px;
         }
-      }
-    </style>
-
-  {% elsif block.type == 'nested_tabs' %}
-    {%- liquid
-      assign background_image = block.settings.background_image
-      assign background_size = block.settings.background_size
-      assign background_position = block.settings.background_position
-      assign background_color = block.settings.background_color
-      assign background_overlay_opacity = block.settings.background_overlay_opacity
-      assign background_overlay_color = block.settings.background_overlay_color
-      assign tab_font_custom = block.settings.tab_font_custom
-      assign tab_font_family = block.settings.tab_font_family
-      assign tab_font_size = block.settings.tab_font_size
-      assign tab_font_size_mobile = block.settings.tab_font_size_mobile
-      assign tab_font_weight = block.settings.tab_font_weight
-      assign content_font_custom = block.settings.content_font_custom
-      assign content_font_family = block.settings.content_font_family
-      assign content_font_size = block.settings.content_font_size
-      assign content_font_size_mobile = block.settings.content_font_size_mobile
-      assign content_line_height = block.settings.content_line_height
-      assign animation_type = block.settings.animation_type
-      assign animation_duration = block.settings.animation_duration
-      assign animation_easing = block.settings.animation_easing
-      assign tab_text_color = block.settings.tab_text_color
-      assign tab_text_color_active = block.settings.tab_text_color_active
-      assign tab_bg_color = block.settings.tab_bg_color
-      assign tab_bg_color_active = block.settings.tab_bg_color_active
-      assign tab_border_color = block.settings.tab_border_color
-      assign content_text_color = block.settings.content_text_color
-      assign content_bg_color = block.settings.content_bg_color
-      assign content_border_color = block.settings.content_border_color
-    -%}
-
-    <style>
-      {% if tab_font_custom %}
-        {{ tab_font_family | font_face: font_display: 'swap' }}
-      {% endif %}
-      {% if content_font_custom %}
-        {{ content_font_family | font_face: font_display: 'swap' }}
-      {% endif %}
-
-      .nested-tabs-{{ block.id }} {
-        width: 100%;
-        position: relative;
-        {% if background_image %}
-          background-image: url('{{ background_image | image_url: width: 1920, height: 1080 }}');
-          background-size: {{ background_size }};
-          background-position: {{ background_position }};
-          background-repeat: no-repeat;
-        {% endif %}
-        background-color: {{ background_color }};
-        padding: 20px;
-        border-radius: 8px;
-      }
-
-      {% if background_image and background_overlay_opacity > 0 %}
-        .nested-tabs-{{ block.id }}::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: {{ background_overlay_color }};
-          opacity: {{ background_overlay_opacity | divided_by: 100.0 }};
-          border-radius: 8px;
-          pointer-events: none;
-        }
-      {% endif %}
-
-      .nested-tabs-{{ block.id }} > * {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* Swiper Container */
-      .nested-tabs-swiper-{{ block.id }} {
-        width: 100%;
-        height: auto;
-        padding-bottom: 60px;
-        margin-bottom: 20px;
-        --swiper-pagination-color: {{ tab_bg_color_active }};
-        --swiper-pagination-bullet-inactive-color: {{ tab_border_color }};
-        --swiper-navigation-color: {{ tab_bg_color_active }};
-      }
-
-      .nested-tabs-{{ block.id }} .swiper-slide {
-        height: auto;
-        display: flex;
-        align-items: stretch;
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-content-slide {
-        width: 100%;
-        padding: 0;
-        background: {{ content_bg_color }};
-        border: 1px solid {{ content_border_color }};
-        border-radius: 8px;
-        color: {{ content_text_color }};
-        {% if content_font_custom %}
-          font-family: {{ content_font_family.family }}, {{ content_font_family.fallback_families }};
-        {% endif %}
-        font-size: {{ content_font_size }}px;
-        line-height: {{ content_line_height }}%;
-        min-height: 200px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        overflow: hidden;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-
-      /* Content overlay for text over background images */
-      .nested-tabs-{{ block.id }} .nested-tab-content-overlay {
-        padding: 24px;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 2;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(2px);
-      }
-
-      /* When no background image, remove the overlay styling */
-      .nested-tabs-{{ block.id }} .nested-tab-content-slide:not([style*="background-image"]) .nested-tab-content-overlay {
-        background: transparent;
-        backdrop-filter: none;
-      }
-
-      /* PNG border fitting effect - makes border follow image shape */
-      {% for i in (1..3) %}
-        {% assign tab_bg_image_key = 'nested_tab_' | append: i | append: '_background_image' %}
-        {% assign tab_bg_image = block.settings[tab_bg_image_key] %}
-        {% if tab_bg_image %}
-          .nested-tabs-{{ block.id }} .nested-tab-content-slide-{{ i }}-{{ block.id }} {
-            /* Remove default border for images */
-            border: none;
-            /* Add a subtle shadow to define the image shape */
-            filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.15));
-            /* Ensure the background image defines the shape */
-            background-color: transparent;
-          }
-
-          .nested-tabs-{{ block.id }} .nested-tab-content-slide-{{ i }}-{{ block.id }} .nested-tab-content-overlay {
-            /* Adjust overlay for better text readability */
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 8px;
-            margin: 20px;
-          }
-        {% endif %}
-      {% endfor %}
-
-      .nested-tabs-{{ block.id }} .nested-tab-slide-title {
-        margin: 0 0 16px 0;
-        font-size: {{ tab_font_size }}px;
-        font-weight: {{ tab_font_weight }};
-        color: {{ tab_text_color_active }};
-        {% if tab_font_custom %}
-          font-family: {{ tab_font_family.family }}, {{ tab_font_family.fallback_families }};
-        {% endif %}
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-slide-content {
-        flex: 1;
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-slide-content p {
-        margin-bottom: 16px;
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-slide-content p:last-child {
-        margin-bottom: 0;
-      }
-
-      /* Navigation arrows */
-      .nested-tab-nav-prev-{{ block.id }},
-      .nested-tab-nav-next-{{ block.id }} {
-        background: {{ tab_bg_color_active }} !important;
-        border-radius: 50%;
-        width: 44px !important;
-        height: 44px !important;
-        margin-top: -22px !important;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      }
-
-      .nested-tab-nav-prev-{{ block.id }}:hover,
-      .nested-tab-nav-next-{{ block.id }}:hover {
-        background: {{ tab_text_color_active }} !important;
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      }
-
-      .nested-tab-nav-prev-{{ block.id }}:after,
-      .nested-tab-nav-next-{{ block.id }}:after {
-        font-size: 18px !important;
-        font-weight: 900 !important;
-        color: white !important;
-      }
-
-      /* Pagination dots - Enhanced to match review slider */
-      .nested-tab-pagination-{{ block.id }} {
-        bottom: 20px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: auto !important;
-        text-align: center;
-      }
-
-      .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet {
-        width: 14px !important;
-        height: 14px !important;
-        margin: 0 8px !important;
-        background: {{ tab_border_color }} !important;
-        opacity: 0.5 !important;
-        transition: all 0.4s ease !important;
-        border-radius: 50% !important;
-        cursor: pointer;
-      }
-
-      .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet-active {
-        background: {{ tab_bg_color_active }} !important;
-        opacity: 1 !important;
-        transform: scale(1.3) !important;
-        box-shadow: 0 2px 8px rgba(138, 43, 226, 0.4);
-      }
-
-      .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet:hover {
-        opacity: 0.8 !important;
-        transform: scale(1.1) !important;
-      }
-
-      /* Traditional tab buttons (secondary navigation) */
-      .nested-tabs-{{ block.id }} .nested-tab-buttons {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-button {
-        padding: 12px 24px;
-        background: {{ tab_bg_color }};
-        color: {{ tab_text_color }};
-        border: 1px solid {{ tab_border_color }};
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all {{ animation_duration }}ms {{ animation_easing }};
-        {% if tab_font_custom %}
-          font-family: {{ tab_font_family.family }}, {{ tab_font_family.fallback_families }};
-        {% endif %}
-        font-size: {{ tab_font_size }}px;
-        font-weight: {{ tab_font_weight }};
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        opacity: 0.7;
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-icon {
-        width: 24px;
-        height: 24px;
-        object-fit: contain;
-        flex-shrink: 0;
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-title {
-        flex: 1;
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        opacity: 1;
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-button.active {
-        background: {{ tab_bg_color_active }};
-        color: {{ tab_text_color_active }};
-        border-color: {{ tab_bg_color_active }};
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
-        opacity: 1;
-      }
-
-      /* Enhanced hover effects for better UX */
-      .nested-tabs-{{ block.id }} .swiper-slide {
-        transition: transform 0.3s ease;
-      }
-
-      .nested-tabs-{{ block.id }} .swiper-slide:hover .nested-tab-content-slide {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-      }
-
-      /* Additional styling for better background image presentation */
-      .nested-tabs-{{ block.id }} .nested-tab-content-slide[style*="background-image"] {
-        /* Ensure proper aspect ratio and image display */
-        min-height: 250px;
-        background-attachment: local;
-      }
-
-      /* Improve text readability over background images */
-      .nested-tabs-{{ block.id }} .nested-tab-content-slide[style*="background-image"] .nested-tab-slide-title {
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        color: {{ content_text_color }};
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-content-slide[style*="background-image"] .nested-tab-slide-content {
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-      }
-
-      /* Hover effects for background image tabs */
-      .nested-tabs-{{ block.id }} .swiper-slide:hover .nested-tab-content-slide[style*="background-image"] {
-        transform: translateY(-2px);
-        filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.2));
-      }
-
-      @media (max-width: 768px) {
-        .nested-tabs-{{ block.id }} .nested-tab-button {
-          font-size: {{ tab_font_size_mobile }}px;
-          padding: 10px 20px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-content-slide {
-          font-size: {{ content_font_size_mobile }}px;
-          padding: 20px;
-          min-height: 180px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-slide-title {
-          font-size: {{ tab_font_size_mobile }}px;
-        }
-
-        .nested-tabs-swiper-{{ block.id }} {
-          padding-bottom: 50px;
-        }
-
-        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet {
-          width: 12px !important;
-          height: 12px !important;
-          margin: 0 6px !important;
-        }
-
-        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet-active {
-          transform: scale(1.2) !important;
-        }
-
-      @media (max-width: 768px) {
-        .nested-tabs-{{ block.id }} .nested-tab-button {
-          font-size: {{ tab_font_size_mobile }}px;
-          padding: 10px 20px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-content-slide {
-          font-size: {{ content_font_size_mobile }}px;
-          min-height: 180px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-content-overlay {
-          padding: 20px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-slide-title {
-          font-size: {{ tab_font_size_mobile }}px;
-        }
-
-        .nested-tabs-swiper-{{ block.id }} {
-          padding-bottom: 50px;
-        }
-
-        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet {
-          width: 12px !important;
-          height: 12px !important;
-          margin: 0 6px !important;
-        }
-
-        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet-active {
-          transform: scale(1.2) !important;
-        }
-
-        .nested-tab-nav-prev-{{ block.id }},
-        .nested-tab-nav-next-{{ block.id }} {
-          width: 36px !important;
-          height: 36px !important;
-          margin-top: -18px !important;
-        }
-
-        .nested-tab-nav-prev-{{ block.id }}:after,
-        .nested-tab-nav-next-{{ block.id }}:after {
-          font-size: 14px !important;
-        }
-
-        /* Mobile adjustments for background images */
-        {% for i in (1..3) %}
-          {% assign tab_bg_image_key = 'nested_tab_' | append: i | append: '_background_image' %}
-          {% assign tab_bg_image = block.settings[tab_bg_image_key] %}
-          {% if tab_bg_image %}
-            .nested-tabs-{{ block.id }} .nested-tab-content-slide-{{ i }}-{{ block.id }} .nested-tab-content-overlay {
-              margin: 15px;
-              padding: 15px;
-            }
-          {% endif %}
-        {% endfor %}
-      }
       }
     </style>
   {% endif %}
@@ -1977,110 +1554,6 @@
             </div>
           {% endif %}
         {% endif %}
-
-        <!-- Add nested tabs rendering with Swiper -->
-        {% if block.type == 'nested_tabs' %}
-          <div
-            class="nested-tabs-{{ block.id }}{% if block.settings.full_width %} flexible-tab-full-width{% endif %}"
-            data-animation="{{ block.settings.animation_type }}"
-            data-duration="{{ block.settings.animation_duration }}"
-          >
-            <!-- Swiper for nested tabs -->
-            <div class="nested-tabs-swiper-{{ block.id }} swiper">
-              <div class="swiper-wrapper">
-                {% for i in (1..block.settings.nested_tabs_count) %}
-                  {% assign tab_content_key = 'nested_tab_' | append: i | append: '_content' %}
-                  {% assign tab_content = block.settings[tab_content_key] %}
-                  {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
-                  {% assign tab_title = block.settings[tab_title_key] %}
-                  {% assign tab_bg_image_key = 'nested_tab_' | append: i | append: '_background_image' %}
-                  {% assign tab_bg_image = block.settings[tab_bg_image_key] %}
-                  {% if tab_title != blank and tab_content != blank %}
-                    <div class="swiper-slide">
-                      <div
-                        class="nested-tab-content-slide nested-tab-content-slide-{{ i }}-{{ block.id }}"
-                        {% if tab_bg_image %}
-                          style="background-image: url('{{ tab_bg_image | image_url: width: 800, height: 600 }}');"
-                        {% endif %}
-                      >
-                        <div class="nested-tab-content-overlay">
-                          <h3 class="nested-tab-slide-title">{{ tab_title }}</h3>
-                          <div class="nested-tab-slide-content">
-                            {{ tab_content }}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
-
-              <!-- Navigation buttons -->
-              <div class="nested-tab-nav-prev-{{ block.id }} swiper-button-prev"></div>
-              <div class="nested-tab-nav-next-{{ block.id }} swiper-button-next"></div>
-
-              <!-- Pagination dots -->
-              <div class="nested-tab-pagination-{{ block.id }} swiper-pagination"></div>
-            </div>
-
-            <!-- Optional: Traditional tab buttons as secondary navigation -->
-            <div class="nested-tab-buttons">
-              {% for i in (1..block.settings.nested_tabs_count) %}
-                {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
-                {% assign tab_title = block.settings[tab_title_key] %}
-                {% assign tab_content_key = 'nested_tab_' | append: i | append: '_content' %}
-                {% assign tab_content = block.settings[tab_content_key] %}
-                {% assign tab_icon_key = 'nested_tab_' | append: i | append: '_icon' %}
-                {% assign tab_icon = block.settings[tab_icon_key] %}
-                {% assign tab_text_color_key = 'nested_tab_' | append: i | append: '_text_color' %}
-                {% assign tab_text_color = block.settings[tab_text_color_key] %}
-                {% assign tab_text_color_active_key = 'nested_tab_' | append: i | append: '_text_color_active' %}
-                {% assign tab_text_color_active = block.settings[tab_text_color_active_key] %}
-                {% assign tab_bg_color_key = 'nested_tab_' | append: i | append: '_bg_color' %}
-                {% assign tab_bg_color = block.settings[tab_bg_color_key] %}
-                {% assign tab_bg_color_active_key = 'nested_tab_' | append: i | append: '_bg_color_active' %}
-                {% assign tab_bg_color_active = block.settings[tab_bg_color_active_key] %}
-                {% assign tab_border_color_key = 'nested_tab_' | append: i | append: '_border_color' %}
-                {% assign tab_border_color = block.settings[tab_border_color_key] %}
-
-                {% if tab_title != blank and tab_content != blank %}
-                  <div
-                    class="nested-tab-button nested-tab-button-{{ i }}{% if forloop.first %} active{% endif %}"
-                    data-tab-index="{{ forloop.index0 }}"
-                    data-block-id="{{ block.id }}"
-                    style="
-                      color: {{ tab_text_color | default: block.settings.tab_text_color | default: '#333333' }};
-                      background-color: {{ tab_bg_color | default: block.settings.tab_bg_color | default: '#f0f0f0' }};
-                      border-color: {{ tab_border_color | default: block.settings.tab_border_color | default: '#cccccc' }};
-                      {% if forloop.first %}
-                        color: {{ tab_text_color_active | default: block.settings.tab_text_color_active | default: '#ffffff' }};
-                        background-color: {{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }};
-                        border-color: {{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }};
-                      {% endif %}
-                    "
-                    data-normal-color="{{ tab_text_color | default: block.settings.tab_text_color | default: '#333333' }}"
-                    data-active-color="{{ tab_text_color_active | default: block.settings.tab_text_color_active | default: '#ffffff' }}"
-                    data-normal-bg="{{ tab_bg_color | default: block.settings.tab_bg_color | default: '#f0f0f0' }}"
-                    data-active-bg="{{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }}"
-                    data-normal-border="{{ tab_border_color | default: block.settings.tab_border_color | default: '#cccccc' }}"
-                    data-active-border="{{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }}"
-                  >
-                    {% if tab_icon != blank %}
-                      <img
-                        src="{{ tab_icon | image_url: width: 24, height: 24 }}"
-                        alt="{{ tab_title }} icon"
-                        class="nested-tab-icon"
-                        width="24"
-                        height="24"
-                      >
-                    {% endif %}
-                    <span class="nested-tab-title">{{ tab_title }}</span>
-                  </div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        {% endif %}
       {% endif %}
     {% endfor %}
 
@@ -2095,69 +1568,80 @@
 
 <script>
   function initFlexibleTabs() {
+    
     let toggles = document.querySelectorAll('.flexible-tabs-toggle-{{ section.id }}');
-    if (toggles) {
-      toggles.forEach((el) => {
+    if(toggles) {
+      toggles.forEach(el => {
         let id = el.id;
         let blocks = document.querySelectorAll('.flexible-tab-container-{{ section.id }}');
         el.addEventListener('click', () => {
-          toggles.forEach((element) => {
+          toggles.forEach(element => {
             element.classList.remove('active');
           });
           el.classList.add('active');
-          if (blocks) {
-            blocks.forEach((element) => {
+          if(blocks) {
+            blocks.forEach(element => {
               element.classList.remove('active');
               let dataId = element.getAttribute('data-id');
-              if (id === dataId) {
+              if(id === dataId) {
                 element.classList.add('active');
               }
-            });
+            })
           }
-        });
-      });
+        })
+      })
     }
 
-    document.querySelectorAll('.flexible-video-{{ section.id }}').forEach((el) => {
+    document.querySelectorAll('.flexible-video-{{ section.id }}').forEach(el => {
       let btn = el.querySelector('.flexible-video-action-{{ section.id }}');
       let frame = el.querySelector('iframe');
       let src;
-      if (frame) {
-        src = frame.getAttribute('data-src2');
+      if(frame) {
+        src = frame.getAttribute("data-src2");
       }
       let video = el.querySelector('video');
-      if (btn) {
-        btn.addEventListener('click', () => {
+      if(btn) {
+         btn.addEventListener('click', () => {
           btn.classList.toggle('active');
-          if (btn.classList.contains('active')) {
-            if (frame) {
+          if(btn.classList.contains('active')) {
+            if(frame) {
               frame.src = src;
             }
-            if (video) {
+            if(video) {
               video.muted = false;
-              video.setAttribute('mute', 'false');
+              video.setAttribute("mute", "false"); 
             }
           } else {
-            if (frame) {
-              frame.src += '&mute=1';
+            if(frame) {
+              frame.src += "&mute=1";
             }
-            if (video) {
+            if(video) {
               video.muted = true;
-              video.setAttribute('mute', 'true');
+              video.setAttribute("mute", "true"); 
             }
           }
-        });
+        }) 
       }
-    });
+    })
 
     const answerPaddingTop = 10;
     const answerPaddingBottom = 10;
 
-    const faqs = document.querySelectorAll('.flexible-tab-accordion-{{ section.id }}');
-    const buttons = document.querySelectorAll('.flexible-tab-accordion-question-{{ section.id }}');
-    const answers = document.querySelectorAll('.flexible-tab-accordion-answer-{{ section.id }}');
-    const answersHeightCalElements = document.querySelectorAll('.flexible-tab-height-cal-{{ section.id }}');
-    const icons = document.querySelectorAll('.flexible-tab-accordion-arrow-{{ section.id }}');
+    const faqs = document.querySelectorAll(
+      '.flexible-tab-accordion-{{ section.id }}'
+    );
+    const buttons = document.querySelectorAll(
+      '.flexible-tab-accordion-question-{{ section.id }}'
+    );
+    const answers = document.querySelectorAll(
+      '.flexible-tab-accordion-answer-{{ section.id }}'
+    );
+    const answersHeightCalElements = document.querySelectorAll(
+      '.flexible-tab-height-cal-{{ section.id }}'
+    );
+    const icons = document.querySelectorAll(
+      '.flexible-tab-accordion-arrow-{{ section.id }}'
+    );
 
     let activeIndex = -1;
 
@@ -2168,7 +1652,7 @@
       setTimeout(() => {
         answers[index].style.paddingTop = `${answerPaddingTop}px`;
         answers[index].style.paddingBottom = `${answerPaddingBottom}px`;
-        answers[index].style.height = `${height}px`;
+        answers[index].style.height = `${height }px`;
         icons[index].style.setProperty('--rotate', '180deg');
       });
     }
@@ -2221,100 +1705,10 @@
   }
 
   document.addEventListener('DOMContentLoaded', initFlexibleTabs);
-
+  
   if (Shopify.designMode) {
-    document.addEventListener('shopify:section:unload', initFlexibleTabs);
-    document.addEventListener('shopify:section:load', initFlexibleTabs);
-  }
-
-  // Nested tabs with Swiper functionality
-  function initNestedTabs() {
-    // Initialize all nested tab swipers
-    document.querySelectorAll('[class*="nested-tabs-swiper-"]').forEach((swiperEl) => {
-      const blockId = swiperEl.className.match(/nested-tabs-swiper-(\w+)/)[1];
-
-      const swiper = new Swiper(swiperEl, {
-        slidesPerView: 1,
-        spaceBetween: 0,
-        loop: false,
-        autoplay: false,
-        speed: 1000, // Match review slider speed
-        effect: 'slide',
-        navigation: {
-          nextEl: `.nested-tab-nav-next-${blockId}`,
-          prevEl: `.nested-tab-nav-prev-${blockId}`,
-        },
-        pagination: {
-          el: `.nested-tab-pagination-${blockId}`,
-          clickable: true,
-          dynamicBullets: false, // Use static bullets like review slider
-        },
-        on: {
-          slideChange: function () {
-            // Update traditional tab buttons to match current slide
-            updateTabButtons(blockId, this.activeIndex);
-          },
-          init: function () {
-            // Ensure first tab button is active on initialization
-            updateTabButtons(blockId, 0);
-          },
-        },
-      });
-
-      // Store swiper instance for later use
-      swiperEl.swiper = swiper;
-
-      // Handle traditional tab button clicks
-      const tabButtons = document.querySelectorAll(`[data-block-id="${blockId}"]`);
-      tabButtons.forEach((button) => {
-        button.addEventListener('click', function (e) {
-          e.preventDefault();
-          const tabIndex = parseInt(this.getAttribute('data-tab-index'));
-          if (!isNaN(tabIndex)) {
-            swiper.slideTo(tabIndex);
-          }
-        });
-      });
-    });
-
-    // Function to update tab button styles
-    function updateTabButtons(blockId, activeIndex) {
-      const tabButtons = document.querySelectorAll(`[data-block-id="${blockId}"]`);
-
-      tabButtons.forEach((button, index) => {
-        button.classList.remove('active');
-
-        // Apply normal styling
-        const normalColor = button.getAttribute('data-normal-color');
-        const normalBg = button.getAttribute('data-normal-bg');
-        const normalBorder = button.getAttribute('data-normal-border');
-
-        if (normalColor) button.style.color = normalColor;
-        if (normalBg) button.style.backgroundColor = normalBg;
-        if (normalBorder) button.style.borderColor = normalBorder;
-
-        // Apply active styling to current button
-        if (index === activeIndex) {
-          button.classList.add('active');
-
-          const activeColor = button.getAttribute('data-active-color');
-          const activeBg = button.getAttribute('data-active-bg');
-          const activeBorder = button.getAttribute('data-active-border');
-
-          if (activeColor) button.style.color = activeColor;
-          if (activeBg) button.style.backgroundColor = activeBg;
-          if (activeBorder) button.style.borderColor = activeBorder;
-        }
-      });
-    }
-  }
-
-  // Initialize nested tabs
-  document.addEventListener('DOMContentLoaded', initNestedTabs);
-
-  if (Shopify.designMode) {
-    document.addEventListener('shopify:section:unload', initNestedTabs);
-    document.addEventListener('shopify:section:load', initNestedTabs);
+     document.addEventListener('shopify:section:unload', initFlexibleTabs);
+     document.addEventListener('shopify:section:load', initFlexibleTabs);
   }
 </script>
 
@@ -2490,14 +1884,14 @@
       "default": 14
     },
     {
-      "type": "range",
-      "id": "toggles_radius",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Toggle Buttons Container Border Radius",
-      "default": 100
+       "type": "range",
+       "id": "toggles_radius",
+       "min": 0,
+       "max": 100,
+       "step": 2,
+       "unit": "px",
+       "label": "Toggle Buttons Container Border Radius",
+       "default": 100
     },
     {
       "type": "range",
@@ -2611,34 +2005,34 @@
       "default": 12
     },
     {
-      "type": "range",
-      "id": "button_padding_horizontal",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Button Padding Horizontal",
-      "default": 20
+       "type": "range",
+       "id": "button_padding_horizontal",
+       "min": 0,
+       "max": 100,
+       "step": 2,
+       "unit": "px",
+       "label": "Button Padding Horizontal",
+       "default": 20
     },
     {
-      "type": "range",
-      "id": "button_radius",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Button Border Radius",
-      "default": 100
+       "type": "range",
+       "id": "button_radius",
+       "min": 0,
+       "max": 100,
+       "step": 2,
+       "unit": "px",
+       "label": "Button Border Radius",
+       "default": 100
     },
     {
-      "type": "range",
-      "id": "button_border_thickness",
-      "min": 0,
-      "max": 10,
-      "step": 1,
-      "unit": "px",
-      "label": "Button Border Thickness",
-      "default": 0
+       "type": "range",
+       "id": "button_border_thickness",
+       "min": 0,
+       "max": 10,
+       "step": 1,
+       "unit": "px",
+       "label": "Button Border Thickness",
+       "default": 0
     },
     {
       "type": "checkbox",
@@ -2776,7 +2170,7 @@
       "type": "color",
       "label": "Toggle Buttons Background Color",
       "id": "toggles_bg_color",
-      "default": "#F5F5F5"
+      "default":"#F5F5F5"
     },
     {
       "type": "color",
@@ -2910,14 +2304,14 @@
       "default": 36
     },
     {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding bottom",
-      "default": 36
+       "type": "range",
+       "id": "padding_bottom",
+       "min": 0,
+       "max": 100,
+       "step": 4,
+       "unit": "px",
+       "label": "Padding bottom",
+       "default": 36
     },
     {
       "type": "range",
@@ -3586,24 +2980,24 @@
           "default": true
         },
         {
-          "type": "range",
-          "id": "video_width",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Video Width",
-          "default": 100
+           "type": "range",
+           "id": "video_width",
+           "min": 0,
+           "max": 100,
+           "step": 1,
+           "unit": "%",
+           "label": "Video Width",
+           "default": 100
         },
         {
-          "type": "range",
-          "id": "video_width_mobile",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Video Width - Mobile",
-          "default": 100
+           "type": "range",
+           "id": "video_width_mobile",
+           "min": 0,
+           "max": 100,
+           "step": 1,
+           "unit": "%",
+           "label": "Video Width - Mobile",
+           "default": 100
         },
         {
           "type": "select",
@@ -3667,24 +3061,24 @@
           "label": "Image"
         },
         {
-          "type": "range",
-          "id": "image_width",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Image Width",
-          "default": 100
+           "type": "range",
+           "id": "image_width",
+           "min": 0,
+           "max": 100,
+           "step": 1,
+           "unit": "%",
+           "label": "Image Width",
+           "default": 100
         },
         {
-          "type": "range",
-          "id": "image_width_mobile",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "Image Width - Mobile",
-          "default": 100
+           "type": "range",
+           "id": "image_width_mobile",
+           "min": 0,
+           "max": 100,
+           "step": 1,
+           "unit": "%",
+           "label": "Image Width - Mobile",
+           "default": 100
         },
         {
           "type": "select",
@@ -3727,24 +3121,24 @@
           ]
         },
         {
-          "type": "range",
-          "id": "image_radius",
-          "min": 0,
-          "max": 100,
-          "step": 2,
-          "unit": "px",
-          "label": "Image Border Radius",
-          "default": 0
+           "type": "range",
+           "id": "image_radius",
+           "min": 0,
+           "max": 100,
+           "step": 2,
+           "unit": "px",
+           "label": "Image Border Radius",
+           "default": 0
         },
         {
-          "type": "range",
-          "id": "image_border_thickness",
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "unit": "px",
-          "label": "Image Border Thickness",
-          "default": 0
+           "type": "range",
+           "id": "image_border_thickness",
+           "min": 0,
+           "max": 10,
+           "step": 1,
+           "unit": "px",
+           "label": "Image Border Thickness",
+           "default": 0
         },
         {
           "type": "color",
@@ -3964,44 +3358,44 @@
           "default": 10
         },
         {
-          "type": "range",
-          "id": "button_padding_horizontal",
-          "min": 0,
-          "max": 100,
-          "step": 2,
-          "unit": "px",
-          "label": "Button Padding Horizontal",
-          "default": 20
+           "type": "range",
+           "id": "button_padding_horizontal",
+           "min": 0,
+           "max": 100,
+           "step": 2,
+           "unit": "px",
+           "label": "Button Padding Horizontal",
+           "default": 20
         },
         {
-          "type": "range",
-          "id": "button_padding_horizontal_mobile",
-          "min": 0,
-          "max": 100,
-          "step": 2,
-          "unit": "px",
-          "label": "Button Padding Horizontal - Mobile",
-          "default": 20
+           "type": "range",
+           "id": "button_padding_horizontal_mobile",
+           "min": 0,
+           "max": 100,
+           "step": 2,
+           "unit": "px",
+           "label": "Button Padding Horizontal - Mobile",
+           "default": 20
         },
         {
-          "type": "range",
-          "id": "button_radius",
-          "min": 0,
-          "max": 100,
-          "step": 2,
-          "unit": "px",
-          "label": "Button Border Radius",
-          "default": 0
+           "type": "range",
+           "id": "button_radius",
+           "min": 0,
+           "max": 100,
+           "step": 2,
+           "unit": "px",
+           "label": "Button Border Radius",
+           "default": 0
         },
         {
-          "type": "range",
-          "id": "button_border_thickness",
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "unit": "px",
-          "label": "Button Border Thickness",
-          "default": 1
+           "type": "range",
+           "id": "button_border_thickness",
+           "min": 0,
+           "max": 10,
+           "step": 1,
+           "unit": "px",
+           "label": "Button Border Thickness",
+           "default": 1
         },
         {
           "type": "header",
@@ -4044,7 +3438,7 @@
         }
       ]
     },
-    {
+          {
       "type": "accordion",
       "name": "Accordion",
       "settings": [
@@ -4418,509 +3812,6 @@
           "type": "liquid",
           "id": "liquid",
           "label": "Custom Liquid"
-        }
-      ]
-    },
-    {
-      "type": "nested_tabs",
-      "name": "Nested Tabs",
-      "settings": [
-        {
-          "type": "header",
-          "content": "Block Settings"
-        },
-        {
-          "type": "checkbox",
-          "label": "Full Width",
-          "id": "full_width",
-          "info": "Use this checkbox to make the nested tabs full width"
-        },
-        {
-          "type": "header",
-          "content": "Background Settings"
-        },
-        {
-          "type": "image_picker",
-          "id": "background_image",
-          "label": "Background Image"
-        },
-        {
-          "type": "select",
-          "id": "background_size",
-          "label": "Background Size",
-          "options": [
-            {
-              "value": "cover",
-              "label": "Cover"
-            },
-            {
-              "value": "contain",
-              "label": "Contain"
-            },
-            {
-              "value": "auto",
-              "label": "Auto"
-            }
-          ],
-          "default": "cover"
-        },
-        {
-          "type": "select",
-          "id": "background_position",
-          "label": "Background Position",
-          "options": [
-            {
-              "value": "center center",
-              "label": "Center"
-            },
-            {
-              "value": "top center",
-              "label": "Top"
-            },
-            {
-              "value": "bottom center",
-              "label": "Bottom"
-            },
-            {
-              "value": "left center",
-              "label": "Left"
-            },
-            {
-              "value": "right center",
-              "label": "Right"
-            }
-          ],
-          "default": "center center"
-        },
-        {
-          "type": "color",
-          "id": "background_color",
-          "label": "Background Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "range",
-          "id": "background_overlay_opacity",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "unit": "%",
-          "label": "Background Overlay Opacity",
-          "default": 0
-        },
-        {
-          "type": "color",
-          "id": "background_overlay_color",
-          "label": "Background Overlay Color",
-          "default": "#000000"
-        },
-        {
-          "type": "header",
-          "content": "Tab Button Font Settings"
-        },
-        {
-          "type": "checkbox",
-          "id": "tab_font_custom",
-          "label": "Use Custom Font for Tab Buttons",
-          "default": false
-        },
-        {
-          "type": "font_picker",
-          "id": "tab_font_family",
-          "label": "Tab Button Font Family",
-          "default": "montserrat_n4"
-        },
-        {
-          "type": "range",
-          "id": "tab_font_size",
-          "min": 10,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "label": "Tab Button Font Size",
-          "default": 16
-        },
-        {
-          "type": "range",
-          "id": "tab_font_size_mobile",
-          "min": 10,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "label": "Tab Button Font Size - Mobile",
-          "default": 14
-        },
-        {
-          "type": "select",
-          "id": "tab_font_weight",
-          "label": "Tab Button Font Weight",
-          "options": [
-            {
-              "value": "300",
-              "label": "Light"
-            },
-            {
-              "value": "400",
-              "label": "Normal"
-            },
-            {
-              "value": "500",
-              "label": "Medium"
-            },
-            {
-              "value": "600",
-              "label": "Semi Bold"
-            },
-            {
-              "value": "700",
-              "label": "Bold"
-            }
-          ],
-          "default": "500"
-        },
-        {
-          "type": "header",
-          "content": "Content Font Settings"
-        },
-        {
-          "type": "checkbox",
-          "id": "content_font_custom",
-          "label": "Use Custom Font for Content",
-          "default": false
-        },
-        {
-          "type": "font_picker",
-          "id": "content_font_family",
-          "label": "Content Font Family",
-          "default": "montserrat_n4"
-        },
-        {
-          "type": "range",
-          "id": "content_font_size",
-          "min": 12,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "label": "Content Font Size",
-          "default": 16
-        },
-        {
-          "type": "range",
-          "id": "content_font_size_mobile",
-          "min": 12,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "label": "Content Font Size - Mobile",
-          "default": 14
-        },
-        {
-          "type": "range",
-          "id": "content_line_height",
-          "min": 100,
-          "max": 200,
-          "step": 10,
-          "unit": "%",
-          "label": "Content Line Height",
-          "default": 150
-        },
-        {
-          "type": "header",
-          "content": "Animation Settings"
-        },
-        {
-          "type": "select",
-          "id": "animation_type",
-          "label": "Tab Switch Animation",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "fade",
-              "label": "Fade"
-            },
-            {
-              "value": "slide",
-              "label": "Slide"
-            },
-            {
-              "value": "scale",
-              "label": "Scale"
-            }
-          ],
-          "default": "fade"
-        },
-        {
-          "type": "range",
-          "id": "animation_duration",
-          "min": 100,
-          "max": 1000,
-          "step": 50,
-          "unit": "ms",
-          "label": "Animation Duration",
-          "default": 300
-        },
-        {
-          "type": "select",
-          "id": "animation_easing",
-          "label": "Animation Easing",
-          "options": [
-            {
-              "value": "ease",
-              "label": "Ease"
-            },
-            {
-              "value": "ease-in",
-              "label": "Ease In"
-            },
-            {
-              "value": "ease-out",
-              "label": "Ease Out"
-            },
-            {
-              "value": "ease-in-out",
-              "label": "Ease In Out"
-            },
-            {
-              "value": "linear",
-              "label": "Linear"
-            }
-          ],
-          "default": "ease-in-out"
-        },
-        {
-          "type": "header",
-          "content": "Tab 1 Settings"
-        },
-        {
-          "type": "text",
-          "id": "nested_tab_1_title",
-          "label": "Tab 1 Title",
-          "default": "Tab 1"
-        },
-        {
-          "type": "richtext",
-          "id": "nested_tab_1_content",
-          "label": "Tab 1 Content",
-          "default": "<p>Content for tab 1</p>"
-        },
-        {
-          "type": "image_picker",
-          "id": "nested_tab_1_icon",
-          "label": "Tab 1 Custom Icon"
-        },
-        {
-          "type": "image_picker",
-          "id": "nested_tab_1_background_image",
-          "label": "Tab 1 Background Image",
-          "info": "Background image for tab 1 content area"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_1_text_color",
-          "label": "Tab 1 Text Color",
-          "default": "#333333"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_1_text_color_active",
-          "label": "Tab 1 Text Color (Active)",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_1_bg_color",
-          "label": "Tab 1 Background Color",
-          "default": "#f0f0f0"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_1_bg_color_active",
-          "label": "Tab 1 Background Color (Active)",
-          "default": "#8a2be2"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_1_border_color",
-          "label": "Tab 1 Border Color",
-          "default": "#cccccc"
-        },
-        {
-          "type": "header",
-          "content": "Tab 2 Settings"
-        },
-        {
-          "type": "text",
-          "id": "nested_tab_2_title",
-          "label": "Tab 2 Title",
-          "default": "Tab 2"
-        },
-        {
-          "type": "richtext",
-          "id": "nested_tab_2_content",
-          "label": "Tab 2 Content",
-          "default": "<p>Content for tab 2</p>"
-        },
-        {
-          "type": "image_picker",
-          "id": "nested_tab_2_icon",
-          "label": "Tab 2 Custom Icon"
-        },
-        {
-          "type": "image_picker",
-          "id": "nested_tab_2_background_image",
-          "label": "Tab 2 Background Image",
-          "info": "Background image for tab 2 content area"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_2_text_color",
-          "label": "Tab 2 Text Color",
-          "default": "#333333"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_2_text_color_active",
-          "label": "Tab 2 Text Color (Active)",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_2_bg_color",
-          "label": "Tab 2 Background Color",
-          "default": "#f0f0f0"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_2_bg_color_active",
-          "label": "Tab 2 Background Color (Active)",
-          "default": "#e6007e"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_2_border_color",
-          "label": "Tab 2 Border Color",
-          "default": "#cccccc"
-        },
-        {
-          "type": "header",
-          "content": "Tab 3 Settings"
-        },
-        {
-          "type": "text",
-          "id": "nested_tab_3_title",
-          "label": "Tab 3 Title",
-          "default": "Tab 3"
-        },
-        {
-          "type": "richtext",
-          "id": "nested_tab_3_content",
-          "label": "Tab 3 Content",
-          "default": "<p>Content for tab 3</p>"
-        },
-        {
-          "type": "image_picker",
-          "id": "nested_tab_3_icon",
-          "label": "Tab 3 Custom Icon"
-        },
-        {
-          "type": "image_picker",
-          "id": "nested_tab_3_background_image",
-          "label": "Tab 3 Background Image",
-          "info": "Background image for tab 3 content area"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_3_text_color",
-          "label": "Tab 3 Text Color",
-          "default": "#333333"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_3_text_color_active",
-          "label": "Tab 3 Text Color (Active)",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_3_bg_color",
-          "label": "Tab 3 Background Color",
-          "default": "#f0f0f0"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_3_bg_color_active",
-          "label": "Tab 3 Background Color (Active)",
-          "default": "#ff6b00"
-        },
-        {
-          "type": "color",
-          "id": "nested_tab_3_border_color",
-          "label": "Tab 3 Border Color",
-          "default": "#cccccc"
-        },
-        {
-          "type": "range",
-          "id": "nested_tabs_count",
-          "min": 1,
-          "max": 3,
-          "step": 1,
-          "label": "Number of Tabs",
-          "default": 2
-        },
-        {
-          "type": "header",
-          "content": "Global Color Settings"
-        },
-        {
-          "type": "color",
-          "id": "tab_text_color",
-          "label": "Tab Button Text Color",
-          "default": "#333333"
-        },
-        {
-          "type": "color",
-          "id": "tab_text_color_active",
-          "label": "Tab Button Text Color (Active)",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "tab_bg_color",
-          "label": "Tab Button Background Color",
-          "default": "#f0f0f0"
-        },
-        {
-          "type": "color",
-          "id": "tab_bg_color_active",
-          "label": "Tab Button Background Color (Active)",
-          "default": "#8a2be2"
-        },
-        {
-          "type": "color",
-          "id": "tab_border_color",
-          "label": "Tab Button Border Color",
-          "default": "#cccccc"
-        },
-        {
-          "type": "color",
-          "id": "content_text_color",
-          "label": "Content Text Color",
-          "default": "#333333"
-        },
-        {
-          "type": "color",
-          "id": "content_bg_color",
-          "label": "Content Background Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "content_border_color",
-          "label": "Content Border Color",
-          "default": "#dddddd"
         }
       ]
     }
