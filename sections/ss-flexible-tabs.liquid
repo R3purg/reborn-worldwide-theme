@@ -1303,127 +1303,6 @@
         opacity: 1;
       }
 
-      /* Enhanced hover effects for better UX */
-      .nested-tabs-{{ block.id }} .swiper-slide {
-        transition: transform 0.3s ease;
-      }
-
-      .nested-tabs-{{ block.id }} .swiper-slide:hover .nested-tab-content-slide {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-      }
-
-      /* Additional styling for better background image presentation */
-      .nested-tabs-{{ block.id }} .nested-tab-content-slide[style*="background-image"] {
-        /* Ensure proper aspect ratio and image display */
-        min-height: 250px;
-        background-attachment: local;
-      }
-
-      /* Improve text readability over background images */
-      .nested-tabs-{{ block.id }} .nested-tab-content-slide[style*="background-image"] .nested-tab-slide-title {
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        color: {{ content_text_color }};
-      }
-
-      .nested-tabs-{{ block.id }} .nested-tab-content-slide[style*="background-image"] .nested-tab-slide-content {
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-      }
-
-      /* Hover effects for background image tabs */
-      .nested-tabs-{{ block.id }} .swiper-slide:hover .nested-tab-content-slide[style*="background-image"] {
-        transform: translateY(-2px);
-        filter: drop-shadow(4px 4px 12px rgba(0,0,0,0.2));
-      }
-
-      @media (max-width: 768px) {
-        .nested-tabs-{{ block.id }} .nested-tab-button {
-          font-size: {{ tab_font_size_mobile }}px;
-          padding: 10px 20px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-content-slide {
-          font-size: {{ content_font_size_mobile }}px;
-          padding: 20px;
-          min-height: 180px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-slide-title {
-          font-size: {{ tab_font_size_mobile }}px;
-        }
-
-        .nested-tabs-swiper-{{ block.id }} {
-          padding-bottom: 50px;
-        }
-
-        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet {
-          width: 12px !important;
-          height: 12px !important;
-          margin: 0 6px !important;
-        }
-
-        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet-active {
-          transform: scale(1.2) !important;
-        }
-
-      @media (max-width: 768px) {
-        .nested-tabs-{{ block.id }} .nested-tab-button {
-          font-size: {{ tab_font_size_mobile }}px;
-          padding: 10px 20px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-content-slide {
-          font-size: {{ content_font_size_mobile }}px;
-          min-height: 180px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-content-overlay {
-          padding: 20px;
-        }
-
-        .nested-tabs-{{ block.id }} .nested-tab-slide-title {
-          font-size: {{ tab_font_size_mobile }}px;
-        }
-
-        .nested-tabs-swiper-{{ block.id }} {
-          padding-bottom: 50px;
-        }
-
-        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet {
-          width: 12px !important;
-          height: 12px !important;
-          margin: 0 6px !important;
-        }
-
-        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet-active {
-          transform: scale(1.2) !important;
-        }
-
-        .nested-tab-nav-prev-{{ block.id }},
-        .nested-tab-nav-next-{{ block.id }} {
-          width: 36px !important;
-          height: 36px !important;
-          margin-top: -18px !important;
-        }
-
-        .nested-tab-nav-prev-{{ block.id }}:after,
-        .nested-tab-nav-next-{{ block.id }}:after {
-          font-size: 14px !important;
-        }
-
-        /* Mobile adjustments for background images */
-        {% for i in (1..3) %}
-          {% assign tab_bg_image_key = 'nested_tab_' | append: i | append: '_background_image' %}
-          {% assign tab_bg_image = block.settings[tab_bg_image_key] %}
-          {% if tab_bg_image %}
-            .nested-tabs-{{ block.id }} .nested-tab-content-slide-{{ i }}-{{ block.id }} .nested-tab-content-overlay {
-              margin: 15px;
-              padding: 15px;
-            }
-          {% endif %}
-        {% endfor %}
-      }
       }
     </style>
   {% endif %}
@@ -1995,6 +1874,13 @@
                   {% assign tab_title = block.settings[tab_title_key] %}
                   {% assign tab_bg_image_key = 'nested_tab_' | append: i | append: '_background_image' %}
                   {% assign tab_bg_image = block.settings[tab_bg_image_key] %}
+                  {% assign tab_product_key = 'nested_tab_' | append: i | append: '_product' %}
+                  {% assign tab_product = block.settings[tab_product_key] %}
+                  {% assign tab_badge_key = 'nested_tab_' | append: i | append: '_custom_badge' %}
+                  {% assign tab_badge = block.settings[tab_badge_key] %}
+                  {% assign tab_button_text_key = 'nested_tab_' | append: i | append: '_button_text' %}
+                  {% assign tab_button_text = block.settings[tab_button_text_key] %}
+
                   {% if tab_title != blank and tab_content != blank %}
                     <div class="swiper-slide">
                       <div
@@ -2004,9 +1890,90 @@
                         {% endif %}
                       >
                         <div class="nested-tab-content-overlay">
-                          <h3 class="nested-tab-slide-title">{{ tab_title }}</h3>
-                          <div class="nested-tab-slide-content">
-                            {{ tab_content }}
+                          <!-- Product Preview Section (if product is selected) -->
+                          {% if tab_product != blank %}
+                            <div class="nested-tab-product-preview">
+                              {% if tab_badge != blank %}
+                                <p class="nested-tab-product-badge">{{ tab_badge }}</p>
+                              {% elsif tab_product.metafields.custom.badge.value != blank %}
+                                <p class="nested-tab-product-badge">{{ tab_product.metafields.custom.badge.value }}</p>
+                              {% endif %}
+
+                              <div class="nested-tab-product-image">
+                                {% if tab_product.featured_image != blank %}
+                                  <img
+                                    src="{{ tab_product.featured_image | image_url: width: 400, height: 400 }}"
+                                    alt="{{ tab_product.featured_image.alt }}"
+                                    width="400"
+                                    height="400"
+                                    loading="lazy"
+                                  >
+                                {% else %}
+                                  {{ 'image' | placeholder_svg_tag }}
+                                {% endif %}
+                                {% if tab_button_text != blank %}
+                                  <a href="{{ tab_product.url }}" class="nested-tab-product-button">
+                                    <p class="nested-tab-product-button-inner">
+                                      {{ tab_button_text }}
+                                      <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 192 192"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path d="M187.827 98.7858C188.123 98.4749 188.123 98.4749 188.123 98.1761C188.419 97.8652 188.419 97.5663 188.704 97.5663C189 96.9566 189 96.6458 189 96.0361C189 95.4263 189 94.8166 188.704 94.5058C188.704 94.195 188.408 93.8961 188.123 93.5852C188.123 93.2744 187.827 93.2744 187.827 92.9755L103.287 4.21945C102.41 3.29889 101.533 3 100.668 3C99.791 3 98.6295 3.31083 98.0488 4.21945C97.1719 5.14 96.8872 6.06058 96.8872 6.96919C96.8872 7.88974 97.1833 9.10918 98.0488 9.7189L175.587 92.0539H6.79206C4.75371 92.0539 3 93.895 3 96.0351C3 98.1751 4.75365 100.016 6.79206 100.016H175.575L97.7543 182.042C96.2967 183.572 96.2967 186.322 97.7543 187.852C99.2119 189.383 101.831 189.383 103.288 187.852L187.827 98.7858Z" fill="currentColor"></path>
+                                      </svg>
+                                    </p>
+                                  </a>
+                                {% endif %}
+                              </div>
+
+                              <div class="nested-tab-product-content">
+                                <p class="nested-tab-product-title">{{ tab_product.title }}</p>
+                                <div class="nested-tab-product-price">
+                                  {% if tab_product.compare_at_price != blank %}
+                                    <p class="nested-tab-product-compare-price">
+                                      {{ tab_product.compare_at_price | money }}
+                                    </p>
+                                  {% endif %}
+                                  <p class="nested-tab-product-regular-price">
+                                    {% if tab_product.price_max > tab_product.price_min %}
+                                      {{ tab_product.price_min | money }} - {{ tab_product.price_max | money }}
+                                    {% else %}
+                                      {{ tab_product.price | money }}
+                                    {% endif %}
+                                  </p>
+                                </div>
+                                {% if tab_button_text != blank %}
+                                  <a
+                                    href="{{ tab_product.url }}"
+                                    class="nested-tab-product-button nested-tab-product-button-mobile"
+                                  >
+                                    <p class="nested-tab-product-button-inner">
+                                      {{ tab_button_text }}
+                                      <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 192 192"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path d="M187.827 98.7858C188.123 98.4749 188.123 98.4749 188.123 98.1761C188.419 97.8652 188.419 97.5663 188.704 97.5663C189 96.9566 189 96.6458 189 96.0361C189 95.4263 189 94.8166 188.704 94.5058C188.704 94.195 188.408 93.8961 188.123 93.5852C188.123 93.2744 187.827 93.2744 187.827 92.9755L103.287 4.21945C102.41 3.29889 101.533 3 100.668 3C99.791 3 98.6295 3.31083 98.0488 4.21945C97.1719 5.14 96.8872 6.06058 96.8872 6.96919C96.8872 7.88974 97.1833 9.10918 98.0488 9.7189L175.587 92.0539H6.79206C4.75371 92.0539 3 93.895 3 96.0351C3 98.1751 4.75365 100.016 6.79206 100.016H175.575L97.7543 182.042C96.2967 183.572 96.2967 186.322 97.7543 187.852C99.2119 189.383 101.831 189.383 103.288 187.852L187.827 98.7858Z" fill="currentColor"></path>
+                                      </svg>
+                                    </p>
+                                  </a>
+                                {% endif %}
+                              </div>
+                            </div>
+                          {% endif %}
+
+                          <!-- Regular Content Section -->
+                          <div class="nested-tab-text-content">
+                            <h3 class="nested-tab-slide-title">{{ tab_title }}</h3>
+                            <div class="nested-tab-slide-content">
+                              {{ tab_content }}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -4718,6 +4685,24 @@
           "info": "Background image for tab 1 content area"
         },
         {
+          "type": "product",
+          "id": "nested_tab_1_product",
+          "label": "Tab 1 Product Preview",
+          "info": "Select a product to display preview in this tab"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_1_custom_badge",
+          "label": "Tab 1 Custom Badge",
+          "info": "Custom badge text (overrides product metafield badge)"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_1_button_text",
+          "label": "Tab 1 Button Text",
+          "default": "Shop Now"
+        },
+        {
           "type": "color",
           "id": "nested_tab_1_text_color",
           "label": "Tab 1 Text Color",
@@ -4775,6 +4760,24 @@
           "info": "Background image for tab 2 content area"
         },
         {
+          "type": "product",
+          "id": "nested_tab_2_product",
+          "label": "Tab 2 Product Preview",
+          "info": "Select a product to display preview in this tab"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_2_custom_badge",
+          "label": "Tab 2 Custom Badge",
+          "info": "Custom badge text (overrides product metafield badge)"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_2_button_text",
+          "label": "Tab 2 Button Text",
+          "default": "Shop Now"
+        },
+        {
           "type": "color",
           "id": "nested_tab_2_text_color",
           "label": "Tab 2 Text Color",
@@ -4830,6 +4833,24 @@
           "id": "nested_tab_3_background_image",
           "label": "Tab 3 Background Image",
           "info": "Background image for tab 3 content area"
+        },
+        {
+          "type": "product",
+          "id": "nested_tab_3_product",
+          "label": "Tab 3 Product Preview",
+          "info": "Select a product to display preview in this tab"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_3_custom_badge",
+          "label": "Tab 3 Custom Badge",
+          "info": "Custom badge text (overrides product metafield badge)"
+        },
+        {
+          "type": "text",
+          "id": "nested_tab_3_button_text",
+          "label": "Tab 3 Button Text",
+          "default": "Shop Now"
         },
         {
           "type": "color",
