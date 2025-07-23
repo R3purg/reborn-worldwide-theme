@@ -408,6 +408,32 @@
   </style>
 {% endunless %}
 
+<!-- Product Preview Title Image and Mobile Responsive Styles -->
+<style>
+  .nested-tab-product-title-image {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: inherit;
+  }
+
+  .nested-tab-product-title-image img {
+    display: block;
+  }
+
+  /* Alignment specific styles */
+  .nested-tab-product-preview[style*='text-align: left'] .nested-tab-product-title-image {
+    justify-content: flex-start;
+  }
+
+  .nested-tab-product-preview[style*='text-align: center'] .nested-tab-product-title-image {
+    justify-content: center;
+  }
+
+  .nested-tab-product-preview[style*='text-align: right'] .nested-tab-product-title-image {
+    justify-content: flex-end;
+  }
+</style>
+
 {% if heading_custom %}
   <style>
     .flexible-heading-{{ section.id }} * {
@@ -1154,8 +1180,6 @@
             border: none;
             /* Add a subtle shadow to define the image shape */
             filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.15));
-            /* Ensure the background image defines the shape */
-            background-color: transparent;
           }
 
           .nested-tabs-{{ block.id }} .nested-tab-content-slide-{{ i }}-{{ block.id }} .nested-tab-content-overlay {
@@ -1647,6 +1671,29 @@
                 {% endif %}
               </div>
             </div>
+
+            <!-- Mobile Responsive CSS for Product Titles -->
+            {% for block in section.blocks %}
+              {% if block.type == 'tab' and block.settings.nested_tabs %}
+                {% for i in (1..block.settings.nested_tabs_count) %}
+                  {% assign tab_product_title_size_mobile_key = 'nested_tab_'
+                    | append: i
+                    | append: '_product_title_size_mobile'
+                  %}
+                  {% assign tab_product_title_size_mobile = block.settings[tab_product_title_size_mobile_key] %}
+
+                  {% if tab_product_title_size_mobile %}
+                    <style>
+                      @media (max-width: 768px) {
+                        .nested-tab-product-title-{{ i }}-{{ block.id }} {
+                          font-size: {{ tab_product_title_size_mobile }}px !important;
+                        }
+                      }
+                    </style>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
           {% elsif block.type == 'image' %}
             {% if block.settings.full_width and inside_column %}
               {% assign inside_column = false %}
@@ -1881,6 +1928,34 @@
                   {% assign tab_button_text_key = 'nested_tab_' | append: i | append: '_button_text' %}
                   {% assign tab_button_text = block.settings[tab_button_text_key] %}
 
+                  <!-- Product Preview Settings -->
+                  {% assign tab_product_alignment_key = 'nested_tab_' | append: i | append: '_product_alignment' %}
+                  {% assign tab_product_alignment = block.settings[tab_product_alignment_key] %}
+                  {% assign tab_product_title_font_key = 'nested_tab_' | append: i | append: '_product_title_font' %}
+                  {% assign tab_product_title_font = block.settings[tab_product_title_font_key] %}
+                  {% assign tab_product_title_size_key = 'nested_tab_' | append: i | append: '_product_title_size' %}
+                  {% assign tab_product_title_size = block.settings[tab_product_title_size_key] %}
+                  {% assign tab_product_title_size_mobile_key = 'nested_tab_'
+                    | append: i
+                    | append: '_product_title_size_mobile'
+                  %}
+                  {% assign tab_product_title_size_mobile = block.settings[tab_product_title_size_mobile_key] %}
+                  {% assign tab_product_title_color_key = 'nested_tab_' | append: i | append: '_product_title_color' %}
+                  {% assign tab_product_title_color = block.settings[tab_product_title_color_key] %}
+                  {% assign tab_product_price_font_key = 'nested_tab_' | append: i | append: '_product_price_font' %}
+                  {% assign tab_product_price_font = block.settings[tab_product_price_font_key] %}
+                  {% assign tab_product_price_size_key = 'nested_tab_' | append: i | append: '_product_price_size' %}
+                  {% assign tab_product_price_size = block.settings[tab_product_price_size_key] %}
+                  {% assign tab_product_price_color_key = 'nested_tab_' | append: i | append: '_product_price_color' %}
+                  {% assign tab_product_price_color = block.settings[tab_product_price_color_key] %}
+                  {% assign tab_product_title_image_key = 'nested_tab_' | append: i | append: '_product_title_image' %}
+                  {% assign tab_product_title_image = block.settings[tab_product_title_image_key] %}
+                  {% assign tab_product_title_image_width_key = 'nested_tab_'
+                    | append: i
+                    | append: '_product_title_image_width'
+                  %}
+                  {% assign tab_product_title_image_width = block.settings[tab_product_title_image_width_key] %}
+
                   {% if tab_title != blank and tab_content != blank %}
                     <div class="swiper-slide">
                       <div
@@ -1892,7 +1967,10 @@
                         <div class="nested-tab-content-overlay">
                           <!-- Product Preview Section (if product is selected) -->
                           {% if tab_product != blank %}
-                            <div class="nested-tab-product-preview">
+                            <div
+                              class="nested-tab-product-preview"
+                              style="text-align: {{ tab_product_alignment | default: 'center' }};"
+                            >
                               {% if tab_badge != blank %}
                                 <p class="nested-tab-product-badge">{{ tab_badge }}</p>
                               {% elsif tab_product.metafields.custom.badge.value != blank %}
@@ -1930,8 +2008,40 @@
                               </div>
 
                               <div class="nested-tab-product-content">
-                                <p class="nested-tab-product-title">{{ tab_product.title }}</p>
-                                <div class="nested-tab-product-price">
+                                {% if tab_product_title_image != blank %}
+                                  <div class="nested-tab-product-title-image">
+                                    <img
+                                      src="{{ tab_product_title_image | image_url: width: 100 }}"
+                                      alt="Product title icon"
+                                      width="{{ tab_product_title_image_width | default: 40 }}"
+                                      height="{{ tab_product_title_image_width | default: 40 }}"
+                                      loading="lazy"
+                                      style="width: {{ tab_product_title_image_width | default: 40 }}px; height: auto;"
+                                    >
+                                  </div>
+                                {% endif %}
+                                <p
+                                  class="nested-tab-product-title nested-tab-product-title-{{ i }}-{{ block.id }}"
+                                  style="
+                                    font-family: {{ tab_product_title_font.family | default: 'inherit' }}, {{ tab_product_title_font.fallback_families }};
+                                    font-weight: {{ tab_product_title_font.weight | default: '400' }};
+                                    font-style: {{ tab_product_title_font.style | default: 'normal' }};
+                                    font-size: {{ tab_product_title_size | default: 24 }}px;
+                                    color: {{ tab_product_title_color | default: '#333333' }};
+                                  "
+                                >
+                                  {{ tab_product.title }}
+                                </p>
+                                <div
+                                  class="nested-tab-product-price"
+                                  style="
+                                    font-family: {{ tab_product_price_font.family | default: 'inherit' }}, {{ tab_product_price_font.fallback_families }};
+                                    font-weight: {{ tab_product_price_font.weight | default: '400' }};
+                                    font-style: {{ tab_product_price_font.style | default: 'normal' }};
+                                    font-size: {{ tab_product_price_size | default: 18 }}px;
+                                    color: {{ tab_product_price_color | default: '#666666' }};
+                                  "
+                                >
                                   {% if tab_product.compare_at_price != blank %}
                                     <p class="nested-tab-product-compare-price">
                                       {{ tab_product.compare_at_price | money }}
@@ -4703,6 +4813,100 @@
           "default": "Shop Now"
         },
         {
+          "type": "header",
+          "content": "Tab 1 Product Preview Settings"
+        },
+        {
+          "type": "select",
+          "id": "nested_tab_1_product_alignment",
+          "label": "Tab 1 Product Preview Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "font_picker",
+          "id": "nested_tab_1_product_title_font",
+          "label": "Tab 1 Product Title Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_1_product_title_size",
+          "min": 12,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 1 Product Title Size",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_1_product_title_size_mobile",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 1 Product Title Size (Mobile)",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "nested_tab_1_product_title_color",
+          "label": "Tab 1 Product Title Color",
+          "default": "#333333"
+        },
+        {
+          "type": "font_picker",
+          "id": "nested_tab_1_product_price_font",
+          "label": "Tab 1 Product Price Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_1_product_price_size",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 1 Product Price Size",
+          "default": 18
+        },
+        {
+          "type": "color",
+          "id": "nested_tab_1_product_price_color",
+          "label": "Tab 1 Product Price Color",
+          "default": "#666666"
+        },
+        {
+          "type": "image_picker",
+          "id": "nested_tab_1_product_title_image",
+          "label": "Tab 1 Product Title Small Image",
+          "info": "Small image to display above the product title"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_1_product_title_image_width",
+          "min": 20,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Tab 1 Title Image Width",
+          "default": 40
+        },
+        {
           "type": "color",
           "id": "nested_tab_1_text_color",
           "label": "Tab 1 Text Color",
@@ -4778,6 +4982,100 @@
           "default": "Shop Now"
         },
         {
+          "type": "header",
+          "content": "Tab 2 Product Preview Settings"
+        },
+        {
+          "type": "select",
+          "id": "nested_tab_2_product_alignment",
+          "label": "Tab 2 Product Preview Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "font_picker",
+          "id": "nested_tab_2_product_title_font",
+          "label": "Tab 2 Product Title Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_2_product_title_size",
+          "min": 12,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 2 Product Title Size",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_2_product_title_size_mobile",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 2 Product Title Size (Mobile)",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "nested_tab_2_product_title_color",
+          "label": "Tab 2 Product Title Color",
+          "default": "#333333"
+        },
+        {
+          "type": "font_picker",
+          "id": "nested_tab_2_product_price_font",
+          "label": "Tab 2 Product Price Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_2_product_price_size",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 2 Product Price Size",
+          "default": 18
+        },
+        {
+          "type": "color",
+          "id": "nested_tab_2_product_price_color",
+          "label": "Tab 2 Product Price Color",
+          "default": "#666666"
+        },
+        {
+          "type": "image_picker",
+          "id": "nested_tab_2_product_title_image",
+          "label": "Tab 2 Product Title Small Image",
+          "info": "Small image to display above the product title"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_2_product_title_image_width",
+          "min": 20,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Tab 2 Title Image Width",
+          "default": 40
+        },
+        {
           "type": "color",
           "id": "nested_tab_2_text_color",
           "label": "Tab 2 Text Color",
@@ -4851,6 +5149,100 @@
           "id": "nested_tab_3_button_text",
           "label": "Tab 3 Button Text",
           "default": "Shop Now"
+        },
+        {
+          "type": "header",
+          "content": "Tab 3 Product Preview Settings"
+        },
+        {
+          "type": "select",
+          "id": "nested_tab_3_product_alignment",
+          "label": "Tab 3 Product Preview Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "font_picker",
+          "id": "nested_tab_3_product_title_font",
+          "label": "Tab 3 Product Title Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_3_product_title_size",
+          "min": 12,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 3 Product Title Size",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_3_product_title_size_mobile",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 3 Product Title Size (Mobile)",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "nested_tab_3_product_title_color",
+          "label": "Tab 3 Product Title Color",
+          "default": "#333333"
+        },
+        {
+          "type": "font_picker",
+          "id": "nested_tab_3_product_price_font",
+          "label": "Tab 3 Product Price Font",
+          "default": "assistant_n4"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_3_product_price_size",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "label": "Tab 3 Product Price Size",
+          "default": 18
+        },
+        {
+          "type": "color",
+          "id": "nested_tab_3_product_price_color",
+          "label": "Tab 3 Product Price Color",
+          "default": "#666666"
+        },
+        {
+          "type": "image_picker",
+          "id": "nested_tab_3_product_title_image",
+          "label": "Tab 3 Product Title Small Image",
+          "info": "Small image to display above the product title"
+        },
+        {
+          "type": "range",
+          "id": "nested_tab_3_product_title_image_width",
+          "min": 20,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Tab 3 Title Image Width",
+          "default": 40
         },
         {
           "type": "color",
