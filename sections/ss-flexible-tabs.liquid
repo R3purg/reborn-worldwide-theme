@@ -8,6 +8,16 @@
   ---------------------------------------------------------
 {% endcomment %}
 
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+>
+
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"
+></script>
+
 {%- liquid
   assign padding_horizontal = section.settings.padding_horizontal
   assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile
@@ -1076,11 +1086,127 @@
         z-index: 1;
       }
 
+      /* Swiper Container */
+      .nested-tabs-swiper-{{ block.id }} {
+        width: 100%;
+        height: auto;
+        padding-bottom: 60px;
+        margin-bottom: 20px;
+        --swiper-pagination-color: {{ tab_bg_color_active }};
+        --swiper-pagination-bullet-inactive-color: {{ tab_border_color }};
+        --swiper-navigation-color: {{ tab_bg_color_active }};
+      }
+
+      .nested-tabs-{{ block.id }} .swiper-slide {
+        height: auto;
+        display: flex;
+        align-items: stretch;
+      }
+
+      .nested-tabs-{{ block.id }} .nested-tab-content-slide {
+        width: 100%;
+        padding: 24px;
+        background: {{ content_bg_color }};
+        border: 1px solid {{ content_border_color }};
+        border-radius: 8px;
+        color: {{ content_text_color }};
+        {% if content_font_custom %}
+          font-family: {{ content_font_family.family }}, {{ content_font_family.fallback_families }};
+        {% endif %}
+        font-size: {{ content_font_size }}px;
+        line-height: {{ content_line_height }}%;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nested-tabs-{{ block.id }} .nested-tab-slide-title {
+        margin: 0 0 16px 0;
+        font-size: {{ tab_font_size }}px;
+        font-weight: {{ tab_font_weight }};
+        color: {{ tab_text_color_active }};
+        {% if tab_font_custom %}
+          font-family: {{ tab_font_family.family }}, {{ tab_font_family.fallback_families }};
+        {% endif %}
+      }
+
+      .nested-tabs-{{ block.id }} .nested-tab-slide-content {
+        flex: 1;
+      }
+
+      .nested-tabs-{{ block.id }} .nested-tab-slide-content p {
+        margin-bottom: 16px;
+      }
+
+      .nested-tabs-{{ block.id }} .nested-tab-slide-content p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Navigation arrows */
+      .nested-tab-nav-prev-{{ block.id }},
+      .nested-tab-nav-next-{{ block.id }} {
+        background: {{ tab_bg_color_active }} !important;
+        border-radius: 50%;
+        width: 44px !important;
+        height: 44px !important;
+        margin-top: -22px !important;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      }
+
+      .nested-tab-nav-prev-{{ block.id }}:hover,
+      .nested-tab-nav-next-{{ block.id }}:hover {
+        background: {{ tab_text_color_active }} !important;
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      }
+
+      .nested-tab-nav-prev-{{ block.id }}:after,
+      .nested-tab-nav-next-{{ block.id }}:after {
+        font-size: 18px !important;
+        font-weight: 900 !important;
+        color: white !important;
+      }
+
+      /* Pagination dots - Enhanced to match review slider */
+      .nested-tab-pagination-{{ block.id }} {
+        bottom: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: auto !important;
+        text-align: center;
+      }
+
+      .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet {
+        width: 14px !important;
+        height: 14px !important;
+        margin: 0 8px !important;
+        background: {{ tab_border_color }} !important;
+        opacity: 0.5 !important;
+        transition: all 0.4s ease !important;
+        border-radius: 50% !important;
+        cursor: pointer;
+      }
+
+      .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet-active {
+        background: {{ tab_bg_color_active }} !important;
+        opacity: 1 !important;
+        transform: scale(1.3) !important;
+        box-shadow: 0 2px 8px rgba(138, 43, 226, 0.4);
+      }
+
+      .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet:hover {
+        opacity: 0.8 !important;
+        transform: scale(1.1) !important;
+      }
+
+      /* Traditional tab buttons (secondary navigation) */
       .nested-tabs-{{ block.id }} .nested-tab-buttons {
         display: flex;
         gap: 10px;
-        margin-bottom: 20px;
+        margin-top: 20px;
         flex-wrap: wrap;
+        justify-content: center;
       }
 
       .nested-tabs-{{ block.id }} .nested-tab-button {
@@ -1101,6 +1227,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        opacity: 0.7;
       }
 
       .nested-tabs-{{ block.id }} .nested-tab-icon {
@@ -1114,16 +1241,10 @@
         flex: 1;
       }
 
-      @media (max-width: 768px) {
-        .nested-tabs-{{ block.id }} .nested-tab-button {
-          font-size: {{ tab_font_size_mobile }}px;
-          padding: 10px 20px;
-        }
-      }
-
       .nested-tabs-{{ block.id }} .nested-tab-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        opacity: 1;
       }
 
       .nested-tabs-{{ block.id }} .nested-tab-button.active {
@@ -1132,60 +1253,107 @@
         border-color: {{ tab_bg_color_active }};
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+        opacity: 1;
       }
 
-      .nested-tabs-{{ block.id }} .nested-tab-content {
-        display: none;
-        padding: 24px;
-        background: {{ content_bg_color }};
-        border: 1px solid {{ content_border_color }};
-        border-radius: 8px;
-        color: {{ content_text_color }};
-        {% if content_font_custom %}
-          font-family: {{ content_font_family.family }}, {{ content_font_family.fallback_families }};
-        {% endif %}
-        font-size: {{ content_font_size }}px;
-        line-height: {{ content_line_height }}%;
-        {% if animation_type == 'fade' %}
-          opacity: 0;
-          transition: opacity {{ animation_duration }}ms {{ animation_easing }};
-        {% elsif animation_type == 'slide' %}
-          transform: translateX(-20px);
-          transition: transform {{ animation_duration }}ms {{ animation_easing }}, opacity {{ animation_duration }}ms {{ animation_easing }};
-          opacity: 0;
-        {% elsif animation_type == 'scale' %}
-          transform: scale(0.95);
-          transition: transform {{ animation_duration }}ms {{ animation_easing }}, opacity {{ animation_duration }}ms {{ animation_easing }};
-          opacity: 0;
-        {% endif %}
+      /* Enhanced hover effects for better UX */
+      .nested-tabs-{{ block.id }} .swiper-slide {
+        transition: transform 0.3s ease;
+      }
+
+      .nested-tabs-{{ block.id }} .swiper-slide:hover .nested-tab-content-slide {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
       }
 
       @media (max-width: 768px) {
-        .nested-tabs-{{ block.id }} .nested-tab-content {
+        .nested-tabs-{{ block.id }} .nested-tab-button {
+          font-size: {{ tab_font_size_mobile }}px;
+          padding: 10px 20px;
+        }
+
+        .nested-tabs-{{ block.id }} .nested-tab-content-slide {
           font-size: {{ content_font_size_mobile }}px;
           padding: 20px;
+          min-height: 180px;
+        }
+
+        .nested-tabs-{{ block.id }} .nested-tab-slide-title {
+          font-size: {{ tab_font_size_mobile }}px;
+        }
+
+        .nested-tabs-swiper-{{ block.id }} {
+          padding-bottom: 50px;
+        }
+
+        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet {
+          width: 12px !important;
+          height: 12px !important;
+          margin: 0 6px !important;
+        }
+
+        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet-active {
+          transform: scale(1.2) !important;
+        }
+
+        .nested-tab-nav-prev-{{ block.id }},
+        .nested-tab-nav-next-{{ block.id }} {
+          width: 36px !important;
+          height: 36px !important;
+          margin-top: -18px !important;
+        }
+
+        .nested-tab-nav-prev-{{ block.id }}:after,
+        .nested-tab-nav-next-{{ block.id }}:after {
+          font-size: 14px !important;
+        }
+      }
+          width: 12px !important;
+          height: 12px !important;
+          margin: 0 6px !important;
+        }
+
+        .nested-tab-pagination-{{ block.id }} .swiper-pagination-bullet-active {
+          transform: scale(1.2) !important;
+        }
+
+        .nested-tab-nav-prev-{{ block.id }},
+        .nested-tab-nav-next-{{ block.id }} {
+          width: 36px !important;
+          height: 36px !important;
+          margin-top: -18px !important;
+        }
+
+        .nested-tab-nav-prev-{{ block.id }}:after,
+        .nested-tab-nav-next-{{ block.id }}:after {
+          font-size: 14px !important;
         }
       }
 
-      .nested-tabs-{{ block.id }} .nested-tab-content.active {
-        display: block;
-        {% if animation_type == 'fade' %}
-          opacity: 1;
-        {% elsif animation_type == 'slide' %}
-          transform: translateX(0);
-          opacity: 1;
-        {% elsif animation_type == 'scale' %}
-          transform: scale(1);
-          opacity: 1;
-        {% endif %}
+      /* Enhanced hover effects for better UX */
+      .nested-tabs-{{ block.id }} .swiper-slide {
+        transition: transform 0.3s ease;
       }
 
-      .nested-tabs-{{ block.id }} .nested-tab-content p {
-        margin-bottom: 16px;
+      .nested-tabs-{{ block.id }} .swiper-slide:hover .nested-tab-content-slide {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       }
 
-      .nested-tabs-{{ block.id }} .nested-tab-content p:last-child {
-        margin-bottom: 0;
+      .nested-tabs-{{ block.id }} .nested-tab-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        opacity: 1;
+      }
+
+      .nested-tabs-{{ block.id }} .nested-tab-button.active {
+        background: {{ tab_bg_color_active }};
+        color: {{ tab_text_color_active }};
+        border-color: {{ tab_bg_color_active }};
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+        opacity: 1;
       }
     </style>
   {% endif %}
@@ -1740,17 +1908,49 @@
           {% endif %}
         {% endif %}
 
-        <!-- Add nested tabs rendering -->
+        <!-- Add nested tabs rendering with Swiper -->
         {% if block.type == 'nested_tabs' %}
           <div
             class="nested-tabs-{{ block.id }}{% if block.settings.full_width %} flexible-tab-full-width{% endif %}"
             data-animation="{{ block.settings.animation_type }}"
             data-duration="{{ block.settings.animation_duration }}"
           >
+            <!-- Swiper for nested tabs -->
+            <div class="nested-tabs-swiper-{{ block.id }} swiper">
+              <div class="swiper-wrapper">
+                {% for i in (1..block.settings.nested_tabs_count) %}
+                  {% assign tab_content_key = 'nested_tab_' | append: i | append: '_content' %}
+                  {% assign tab_content = block.settings[tab_content_key] %}
+                  {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
+                  {% assign tab_title = block.settings[tab_title_key] %}
+                  {% if tab_title != blank and tab_content != blank %}
+                    <div class="swiper-slide">
+                      <div class="nested-tab-content-slide">
+                        <h3 class="nested-tab-slide-title">{{ tab_title }}</h3>
+                        <div class="nested-tab-slide-content">
+                          {{ tab_content }}
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <!-- Navigation buttons -->
+              <div class="nested-tab-nav-prev-{{ block.id }} swiper-button-prev"></div>
+              <div class="nested-tab-nav-next-{{ block.id }} swiper-button-next"></div>
+
+              <!-- Pagination dots -->
+              <div class="nested-tab-pagination-{{ block.id }} swiper-pagination"></div>
+            </div>
+
+            <!-- Optional: Traditional tab buttons as secondary navigation -->
             <div class="nested-tab-buttons">
               {% for i in (1..block.settings.nested_tabs_count) %}
                 {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
                 {% assign tab_title = block.settings[tab_title_key] %}
+                {% assign tab_content_key = 'nested_tab_' | append: i | append: '_content' %}
+                {% assign tab_content = block.settings[tab_content_key] %}
                 {% assign tab_icon_key = 'nested_tab_' | append: i | append: '_icon' %}
                 {% assign tab_icon = block.settings[tab_icon_key] %}
                 {% assign tab_text_color_key = 'nested_tab_' | append: i | append: '_text_color' %}
@@ -1764,10 +1964,11 @@
                 {% assign tab_border_color_key = 'nested_tab_' | append: i | append: '_border_color' %}
                 {% assign tab_border_color = block.settings[tab_border_color_key] %}
 
-                {% if tab_title != blank %}
+                {% if tab_title != blank and tab_content != blank %}
                   <div
                     class="nested-tab-button nested-tab-button-{{ i }}{% if forloop.first %} active{% endif %}"
-                    data-tab="nested-tab-{{ block.id }}-{{ i }}"
+                    data-tab-index="{{ forloop.index0 }}"
+                    data-block-id="{{ block.id }}"
                     style="
                       color: {{ tab_text_color | default: block.settings.tab_text_color | default: '#333333' }};
                       background-color: {{ tab_bg_color | default: block.settings.tab_bg_color | default: '#f0f0f0' }};
@@ -1795,23 +1996,6 @@
                       >
                     {% endif %}
                     <span class="nested-tab-title">{{ tab_title }}</span>
-                  </div>
-                {% endif %}
-              {% endfor %}
-            </div>
-
-            <div class="nested-tab-contents">
-              {% for i in (1..block.settings.nested_tabs_count) %}
-                {% assign tab_content_key = 'nested_tab_' | append: i | append: '_content' %}
-                {% assign tab_content = block.settings[tab_content_key] %}
-                {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
-                {% assign tab_title = block.settings[tab_title_key] %}
-                {% if tab_title != blank %}
-                  <div
-                    class="nested-tab-content{% if forloop.first %} active{% endif %}"
-                    id="nested-tab-{{ block.id }}-{{ i }}"
-                  >
-                    {{ tab_content }}
                   </div>
                 {% endif %}
               {% endfor %}
@@ -1964,125 +2148,86 @@
     document.addEventListener('shopify:section:load', initFlexibleTabs);
   }
 
-  // Nested tabs functionality
+  // Nested tabs with Swiper functionality
   function initNestedTabs() {
-    const nestedTabButtons = document.querySelectorAll('.nested-tab-button');
+    // Initialize all nested tab swipers
+    document.querySelectorAll('[class*="nested-tabs-swiper-"]').forEach((swiperEl) => {
+      const blockId = swiperEl.className.match(/nested-tabs-swiper-(\w+)/)[1];
 
-    nestedTabButtons.forEach((button) => {
-      button.addEventListener('click', function () {
-        const targetTab = this.getAttribute('data-tab');
-        const parentContainer = this.closest('[class*="nested-tabs-"]');
+      const swiper = new Swiper(swiperEl, {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: false,
+        autoplay: false,
+        speed: 1000, // Match review slider speed
+        effect: 'slide',
+        navigation: {
+          nextEl: `.nested-tab-nav-next-${blockId}`,
+          prevEl: `.nested-tab-nav-prev-${blockId}`,
+        },
+        pagination: {
+          el: `.nested-tab-pagination-${blockId}`,
+          clickable: true,
+          dynamicBullets: false, // Use static bullets like review slider
+        },
+        on: {
+          slideChange: function () {
+            // Update traditional tab buttons to match current slide
+            updateTabButtons(blockId, this.activeIndex);
+          },
+          init: function () {
+            // Ensure first tab button is active on initialization
+            updateTabButtons(blockId, 0);
+          },
+        },
+      });
 
-        // Get animation settings from the container
-        const animationType = parentContainer.getAttribute('data-animation') || 'fade';
-        const animationDuration = parseInt(parentContainer.getAttribute('data-duration')) || 300;
+      // Store swiper instance for later use
+      swiperEl.swiper = swiper;
 
-        // Remove active class from all buttons in this container
-        parentContainer.querySelectorAll('.nested-tab-button').forEach((btn) => {
-          btn.classList.remove('active');
-          // Apply normal styling
-          const normalColor = btn.getAttribute('data-normal-color');
-          const normalBg = btn.getAttribute('data-normal-bg');
-          const normalBorder = btn.getAttribute('data-normal-border');
-
-          if (normalColor) btn.style.color = normalColor;
-          if (normalBg) btn.style.backgroundColor = normalBg;
-          if (normalBorder) btn.style.borderColor = normalBorder;
+      // Handle traditional tab button clicks
+      const tabButtons = document.querySelectorAll(`[data-block-id="${blockId}"]`);
+      tabButtons.forEach((button) => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault();
+          const tabIndex = parseInt(this.getAttribute('data-tab-index'));
+          if (!isNaN(tabIndex)) {
+            swiper.slideTo(tabIndex);
+          }
         });
-
-        // Handle content switching with animations
-        const allContents = parentContainer.querySelectorAll('.nested-tab-content');
-        const targetContent = document.getElementById(targetTab);
-
-        if (targetContent) {
-          // First, hide all active content with animation
-          allContents.forEach((content) => {
-            if (content.classList.contains('active')) {
-              // Apply exit animation based on type
-              if (animationType === 'fade') {
-                content.style.opacity = '0';
-              } else if (animationType === 'slide') {
-                content.style.transform = 'translateX(-20px)';
-                content.style.opacity = '0';
-              } else if (animationType === 'scale') {
-                content.style.transform = 'scale(0.95)';
-                content.style.opacity = '0';
-              }
-
-              setTimeout(
-                () => {
-                  content.classList.remove('active');
-                  if (animationType === 'none') {
-                    content.style.display = 'none';
-                  }
-                },
-                animationType === 'none' ? 0 : animationDuration
-              );
-            }
-          });
-
-          // Then show target content with animation
-          const showDelay = animationType === 'none' ? 0 : animationDuration;
-          setTimeout(() => {
-            if (animationType !== 'none') {
-              targetContent.style.display = 'block';
-            }
-            targetContent.classList.add('active');
-
-            // Force reflow for smooth animation
-            if (animationType !== 'none') {
-              targetContent.offsetHeight;
-
-              // Apply enter animation
-              if (animationType === 'fade') {
-                targetContent.style.opacity = '1';
-              } else if (animationType === 'slide') {
-                targetContent.style.transform = 'translateX(0)';
-                targetContent.style.opacity = '1';
-              } else if (animationType === 'scale') {
-                targetContent.style.transform = 'scale(1)';
-                targetContent.style.opacity = '1';
-              }
-            }
-          }, showDelay);
-        }
-
-        // Add active class to clicked button
-        this.classList.add('active');
-
-        // Apply active styling
-        const activeColor = this.getAttribute('data-active-color');
-        const activeBg = this.getAttribute('data-active-bg');
-        const activeBorder = this.getAttribute('data-active-border');
-
-        if (activeColor) this.style.color = activeColor;
-        if (activeBg) this.style.backgroundColor = activeBg;
-        if (activeBorder) this.style.borderColor = activeBorder;
       });
     });
 
-    // Initialize first tab as active for each nested tabs container
-    document.querySelectorAll('[class*="nested-tabs-"]').forEach((container) => {
-      const firstButton = container.querySelector('.nested-tab-button');
-      const firstContent = container.querySelector('.nested-tab-content');
+    // Function to update tab button styles
+    function updateTabButtons(blockId, activeIndex) {
+      const tabButtons = document.querySelectorAll(`[data-block-id="${blockId}"]`);
 
-      if (firstButton && firstContent && !firstContent.classList.contains('active')) {
-        firstButton.classList.add('active');
-        firstContent.classList.add('active');
-        firstContent.style.display = 'block';
-        firstContent.style.opacity = '1';
-        firstContent.style.transform = 'none';
+      tabButtons.forEach((button, index) => {
+        button.classList.remove('active');
 
-        // Apply active styling to first button
-        const activeColor = firstButton.getAttribute('data-active-color');
-        const activeBg = firstButton.getAttribute('data-active-bg');
-        const activeBorder = firstButton.getAttribute('data-active-border');
+        // Apply normal styling
+        const normalColor = button.getAttribute('data-normal-color');
+        const normalBg = button.getAttribute('data-normal-bg');
+        const normalBorder = button.getAttribute('data-normal-border');
 
-        if (activeColor) firstButton.style.color = activeColor;
-        if (activeBg) firstButton.style.backgroundColor = activeBg;
-        if (activeBorder) firstButton.style.borderColor = activeBorder;
-      }
-    });
+        if (normalColor) button.style.color = normalColor;
+        if (normalBg) button.style.backgroundColor = normalBg;
+        if (normalBorder) button.style.borderColor = normalBorder;
+
+        // Apply active styling to current button
+        if (index === activeIndex) {
+          button.classList.add('active');
+
+          const activeColor = button.getAttribute('data-active-color');
+          const activeBg = button.getAttribute('data-active-bg');
+          const activeBorder = button.getAttribute('data-active-border');
+
+          if (activeColor) button.style.color = activeColor;
+          if (activeBg) button.style.backgroundColor = activeBg;
+          if (activeBorder) button.style.borderColor = activeBorder;
+        }
+      });
+    }
   }
 
   // Initialize nested tabs
