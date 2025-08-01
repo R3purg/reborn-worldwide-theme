@@ -1319,7 +1319,12 @@
         {%- endif -%}
 
         {% if use_cart %}
-          <a href="#" id="cart-icon-bubble" class="header-cart-{{ section.id }}" aria-label="{{ 'templates.cart.cart' | t }} ({{ cart.item_count }})">
+          <a
+            href="#"
+            id="cart-icon-bubble"
+            class="header-cart-{{ section.id }}"
+            aria-label="{{ 'templates.cart.cart' | t }} ({{ cart.item_count }})"
+          >
             <span class="header-cart-icon-{{ section.id }}">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
