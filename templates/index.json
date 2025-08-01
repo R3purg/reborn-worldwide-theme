@@ -252,40 +252,6 @@
     },
     "ss_featured_collection_14_PyEQAw": {
       "type": "ss-featured-collection-14",
-      "blocks": {
-        "image_aDft8F": {
-          "type": "image",
-          "settings": {
-            "product": "anime-fan",
-            "custom_badge": "",
-            "custom_title": "Anime Fan",
-            "url": ""
-          }
-        },
-        "image_CfcJbB": {
-          "type": "image",
-          "settings": {
-            "product": "monsters-drink",
-            "custom_badge": "",
-            "custom_title": "Monsters Drink",
-            "url": ""
-          }
-        },
-        "image_D4iXdX": {
-          "type": "image",
-          "settings": {
-            "product": "my-swamp",
-            "custom_badge": "",
-            "custom_title": "My Swamp",
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_aDft8F",
-        "image_CfcJbB",
-        "image_D4iXdX"
-      ],
       "name": "SS - Featured collection #14",
       "settings": {
         "content_align": "center",
@@ -304,7 +270,7 @@
         "heading_height": 130,
         "heading_mt": 12,
         "heading_mt_mobile": 8,
-        "collection": "reborn-in-eastern-europe",
+        "collection": "eastern-europe-regulars-collection",
         "collection_show": 10,
         "slider_mt": 24,
         "slider_mt_mobile": 8,
@@ -321,13 +287,13 @@
         "badge_radius": 4,
         "badge_border_thickness": 0,
         "badge_custom": false,
-        "badge_font": "josefin_sans_n4",
+        "badge_font": "montserrat_n4",
         "badge_size": 12,
         "badge_size_mobile": 12,
         "badge_height": 100,
         "button": "Shop now",
         "button_custom": false,
-        "button_font": "josefin_sans_n4",
+        "button_font": "montserrat_n4",
         "button_size": 16,
         "button_size_mobile": 14,
         "button_height": 100,
@@ -340,14 +306,14 @@
         "button_mt_mobile": 16,
         "button_style": "outline",
         "title_custom": false,
-        "title_font": "josefin_sans_n4",
+        "title_font": "montserrat_n4",
         "title_size": 18,
         "title_size_mobile": 14,
         "title_height": 150,
         "title_mt": 36,
         "title_mt_mobile": 20,
         "price_custom": false,
-        "price_font": "josefin_sans_n4",
+        "price_font": "montserrat_n4",
         "price_size": 16,
         "price_size_mobile": 14,
         "price_height": 130,
