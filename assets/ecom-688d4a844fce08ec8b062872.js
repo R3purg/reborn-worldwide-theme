@@ -1,19 +1,4 @@
-/* Publish by EComposer at 2025-08-01 23:20:01*/
-                (function(){
-                    const Func = (function() {
-                        'use strict';
-window.__ectimmers = window.__ectimmers ||{};window.__ectimmers["ecom-tw1p909g85"]=  window.__ectimmers["ecom-tw1p909g85"] || {};
-if(!this.$el)return;let e=this.$el;if(this.isLive){let t=document.querySelector("#ecom-cart-json"),n=t&&t.innerHTML?JSON.parse(t.innerHTML):null,s=e.querySelector(".ecom-gift-wrap-cart__checkbox"),o=s?parseInt(s.dataset.variantId):null;if(n&&o){let a=n.items;a.length>0&&a.find(function(r){r.variant_id==o&&(s.checked=!0)})}s&&(s.checked!==!0?s.addEventListener("click",function(){o&&(window.location=s.dataset.href)}):s.addEventListener("click",function(){s.dataset.href&&(window.location=`/cart/change?id=${o}&quantity=0`)}))}
-
-                    });
-                    
-                        document.querySelectorAll('.ecom-tw1p909g85').forEach(function(el){
-                            Func.call({$el: el, id: 'ecom-tw1p909g85', settings: {},isLive: true});
-                        });
-                    
-
-                })();
-            
+/* Publish by EComposer at 2025-08-01 23:22:01*/
                 (function(){
                     const Func = (function() {
                         'use strict';
