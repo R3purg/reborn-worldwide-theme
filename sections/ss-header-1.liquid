@@ -364,6 +364,17 @@
     transition: all .5s cubic-bezier(.76,0,.24,1);
   }
 
+  /* Cart Drawer Button Styling */
+  .header-cart-{{ section.id }} {
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .header-cart-{{ section.id }}:hover {
+    opacity: 0.8;
+  }
+
   {% if transparent_bg == "all" %}
     .header-{{ section.id }}:not(.onscroll).transparent .header-search-text-{{ section.id }},
     .header-{{ section.id }}:not(.onscroll).transparent .header-account-text-{{ section.id }},
@@ -1308,7 +1319,7 @@
         {%- endif -%}
 
         {% if use_cart %}
-          <a href="{{ routes.cart_url }}" class="header-cart-{{ section.id }}">
+          <a href="#" id="cart-icon-bubble" class="header-cart-{{ section.id }}" aria-label="{{ 'templates.cart.cart' | t }} ({{ cart.item_count }})">
             <span class="header-cart-icon-{{ section.id }}">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
