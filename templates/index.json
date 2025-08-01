@@ -24,11 +24,11 @@
         "heading"
       ],
       "settings": {
-        "image": "shopify://shop_images/20250613_202408.jpg",
+        "image": "shopify://shop_images/hero-1.jpg",
         "image_overlay_opacity": 60,
         "image_height": "small",
         "image_behavior": "fixed",
-        "desktop_content_position": "bottom-center",
+        "desktop_content_position": "top-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-4",
@@ -377,56 +377,56 @@
         "image_eUnRNN": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-bold-3.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_201509.jpg",
             "gallery_url": ""
           }
         },
         "image_MnTaYR": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-bold-1.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_204359.jpg",
             "gallery_url": ""
           }
         },
         "image_WNbETt": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-minimal-2.jpg",
+            "gallery_photo": "shopify://shop_images/hero-1.jpg",
             "gallery_url": ""
           }
         },
         "image_3K4JkQ": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-minimal-5.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_201524.jpg",
             "gallery_url": ""
           }
         },
         "image_yWCCRR": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-minimal-1.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_201801.jpg",
             "gallery_url": ""
           }
         },
         "image_atxDiU": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-bold-6.jpg",
+            "gallery_photo": "shopify://shop_images/20250613_202408.jpg",
             "gallery_url": ""
           }
         },
         "image_wz7tMr": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-bold-5.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_201734.jpg",
             "gallery_url": ""
           }
         },
         "image_mFeMpj": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-bold-4.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_201552.jpg",
             "gallery_url": ""
           }
         }
@@ -448,12 +448,12 @@
         "hide_image_mobile": 0,
         "insta_url": "https://www.instagram.com/reborn.wxrldwide/",
         "instafeed_title": "",
-        "hashtag_title": "#RebornWxrldwide",
+        "hashtag_title": "#wxrldwide",
         "insta_handle": "@reborn.wxrldwide",
         "header_size": 18,
         "hashtag_size": 28,
         "handle_size": 8,
-        "padding_image": 0,
+        "padding_image": 2,
         "padding_top": 36,
         "padding_bottom": 36
       }
