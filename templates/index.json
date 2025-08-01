@@ -149,8 +149,8 @@
         "tab_PBeiby": {
           "type": "tab",
           "settings": {
-            "title": "// Tokyo",
-            "icon": "airplane"
+            "title": "// ?",
+            "icon": "mobile"
           }
         },
         "content_JD6N8A": {
@@ -222,14 +222,14 @@
         "body_radius_top": false,
         "icon_size": 20,
         "icon_size_mobile": 16,
-        "toggles_bg_color": "#1c1c1c",
+        "toggles_bg_color": "#131313",
         "toggles_border_color": "#f0f0f0",
         "button_color": "#f0f0f0",
         "button_hover_color": "#ffffff",
         "button_active_color": "#ffffff",
-        "button_bg_color": "#8a2be2",
-        "button_bg_hover_color": "#131313",
-        "button_bg_active_color": "#131313",
+        "button_bg_color": "#131313",
+        "button_bg_hover_color": "#8a2be2",
+        "button_bg_active_color": "#8a2be2",
         "button_border_color": "#131313",
         "button_border_hover_color": "#131313",
         "button_border_active_color": "#131313",
