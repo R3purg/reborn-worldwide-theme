@@ -26,9 +26,9 @@
       "settings": {
         "image": "shopify://shop_images/hero-1.jpg",
         "image_overlay_opacity": 60,
-        "image_height": "large",
+        "image_height": "small",
         "image_behavior": "fixed",
-        "desktop_content_position": "bottom-center",
+        "desktop_content_position": "top-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-4",
