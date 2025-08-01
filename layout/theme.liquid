@@ -1,11 +1,12 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
- {%- render 'ecom_header' -%}
+    {%- render 'ecom_header' -%}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
+    <meta name="verify-paysera" content="cec0e826f69b6f3b97d1a5b07e8adb3c">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -314,7 +315,10 @@
       {{ content_for_layout }}
     </main>
 
-    <!--ECOM-FOOTER-->{%-comment-%}eyUgc2VjdGlvbnMgJ2Zvb3Rlci1ncm91cCcgJX0={%-endcomment-%}{%- sections 'ecom-reborn-footer_footer' -%}<!--/ECOM-FOOTER-->
+    <!-- ECOM-FOOTER -->
+    {%- comment -%}eyUgc2VjdGlvbnMgJ2Zvb3Rlci1ncm91cCcgJX0={%- endcomment -%}
+    {%- sections 'ecom-reborn-footer_footer' -%}
+    <!-- /ECOM-FOOTER -->
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
@@ -373,5 +377,6 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-  {%- render "ecom_footer"-%}</body>
+    {%- render 'ecom_footer' -%}
+  </body>
 </html>
