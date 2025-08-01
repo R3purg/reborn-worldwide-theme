@@ -377,42 +377,42 @@
         "image_eUnRNN": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-bold-3.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_201509.jpg",
             "gallery_url": ""
           }
         },
         "image_MnTaYR": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-bold-1.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_204359.jpg",
             "gallery_url": ""
           }
         },
         "image_WNbETt": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-minimal-2.jpg",
+            "gallery_photo": "shopify://shop_images/hero-1.jpg",
             "gallery_url": ""
           }
         },
         "image_3K4JkQ": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-minimal-5.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_201524.jpg",
             "gallery_url": ""
           }
         },
         "image_yWCCRR": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-minimal-1.jpg",
+            "gallery_photo": "shopify://shop_images/20250720_201801.jpg",
             "gallery_url": ""
           }
         },
         "image_atxDiU": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/general-clothes-bold-6.jpg",
+            "gallery_photo": "shopify://shop_images/20250613_202408.jpg",
             "gallery_url": ""
           }
         },
@@ -448,7 +448,7 @@
         "hide_image_mobile": 0,
         "insta_url": "https://www.instagram.com/reborn.wxrldwide/",
         "instafeed_title": "",
-        "hashtag_title": "#RebornWxrldwide",
+        "hashtag_title": "#wxrldwide",
         "insta_handle": "@reborn.wxrldwide",
         "header_size": 18,
         "hashtag_size": 28,
