@@ -52,6 +52,7 @@
 
   assign menu_icon_size_mobile = section.settings.menu_icon_size_mobile
 
+  assign overriden_shop_name = section.settings.overriden_shop_name
   assign logo = section.settings.logo
   assign second_logo = section.settings.second_logo
   assign logo_mobile = section.settings.logo_mobile
@@ -1278,7 +1279,7 @@
             </a>
           {% endif %}
         {% else %}
-          <a href="{{ shop.url }}" class="header-logo-text-{{ section.id }}">{{ shop.name }}</a>
+          <a href="{{ shop.url }}" class="header-logo-text-{{ section.id }}">{{ overriden_shop_name ?? shop.name }}</a>
         {% endif %}
       </div>
 
