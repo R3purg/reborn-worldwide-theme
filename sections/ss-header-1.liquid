@@ -1279,7 +1279,9 @@
             </a>
           {% endif %}
         {% else %}
-          <a href="{{ shop.url }}" class="header-logo-text-{{ section.id }}">{{ overriden_shop_name ?? shop.name }}</a>
+          <a href="{{ shop.url }}" class="header-logo-text-{{ section.id }}">
+            {{- overriden_shop_name | default: shop.name -}}
+          </a>
         {% endif %}
       </div>
 
