@@ -141,6 +141,38 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "page-about": {
+        "type": "page-about",
+        "blocks": {
+          "page_content_HVrFRF": {
+            "type": "page-content",
+            "settings": {
+              "content_width": "2-3",
+              "enable_custom_styles": true,
+              "background_color": "",
+              "text_color": "",
+              "text_font_size": 16,
+              "spacing_top": 50,
+              "spacing_bottom": 0
+            }
+          }
+        },
+        "block_order": [
+          "page_content_HVrFRF"
+        ],
+        "settings": {
+          "display_page_header": true,
+          "underline_title": false,
+          "enable_custom_styles": true,
+          "height": 250,
+          "title_color": "",
+          "alignment": "center",
+          "background_color": "",
+          "background_image_style": "cover",
+          "parallax": false,
+          "darken": 0
+        }
       }
     },
     "content_for_index": [],
