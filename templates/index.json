@@ -406,14 +406,14 @@
         "image_MnTaYR": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/20250720_204359.jpg",
+            "gallery_photo": "shopify://shop_images/hero-2.png",
             "gallery_url": ""
           }
         },
         "image_WNbETt": {
           "type": "image",
           "settings": {
-            "gallery_photo": "shopify://shop_images/hero-1.jpg",
+            "gallery_photo": "shopify://shop_images/hero-1.png",
             "gallery_url": ""
           }
         },
