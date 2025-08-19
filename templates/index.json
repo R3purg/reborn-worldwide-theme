@@ -24,9 +24,9 @@
         "heading"
       ],
       "settings": {
-        "image": "shopify://shop_images/hero-1.png",
+        "image": "shopify://shop_images/hero-1_287bdfdf-9378-4b3d-afd0-894e41a7f021.png",
         "image_overlay_opacity": 60,
-        "image_height": "small",
+        "image_height": "large",
         "image_behavior": "fixed",
         "desktop_content_position": "top-center",
         "desktop_content_alignment": "center",
