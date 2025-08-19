@@ -24,7 +24,7 @@
         "heading"
       ],
       "settings": {
-        "image": "shopify://shop_images/hero-1.jpg",
+        "image": "shopify://shop_images/hero-1.png",
         "image_overlay_opacity": 60,
         "image_height": "small",
         "image_behavior": "fixed",
