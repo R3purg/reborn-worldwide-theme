@@ -1930,6 +1930,63 @@
             data-animation="{{ block.settings.animation_type }}"
             data-duration="{{ block.settings.animation_duration }}"
           >
+            <!-- Optional: Traditional tab buttons as secondary navigation -->
+            <div class="nested-tab-buttons">
+              {% for i in (1..block.settings.nested_tabs_count) %}
+                {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
+                {% assign tab_title = block.settings[tab_title_key] %}
+                {% assign tab_content_key = 'nested_tab_' | append: i | append: '_content' %}
+                {% assign tab_content = block.settings[tab_content_key] %}
+                {% assign tab_icon_key = 'nested_tab_' | append: i | append: '_icon' %}
+                {% assign tab_icon = block.settings[tab_icon_key] %}
+                {% assign tab_text_color_key = 'nested_tab_' | append: i | append: '_text_color' %}
+                {% assign tab_text_color = block.settings[tab_text_color_key] %}
+                {% assign tab_text_color_active_key = 'nested_tab_' | append: i | append: '_text_color_active' %}
+                {% assign tab_text_color_active = block.settings[tab_text_color_active_key] %}
+                {% assign tab_bg_color_key = 'nested_tab_' | append: i | append: '_bg_color' %}
+                {% assign tab_bg_color = block.settings[tab_bg_color_key] %}
+                {% assign tab_bg_color_active_key = 'nested_tab_' | append: i | append: '_bg_color_active' %}
+                {% assign tab_bg_color_active = block.settings[tab_bg_color_active_key] %}
+                {% assign tab_border_color_key = 'nested_tab_' | append: i | append: '_border_color' %}
+                {% assign tab_border_color = block.settings[tab_border_color_key] %}
+
+                {% if tab_title != blank and tab_content != blank %}
+                  <div
+                    class="nested-tab-button nested-tab-button-{{ i }}{% if forloop.first %} active{% endif %}"
+                    data-tab-index="{{ forloop.index0 }}"
+                    data-block-id="{{ block.id }}"
+                    style="
+                      color: {{ tab_text_color | default: block.settings.tab_text_color | default: '#333333' }};
+                      background-color: {{ tab_bg_color | default: block.settings.tab_bg_color | default: '#f0f0f0' }};
+                      border-color: {{ tab_border_color | default: block.settings.tab_border_color | default: '#cccccc' }};
+                      {% if forloop.first %}
+                        color: {{ tab_text_color_active | default: block.settings.tab_text_color_active | default: '#ffffff' }};
+                        background-color: {{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }};
+                        border-color: {{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }};
+                      {% endif %}
+                    "
+                    data-normal-color="{{ tab_text_color | default: block.settings.tab_text_color | default: '#333333' }}"
+                    data-active-color="{{ tab_text_color_active | default: block.settings.tab_text_color_active | default: '#ffffff' }}"
+                    data-normal-bg="{{ tab_bg_color | default: block.settings.tab_bg_color | default: '#f0f0f0' }}"
+                    data-active-bg="{{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }}"
+                    data-normal-border="{{ tab_border_color | default: block.settings.tab_border_color | default: '#cccccc' }}"
+                    data-active-border="{{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }}"
+                  >
+                    {% if tab_icon != blank %}
+                      <img
+                        src="{{ tab_icon | image_url: width: 24, height: 24 }}"
+                        alt="{{ tab_title }} icon"
+                        class="nested-tab-icon"
+                        width="24"
+                        height="24"
+                      >
+                    {% endif %}
+                    <span class="nested-tab-title">{{ tab_title }}</span>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+
             <!-- Swiper for nested tabs -->
             <div class="nested-tabs-swiper-{{ block.id }} swiper">
               <div class="swiper-wrapper">
@@ -2121,62 +2178,6 @@
               <div class="nested-tab-pagination-{{ block.id }} swiper-pagination"></div>
             </div>
 
-            <!-- Optional: Traditional tab buttons as secondary navigation -->
-            <div class="nested-tab-buttons">
-              {% for i in (1..block.settings.nested_tabs_count) %}
-                {% assign tab_title_key = 'nested_tab_' | append: i | append: '_title' %}
-                {% assign tab_title = block.settings[tab_title_key] %}
-                {% assign tab_content_key = 'nested_tab_' | append: i | append: '_content' %}
-                {% assign tab_content = block.settings[tab_content_key] %}
-                {% assign tab_icon_key = 'nested_tab_' | append: i | append: '_icon' %}
-                {% assign tab_icon = block.settings[tab_icon_key] %}
-                {% assign tab_text_color_key = 'nested_tab_' | append: i | append: '_text_color' %}
-                {% assign tab_text_color = block.settings[tab_text_color_key] %}
-                {% assign tab_text_color_active_key = 'nested_tab_' | append: i | append: '_text_color_active' %}
-                {% assign tab_text_color_active = block.settings[tab_text_color_active_key] %}
-                {% assign tab_bg_color_key = 'nested_tab_' | append: i | append: '_bg_color' %}
-                {% assign tab_bg_color = block.settings[tab_bg_color_key] %}
-                {% assign tab_bg_color_active_key = 'nested_tab_' | append: i | append: '_bg_color_active' %}
-                {% assign tab_bg_color_active = block.settings[tab_bg_color_active_key] %}
-                {% assign tab_border_color_key = 'nested_tab_' | append: i | append: '_border_color' %}
-                {% assign tab_border_color = block.settings[tab_border_color_key] %}
-
-                {% if tab_title != blank and tab_content != blank %}
-                  <div
-                    class="nested-tab-button nested-tab-button-{{ i }}{% if forloop.first %} active{% endif %}"
-                    data-tab-index="{{ forloop.index0 }}"
-                    data-block-id="{{ block.id }}"
-                    style="
-                      color: {{ tab_text_color | default: block.settings.tab_text_color | default: '#333333' }};
-                      background-color: {{ tab_bg_color | default: block.settings.tab_bg_color | default: '#f0f0f0' }};
-                      border-color: {{ tab_border_color | default: block.settings.tab_border_color | default: '#cccccc' }};
-                      {% if forloop.first %}
-                        color: {{ tab_text_color_active | default: block.settings.tab_text_color_active | default: '#ffffff' }};
-                        background-color: {{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }};
-                        border-color: {{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }};
-                      {% endif %}
-                    "
-                    data-normal-color="{{ tab_text_color | default: block.settings.tab_text_color | default: '#333333' }}"
-                    data-active-color="{{ tab_text_color_active | default: block.settings.tab_text_color_active | default: '#ffffff' }}"
-                    data-normal-bg="{{ tab_bg_color | default: block.settings.tab_bg_color | default: '#f0f0f0' }}"
-                    data-active-bg="{{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }}"
-                    data-normal-border="{{ tab_border_color | default: block.settings.tab_border_color | default: '#cccccc' }}"
-                    data-active-border="{{ tab_bg_color_active | default: block.settings.tab_bg_color_active | default: '#8a2be2' }}"
-                  >
-                    {% if tab_icon != blank %}
-                      <img
-                        src="{{ tab_icon | image_url: width: 24, height: 24 }}"
-                        alt="{{ tab_title }} icon"
-                        class="nested-tab-icon"
-                        width="24"
-                        height="24"
-                      >
-                    {% endif %}
-                    <span class="nested-tab-title">{{ tab_title }}</span>
-                  </div>
-                {% endif %}
-              {% endfor %}
-            </div>
           </div>
         {% endif %}
       {% endif %}
