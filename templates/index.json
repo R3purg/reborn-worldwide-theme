@@ -11,8 +11,24 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
+      "settings": {
+        "image": "shopify://shop_images/hero-1_287bdfdf-9378-4b3d-afd0-894e41a7f021.png",
+        "image_overlay_opacity": 60,
+        "image_height": "small",
+        "image_behavior": "fixed",
+        "desktop_content_position": "top-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "image_banner_fAU4dj": {
+      "type": "image-banner",
       "blocks": {
-        "heading": {
+        "heading_6Krkbh": {
           "type": "heading",
           "settings": {
             "heading": "Limited as f*ck.",
@@ -21,7 +37,7 @@
         }
       },
       "block_order": [
-        "heading"
+        "heading_6Krkbh"
       ],
       "settings": {
         "image": "shopify://shop_images/hero-1_287bdfdf-9378-4b3d-afd0-894e41a7f021.png",
@@ -272,29 +288,65 @@
         "lazy": true
       }
     },
+    "image_banner_DQiLYF": {
+      "type": "image-banner",
+      "blocks": {
+        "text_Hf8KE4": {
+          "type": "text",
+          "settings": {
+            "text": "More from",
+            "text_style": "subtitle"
+          }
+        },
+        "heading_WxwQMe": {
+          "type": "heading",
+          "settings": {
+            "heading": "REBORN // Eastern Europe",
+            "heading_size": "hxxl"
+          }
+        }
+      },
+      "block_order": [
+        "text_Hf8KE4",
+        "heading_WxwQMe"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hero-1_287bdfdf-9378-4b3d-afd0-894e41a7f021.png",
+        "image_overlay_opacity": 60,
+        "image_height": "small",
+        "image_behavior": "fixed",
+        "desktop_content_position": "top-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
     "ss_featured_collection_14_PyEQAw": {
       "type": "ss-featured-collection-14",
       "name": "SS - Featured collection #14",
       "settings": {
         "content_align": "center",
         "content_align_mobile": "center",
-        "sub_heading": "<p>More from</p>",
+        "sub_heading": "",
         "sub_heading_custom": false,
         "sub_heading_font": "montserrat_n4",
         "sub_heading_size": 20,
         "sub_heading_size_mobile": 18,
         "sub_heading_height": 130,
-        "heading": "<h2>REBORN // Eastern Europe</h2>",
+        "heading": "",
         "heading_custom": false,
         "heading_font": "oswald_n4",
         "heading_size": 42,
         "heading_size_mobile": 24,
         "heading_height": 130,
-        "heading_mt": 12,
+        "heading_mt": 8,
         "heading_mt_mobile": 8,
         "collection": "eastern-europe-regulars-collection",
         "collection_show": 10,
-        "slider_mt": 24,
+        "slider_mt": 8,
         "slider_mt_mobile": 8,
         "product_content_align": "center",
         "product_content_align_mobile": "center",
@@ -350,9 +402,9 @@
         "arrow_icon_size_mobile": 9,
         "arrow_border_thickness": 1,
         "arrow_radius": 100,
-        "arrow_hover_effect": "color",
+        "arrow_hover_effect": "scale",
         "arrow_show_desktop": true,
-        "arrow_show_mobile": false,
+        "arrow_show_mobile": true,
         "sub_heading_color": "#000000",
         "heading_color": "#000000",
         "image_border_color": "#000000",
@@ -479,12 +531,31 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "ss_back_to_top_button_9j8xME": {
+      "type": "ss-back-to-top-button",
+      "name": "SS - Back to top button",
+      "settings": {
+        "hide_on_mobile": false,
+        "show_when_precent_of_page": 30,
+        "pos": "right",
+        "bg_color": "#F4F2F2",
+        "border_color": "#CEC5C5",
+        "arrow_color": "#333333",
+        "button_size": 54,
+        "arrow_size": 30,
+        "horizontal_dst_to_edge": 20,
+        "vertical_dst_to_edge": 20
+      }
     }
   },
   "order": [
     "image_banner",
+    "image_banner_fAU4dj",
     "ss_flexible_tabs_zpX39t",
+    "image_banner_DQiLYF",
     "ss_featured_collection_14_PyEQAw",
-    "ss_instafeed_3F3K9R"
+    "ss_instafeed_3F3K9R",
+    "ss_back_to_top_button_9j8xME"
   ]
 }
