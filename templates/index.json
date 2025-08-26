@@ -53,6 +53,22 @@
         "show_text_below": false
       }
     },
+    "image_banner_fgQaCM": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify://shop_images/ecom-no-replace-8R863Gfer6bg-union-bottom.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "top-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
     "ss_flexible_tabs_zpX39t": {
       "type": "ss-flexible-tabs",
       "blocks": {
@@ -552,6 +568,7 @@
   "order": [
     "image_banner",
     "image_banner_fAU4dj",
+    "image_banner_fgQaCM",
     "ss_flexible_tabs_zpX39t",
     "image_banner_DQiLYF",
     "ss_featured_collection_14_PyEQAw",
