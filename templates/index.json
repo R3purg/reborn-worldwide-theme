@@ -11,40 +11,24 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
-      "settings": {
-        "image": "shopify://shop_images/hero-1_287bdfdf-9378-4b3d-afd0-894e41a7f021.png",
-        "image_overlay_opacity": 60,
-        "image_height": "small",
-        "image_behavior": "fixed",
-        "desktop_content_position": "top-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-4",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "image_banner_fAU4dj": {
-      "type": "image-banner",
       "blocks": {
-        "heading_6Krkbh": {
+        "heading_CQcgti": {
           "type": "heading",
           "settings": {
             "heading": "Limited as f*ck.",
-            "heading_size": "hxxl"
+            "heading_size": "h1"
           }
         }
       },
       "block_order": [
-        "heading_6Krkbh"
+        "heading_CQcgti"
       ],
       "settings": {
-        "image": "shopify://shop_images/hero-1_287bdfdf-9378-4b3d-afd0-894e41a7f021.png",
+        "image": "shopify://shop_images/IBM_Plex_Mono.png",
         "image_overlay_opacity": 60,
-        "image_height": "small",
+        "image_height": "medium",
         "image_behavior": "fixed",
-        "desktop_content_position": "top-center",
+        "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-4",
@@ -55,10 +39,11 @@
     },
     "image_banner_fgQaCM": {
       "type": "image-banner",
+      "disabled": true,
       "settings": {
-        "image": "shopify://shop_images/ecom-no-replace-8R863Gfer6bg-union-bottom.png",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
+        "image": "shopify://shop_images/Pattern.png",
+        "image_overlay_opacity": 60,
+        "image_height": "small",
         "image_behavior": "none",
         "desktop_content_position": "top-center",
         "desktop_content_alignment": "center",
@@ -318,7 +303,7 @@
           "type": "heading",
           "settings": {
             "heading": "REBORN // Eastern Europe",
-            "heading_size": "hxxl"
+            "heading_size": "h1"
           }
         }
       },
@@ -327,11 +312,11 @@
         "heading_WxwQMe"
       ],
       "settings": {
-        "image": "shopify://shop_images/hero-1_287bdfdf-9378-4b3d-afd0-894e41a7f021.png",
+        "image": "shopify://shop_images/IBM_Plex_Mono.png",
         "image_overlay_opacity": 60,
         "image_height": "small",
         "image_behavior": "fixed",
-        "desktop_content_position": "top-center",
+        "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
         "color_scheme": "scheme-4",
@@ -555,8 +540,8 @@
         "hide_on_mobile": false,
         "show_when_precent_of_page": 30,
         "pos": "right",
-        "bg_color": "#F4F2F2",
-        "border_color": "#CEC5C5",
+        "bg_color": "#f4f2f2",
+        "border_color": "#cec5c5",
         "arrow_color": "#333333",
         "button_size": 54,
         "arrow_size": 30,
@@ -567,7 +552,6 @@
   },
   "order": [
     "image_banner",
-    "image_banner_fAU4dj",
     "image_banner_fgQaCM",
     "ss_flexible_tabs_zpX39t",
     "image_banner_DQiLYF",
