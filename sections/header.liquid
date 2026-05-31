@@ -17,6 +17,65 @@
 {%- endif -%}
 
 <style>
+  /* ── RW: Transparent → frosted bone glass on scroll ── */
+  .section-header .header-wrapper,
+  .section-header .header-wrapper.gradient {
+    background: transparent;
+    border-bottom-color: transparent;
+    transition: background 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
+  }
+
+  .section-header.shopify-section-header-sticky .header-wrapper,
+  .section-header.shopify-section-header-sticky .header-wrapper.gradient {
+    background: rgba(var(--color-background), 0.92);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom-color: rgba(var(--color-foreground), 0.12);
+  }
+
+  /* ── RW: Nav links mono ─── */
+  .list-menu__item--link {
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ── RW: Cart count badge orange ─── */
+  .cart-count-bubble {
+    background: rgba(var(--color-button), 1);
+    color: rgb(var(--color-foreground));
+    border: 1px solid rgb(var(--color-foreground));
+    font-family: var(--font-body-family);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── RW: Text logo ─── */
+  .rw-header__logo {
+    font-family: var(--font-heading-family);
+    font-size: 3rem;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 0;
+  }
+
+  .rw-header__logo-ww {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    margin-left: 0.8rem;
+    margin-bottom: 0.2rem;
+    color: rgba(var(--color-button), 1);
+    font-weight: 500;
+    text-transform: none;
+  }
+
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
@@ -172,7 +231,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="rw-header__logo" aria-label="{{ shop.name | escape }}">REBORN<span class="rw-header__logo-ww" aria-hidden="true">// ww</span></span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -215,7 +274,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="rw-header__logo" aria-label="{{ shop.name | escape }}">REBORN<span class="rw-header__logo-ww" aria-hidden="true">// ww</span></span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}

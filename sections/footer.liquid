@@ -321,6 +321,94 @@
   </div>
 </footer>
 
+{% stylesheet %}
+  /* ── RW Footer: column headings → mono + // prefix ── */
+  .footer-block__heading {
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgba(var(--color-foreground), 0.55);
+    margin-bottom: 1.4rem;
+  }
+
+  .footer-block__heading::before {
+    content: '// ';
+  }
+
+  /* ── RW Footer: brand block → override heading to display wordmark ── */
+  .footer-block__brand-info .footer-block__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(4rem, 5vw, 6.4rem);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: rgb(var(--color-foreground));
+    font-weight: 400;
+    margin-bottom: 1.8rem;
+  }
+
+  .footer-block__brand-info .footer-block__heading::before {
+    content: '';
+  }
+
+  /* brand description → muted, slightly smaller */
+  .footer-block__brand-info .rte {
+    font-size: 1.4rem;
+    line-height: 1.55;
+    color: rgba(var(--color-foreground), 0.62);
+    max-width: 34rem;
+    margin-top: 1.8rem;
+  }
+
+  /* ── RW Footer: link items → clean, small ── */
+  .footer-block__details-content .list-menu__item--link {
+    font-size: 1.4rem;
+    letter-spacing: 0.01em;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer-block__details-content .list-menu__item--link {
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
+    }
+  }
+
+  /* ── RW Footer: bottom bar → mono muted ── */
+  .footer__copyright .copyright__content,
+  .footer__copyright .copyright__content a {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.55);
+    font-weight: 500;
+  }
+
+  /* hide "Powered by Shopify" */
+  .copyright__content:has(a[href*="shopify.com"]) {
+    display: none;
+  }
+
+  /* ── RW Footer: separator line ── */
+  .footer__content-bottom {
+    border-top-color: rgba(var(--color-foreground), 0.12);
+  }
+
+  /* ── RW Footer: social icon links → compact ── */
+  .list-social__link {
+    color: rgba(var(--color-foreground), 0.55);
+    transition: color 0.2s ease;
+  }
+
+  .list-social__link:hover {
+    color: rgb(var(--color-foreground));
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:sections.footer.name",
