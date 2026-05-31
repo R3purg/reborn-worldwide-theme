@@ -34,6 +34,142 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* ─── Editorial filter bar ─────────────────────────────────────── */
+
+  #main-collection-filters {
+    position: sticky;
+    top: var(--header-height, 0px);
+    z-index: 40;
+    background: rgb(var(--color-background));
+    border-bottom: 1px solid rgb(var(--color-foreground));
+  }
+
+  #main-collection-filters .facets__form {
+    padding: 1.4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  #main-collection-filters .facets__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  /* "Filter by" heading → "// FILTER" label */
+  #main-collection-filters .facets__heading {
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.55);
+    font-weight: 400;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  /* Filter pill buttons */
+  #main-collection-filters .facets__summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1.4rem;
+    border: 1px solid rgb(var(--color-foreground));
+    border-radius: 99rem;
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    height: auto;
+    min-width: 0;
+    margin-top: 0;
+  }
+
+  #main-collection-filters .facets__summary::-webkit-details-marker { display: none; }
+
+  #main-collection-filters details[open] .facets__summary {
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+  }
+
+  /* Dropdown panel */
+  #main-collection-filters .facets__display {
+    background: rgb(var(--color-background));
+    border: 1px solid rgb(var(--color-foreground));
+    box-shadow: 4px 4px 0 rgb(var(--color-foreground));
+    border-radius: 0;
+    top: calc(100% + 0.6rem);
+  }
+
+  /* Active filter chips */
+  #main-collection-filters .active-facets__button-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid rgb(var(--color-foreground));
+    border-radius: 99rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.0rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    font-weight: 400;
+  }
+
+  /* Sort label */
+  #main-collection-filters .facet-filters__label {
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.55);
+    font-weight: 400;
+    margin: 0 0.6rem 0 0;
+  }
+
+  /* Sort select */
+  #main-collection-filters .facet-filters__sort {
+    border: 1px solid rgb(var(--color-foreground));
+    border-radius: 99rem;
+    padding: 0.9rem 1.4rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  /* Product count */
+  #main-collection-filters .product-count__text,
+  #main-collection-filters .product-count-vertical .product-count__text {
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.55);
+    font-weight: 400;
+  }
+
+  /* Empty state */
+  .section-{{ section.id }}-padding .title--primary {
+    font-size: clamp(3.2rem, 5vw, 6rem);
+    text-transform: uppercase;
+  }
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">

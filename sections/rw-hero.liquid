@@ -1,0 +1,712 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="rw-hero section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="page-width rw-hero__inner">
+    {%- comment -%} Meta line {%- endcomment -%}
+    <div class="rw-hero__meta-line">
+      <span class="rw-hero__meta-kicker">{{ section.settings.meta_label | escape }}</span>
+      <span class="rw-hero__meta-date">RW—{{ 'now' | date: '%Y/%m/%d' }}</span>
+    </div>
+
+    {%- comment -%} Big type + optional stickers {%- endcomment -%}
+    <div class="rw-hero__title-wrap">
+      <h1 class="rw-hero__title">
+        REBORN<br>
+        <span class="rw-hero__title-line2">
+          <span class="rw-hero__slash" aria-hidden="true">/</span><span class="rw-hero__worldwide">WORLDWIDE</span>
+        </span>
+      </h1>
+
+      {%- if section.settings.show_stickers -%}
+        <div class="rw-hero__sticker rw-hero__sticker--orange" aria-hidden="true">
+          <div class="rw-hero__sticker-main">LIMITED AS F*CK</div>
+          <div class="rw-hero__sticker-sub">ED. 250 / DROP</div>
+        </div>
+        <div class="rw-hero__sticker rw-hero__sticker--ink" aria-hidden="true">
+          <div class="rw-hero__sticker-main">// SS26 LOOKBOOK</div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Split grid: image + sidebar {%- endcomment -%}
+    <div class="rw-hero__grid">
+      <div class="rw-hero__image-wrap">
+        {%- if section.settings.image != blank -%}
+          {%- assign hero_image_alt = section.settings.image.alt | default: 'Reborn Worldwide — Chapter 04 hero' -%}
+          {{
+            section.settings.image
+            | image_url: width: 1800
+            | image_tag: loading: 'eager', fetchpriority: 'high', class: 'rw-hero__image', alt: hero_image_alt
+          }}
+        {%- else -%}
+          <div class="rw-hero__image-placeholder">
+            {{ 'hero-apparel-1' | placeholder_svg_tag: 'rw-hero__placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="rw-hero__sidebar">
+        {%- comment -%} Countdown card (custom element ticks live) {%- endcomment -%}
+        <rw-hero-countdown
+          class="rw-hero__countdown-wrapper"
+          data-countdown-target="{{ section.settings.countdown_target | escape }}"
+        >
+          <div class="rw-hero__countdown-card">
+            <div class="rw-hero__countdown-label">{{ section.settings.countdown_label | escape }}</div>
+            <div class="rw-hero__countdown-grid">
+              <div class="rw-hero__countdown-unit">
+                <span class="rw-hero__countdown-num" data-unit="days">00</span>
+                <span class="rw-hero__countdown-unit-label">DAYS</span>
+              </div>
+              <div class="rw-hero__countdown-unit">
+                <span class="rw-hero__countdown-num" data-unit="hours">00</span>
+                <span class="rw-hero__countdown-unit-label">HRS</span>
+              </div>
+              <div class="rw-hero__countdown-unit">
+                <span class="rw-hero__countdown-num" data-unit="minutes">00</span>
+                <span class="rw-hero__countdown-unit-label">MIN</span>
+              </div>
+              <div class="rw-hero__countdown-unit">
+                <span class="rw-hero__countdown-num" data-unit="seconds">00</span>
+                <span class="rw-hero__countdown-unit-label">SEC</span>
+              </div>
+            </div>
+            <div class="rw-hero__countdown-footer">
+              <span class="rw-hero__countdown-date">{{ section.settings.countdown_date_label | escape }}</span>
+              {%- if section.settings.countdown_cta_label != blank -%}
+                <a href="{{ section.settings.countdown_cta_url }}" class="rw-hero__countdown-cta">
+                  {{ section.settings.countdown_cta_label | escape }}
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        </rw-hero-countdown>
+
+        {%- comment -%} Manifesto blurb card {%- endcomment -%}
+        {%- if section.settings.manifesto_blurb != blank -%}
+          <div class="rw-hero__blurb-card">
+            <div class="rw-hero__blurb-kicker">// MANIFESTO</div>
+            <p class="rw-hero__blurb-text">{{ section.settings.manifesto_blurb | escape }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} CTA row {%- endcomment -%}
+    <div class="rw-hero__cta-row">
+      <div class="rw-hero__cta-buttons">
+        {%- if section.settings.button_label_1 != blank -%}
+          <a href="{{ section.settings.button_url_1 }}" class="rw-hero__btn rw-hero__btn--solid">
+            {{ section.settings.button_label_1 | escape }}
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+            </svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button_label_2 != blank -%}
+          <a href="{{ section.settings.button_url_2 }}" class="rw-hero__btn rw-hero__btn--ghost">
+            {{ section.settings.button_label_2 | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.descriptor_text != blank -%}
+        <div class="rw-hero__descriptor">{{ section.settings.descriptor_text | escape }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .rw-hero {
+    position: relative;
+  }
+
+  .rw-hero__inner {
+    padding-top: 2.4rem;
+  }
+
+  /* Meta line */
+  .rw-hero__meta-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.55);
+    margin-bottom: 1.4rem;
+  }
+
+  /* Big title */
+  .rw-hero__title-wrap {
+    position: relative;
+  }
+
+  .rw-hero__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(7.2rem, 16.5vw, 28rem);
+    line-height: 0.82;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: rgb(var(--color-foreground));
+  }
+
+  .rw-hero__title-line2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.18em;
+  }
+
+  .rw-hero__slash {
+    display: inline-block;
+    width: 0.6em;
+    text-align: center;
+    color: rgba(var(--color-button), 1);
+    font-family: var(--font-body-family);
+  }
+
+  .rw-hero__worldwide {
+    color: rgba(var(--color-button), 1);
+  }
+
+  /* Stickers */
+  @keyframes rw-sticker-wobble {
+    0% { transform: rotate(var(--sticker-rot, -8deg)) }
+    50% { transform: rotate(calc(var(--sticker-rot, -8deg) + 14deg)) }
+    100% { transform: rotate(var(--sticker-rot, -8deg)) }
+  }
+
+  .rw-hero__sticker {
+    position: absolute;
+    padding: 1rem 1.4rem;
+    border: 1px solid rgb(var(--color-foreground));
+    border-radius: 4px;
+    box-shadow: 3px 3px 0 rgb(var(--color-foreground));
+    cursor: default;
+    z-index: 2;
+    font-family: var(--font-body-family);
+    text-transform: uppercase;
+  }
+
+  .rw-hero__sticker:hover {
+    animation: rw-sticker-wobble 0.6s ease-in-out infinite;
+  }
+
+  .rw-hero__sticker--orange {
+    --sticker-rot: -8deg;
+    top: 6%;
+    right: 4%;
+    transform: rotate(-8deg);
+    background: rgba(var(--color-button), 1);
+    color: rgb(var(--color-foreground));
+  }
+
+  .rw-hero__sticker--ink {
+    --sticker-rot: 7deg;
+    bottom: -10px;
+    left: 38%;
+    transform: rotate(7deg);
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+  }
+
+  .rw-hero__sticker-main {
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+  }
+
+  .rw-hero__sticker-sub {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 2px;
+  }
+
+  /* Split grid */
+  .rw-hero__grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 2.4rem;
+    align-items: stretch;
+    margin-top: 2.4rem;
+  }
+
+  .rw-hero__image-wrap {
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+  }
+
+  .rw-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .rw-hero__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--color-foreground), 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rw-hero__placeholder-svg {
+    width: 40%;
+    opacity: 0.2;
+  }
+
+  /* Sidebar */
+  .rw-hero__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    justify-content: space-between;
+  }
+
+  /* Countdown wrapper (custom element) */
+  rw-hero-countdown {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Countdown card */
+  .rw-hero__countdown-card {
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    padding: 2.2rem 2.2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    flex: 1;
+    min-height: 22rem;
+    overflow: hidden;
+  }
+
+  .rw-hero__countdown-label {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    font-weight: 500;
+  }
+
+  .rw-hero__countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+  }
+
+  .rw-hero__countdown-unit {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 0.8rem;
+  }
+
+  .rw-hero__countdown-num {
+    display: block;
+    font-family: var(--font-heading-family);
+    font-size: 4.8rem;
+    line-height: 1;
+  }
+
+  .rw-hero__countdown-unit-label {
+    display: block;
+    font-family: var(--font-body-family);
+    font-size: 1rem;
+    opacity: 0.55;
+    margin-top: 0.4rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .rw-hero__countdown-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    gap: 1rem;
+  }
+
+  .rw-hero__countdown-date {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    opacity: 0.7;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .rw-hero__countdown-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: rgba(var(--color-button), 1);
+    color: rgb(var(--color-foreground));
+    border: 1px solid rgb(var(--color-foreground));
+    padding: 1rem 1.6rem;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+  }
+
+  .rw-hero__countdown-cta:hover {
+    opacity: 0.85;
+  }
+
+  /* Manifesto blurb card */
+  .rw-hero__blurb-card {
+    padding: 2rem 2.2rem;
+    border: 1px solid rgba(var(--color-foreground), 0.15);
+    background: rgb(var(--color-background));
+  }
+
+  .rw-hero__blurb-kicker {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.55);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .rw-hero__blurb-text {
+    margin: 0;
+    font-size: 1.8rem;
+    line-height: 1.35;
+    font-weight: 500;
+  }
+
+  /* CTA row */
+  .rw-hero__cta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.4rem 0;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+  }
+
+  .rw-hero__cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .rw-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-body-family);
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 1.8rem 2.8rem;
+    border-radius: 999px;
+    border: 1px solid rgb(var(--color-foreground));
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .rw-hero__btn--solid {
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+  }
+
+  .rw-hero__btn--solid:hover {
+    background: rgba(var(--color-button), 1);
+    border-color: rgba(var(--color-button), 1);
+    color: rgb(var(--color-foreground));
+  }
+
+  .rw-hero__btn--ghost {
+    background: transparent;
+    color: rgb(var(--color-foreground));
+  }
+
+  .rw-hero__btn--ghost:hover {
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+  }
+
+  .rw-hero__descriptor {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.55);
+    font-weight: 500;
+  }
+
+  /* Mobile */
+  @media (max-width: 749px) {
+    .rw-hero__meta-line {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .rw-hero__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .rw-hero__image-wrap {
+      aspect-ratio: 4 / 3;
+    }
+
+    .rw-hero__sticker {
+      display: none;
+    }
+
+    .rw-hero__countdown-num {
+      font-size: 3.6rem;
+    }
+
+    .rw-hero__cta-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .rw-hero__btn {
+      padding: 1.4rem 2rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rw-hero__btn,
+    .rw-hero__countdown-cta {
+      transition: none;
+    }
+
+    .rw-hero__sticker:hover {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    if (customElements.get('rw-hero-countdown')) return;
+
+    class RwHeroCountdown extends HTMLElement {
+      connectedCallback() {
+        this._target = new Date(this.dataset.countdownTarget || '');
+        if (isNaN(this._target)) return;
+        this._tick();
+        this._interval = setInterval(this._tick.bind(this), 1000);
+      }
+
+      disconnectedCallback() {
+        clearInterval(this._interval);
+      }
+
+      _tick() {
+        var diff = this._target - Date.now();
+        if (diff <= 0) {
+          clearInterval(this._interval);
+          ['days', 'hours', 'minutes', 'seconds'].forEach(
+            function (u) {
+              this._set(u, '00');
+            }.bind(this)
+          );
+          return;
+        }
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        this._set('days', String(d).padStart(2, '0'));
+        this._set('hours', String(h).padStart(2, '0'));
+        this._set('minutes', String(m).padStart(2, '0'));
+        this._set('seconds', String(s).padStart(2, '0'));
+      }
+
+      _set(unit, val) {
+        var el = this.querySelector('[data-unit="' + unit + '"]');
+        if (el) el.textContent = val;
+      }
+    }
+
+    customElements.define('rw-hero-countdown', RwHeroCountdown);
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "RW Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "meta_label",
+      "label": "Meta line text",
+      "default": "VOL.04 — SS26 // FROM THE STREETS OF EASTERN EUROPE"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stickers",
+      "label": "Show stickers",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Countdown"
+    },
+    {
+      "type": "text",
+      "id": "countdown_target",
+      "label": "Drop date & time (ISO)",
+      "info": "Format: YYYY-MM-DDTHH:MM:SS — e.g. 2026-06-14T22:00:00",
+      "default": "2026-06-14T22:00:00"
+    },
+    {
+      "type": "text",
+      "id": "countdown_label",
+      "label": "Countdown card label",
+      "default": "NEXT DROP // CHAPTER 04 — BIKINI BLING"
+    },
+    {
+      "type": "text",
+      "id": "countdown_date_label",
+      "label": "Drop date display text",
+      "default": "FRI 22:00 CET"
+    },
+    {
+      "type": "text",
+      "id": "countdown_cta_label",
+      "label": "Countdown CTA label",
+      "default": "Notify me"
+    },
+    {
+      "type": "url",
+      "id": "countdown_cta_url",
+      "label": "Countdown CTA link"
+    },
+    {
+      "type": "header",
+      "content": "Manifesto blurb"
+    },
+    {
+      "type": "textarea",
+      "id": "manifesto_blurb",
+      "label": "Blurb text",
+      "default": "Built for the kid that never asked permission. Four chapters a year. Two hundred fifty pieces each. No restocks."
+    },
+    {
+      "type": "header",
+      "content": "CTA row"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Primary button label",
+      "default": "Shop chapter 04"
+    },
+    {
+      "type": "url",
+      "id": "button_url_1",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Secondary button label",
+      "default": "Read the lookbook"
+    },
+    {
+      "type": "url",
+      "id": "button_url_2",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "descriptor_text",
+      "label": "Descriptor text",
+      "default": "04 CHAPTERS · 250 PIECES EACH · NO RESTOCKS"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "presets": [
+    {
+      "name": "RW Hero"
+    }
+  ]
+}
+{% endschema %}

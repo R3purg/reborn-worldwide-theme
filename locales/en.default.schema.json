@@ -1759,6 +1759,18 @@
         },
         "show_collection_image": {
           "label": "Image"
+        },
+        "kicker": {
+          "label": "Kicker label"
+        },
+        "meta_label_2": {
+          "label": "Meta label 2"
+        },
+        "meta_label_3": {
+          "label": "Meta label 3"
+        },
+        "show_ticker": {
+          "label": "Show ticker strip"
         }
       }
     },

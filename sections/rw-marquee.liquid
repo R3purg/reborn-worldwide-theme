@@ -1,0 +1,104 @@
+{%- if section.settings.show -%}
+  <div class="rw-marquee" aria-hidden="true">
+    <div class="rw-marquee__track">
+      {%- for i in (1..2) -%}
+        <span class="rw-marquee__item">LIMITED AS F*CK<span class="rw-marquee__dot"></span></span>
+        <span class="rw-marquee__item">FREE WORLDWIDE OVER €120<span class="rw-marquee__dot"></span></span>
+        <span class="rw-marquee__item">250 PIECES PER CHAPTER<span class="rw-marquee__dot"></span></span>
+        <span class="rw-marquee__item">NO RESTOCKS<span class="rw-marquee__dot"></span></span>
+        <span class="rw-marquee__item">FROM EASTERN EUROPE WITH LOVE<span class="rw-marquee__dot"></span></span>
+        <span class="rw-marquee__item">SS26 // VOL.04<span class="rw-marquee__dot"></span></span>
+        <span class="rw-marquee__item">REBORN.WXRLDWIDE<span class="rw-marquee__dot"></span></span>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .rw-marquee {
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    padding: 2.2rem 0;
+    border-top: 1px solid rgb(var(--color-foreground));
+    border-bottom: 1px solid rgb(var(--color-foreground));
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .rw-marquee__track {
+    display: inline-flex;
+    align-items: center;
+    animation: rw-marquee-scroll 28s linear infinite;
+  }
+
+  .rw-marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4.8rem;
+    font-family: var(--font-heading-family);
+    font-size: 6.4rem;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .rw-marquee__dot {
+    display: inline-block;
+    width: 1.4rem;
+    height: 1.4rem;
+    background: rgba(var(--color-button), 1);
+    border: 1px solid rgb(var(--color-background));
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  @keyframes rw-marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 749px) {
+    .rw-marquee__item {
+      font-size: 4rem;
+      gap: 3rem;
+    }
+
+    .rw-marquee__dot {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rw-marquee__track {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "RW Marquee",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show marquee",
+      "default": true
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index"]
+  },
+  "presets": [
+    {
+      "name": "RW Marquee"
+    }
+  ]
+}
+{% endschema %}

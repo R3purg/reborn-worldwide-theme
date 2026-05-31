@@ -1,48 +1,111 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  @media screen and (max-width: 749px) {
-    .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
-    }
-  }
-{%- endstyle -%}
+<div class="rw-collection-hero{% if section.settings.banner_style == 'minimal' %} rw-collection-hero--minimal{% endif %} color-{{ section.settings.color_scheme }} gradient">
+  <div class="rw-collection-hero__inner page-width">
+    {%- comment -%} Breadcrumb {%- endcomment -%}
+    <nav class="rw-collection-hero__breadcrumb" aria-label="{{ 'accessibility.breadcrumbs' | t }}">
+      <ol>
+        <li>
+          <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t | upcase }}</a>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li><a href="{{ routes.collections_url }}">SHOP</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">{{ collection.title | upcase | escape }}</li>
+      </ol>
+    </nav>
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
+    {%- if section.settings.banner_style == 'minimal' -%}
+      <h1 class="rw-collection-hero__title rw-collection-hero__title--minimal">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
+        {%- assign title_parts = collection.title | split: ' // ' -%}
+        {%- if title_parts.size > 1 -%}
+          {{- title_parts[0] | escape -}}
+          &nbsp;<span class="rw-collection-hero__slash">// {{ title_parts | last | escape }}</span>
+        {%- else -%}
+          {{- collection.title | escape -}}
+        {%- endif -%}
       </h1>
+    {%- else -%}
+      <div class="rw-collection-hero__grid{% if section.settings.show_collection_image and collection.image %} rw-collection-hero__grid--split{% endif %}">
+        {%- comment -%} Text column {%- endcomment -%}
+        <div class="rw-collection-hero__content">
+          {%- if section.settings.kicker != blank -%}
+            <p class="rw-collection-hero__kicker">{{ section.settings.kicker | escape }}</p>
+          {%- endif -%}
 
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
-      {%- endif -%}
-    </div>
+          <h1 class="rw-collection-hero__title">
+            <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+            {%- assign title_parts = collection.title | split: ' // ' -%}
+            {%- if title_parts.size > 1 -%}
+              {{- title_parts[0] | escape -}}
+              &nbsp;<span class="rw-collection-hero__slash">// {{ title_parts | last | escape }}</span>
+            {%- else -%}
+              {{- collection.title | escape -}}
+            {%- endif -%}
+          </h1>
 
-    {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-hero__image-container media gradient">
-        <img
-          srcset="
-            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
-            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
-            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
-            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
-            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {{ collection.image | image_url }} {{ collection.image.width }}w
-          "
-          src="{{ collection.image | image_url: width: 750 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt="{{ collection.image.alt | escape }}"
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
-        >
+          {%- if section.settings.show_collection_description and collection.description != blank -%}
+            <div class="rw-collection-hero__description rte">{{ collection.description }}</div>
+          {%- endif -%}
+
+          <div class="rw-collection-hero__meta">
+            <span>
+              {{- collection.all_products_count }}&nbsp;
+              {{- 'products.facets.product_count_simple' | t: count: collection.all_products_count -}}
+            </span>
+            {%- if section.settings.meta_label_2 != blank -%}
+              <span class="rw-collection-hero__meta-sep" aria-hidden="true">&middot;</span>
+              <span>{{ section.settings.meta_label_2 | escape }}</span>
+            {%- endif -%}
+            {%- if section.settings.meta_label_3 != blank -%}
+              <span class="rw-collection-hero__meta-sep" aria-hidden="true">&middot;</span>
+              <span>{{ section.settings.meta_label_3 | escape }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+
+        {%- comment -%} Image column {%- endcomment -%}
+        {%- if section.settings.show_collection_image and collection.image -%}
+          <div class="rw-collection-hero__image-wrap">
+            <img
+              srcset="
+                {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if collection.image.width >= 720 -%}{{ collection.image | image_url: width: 720 }} 720w,{%- endif -%}
+                {%- if collection.image.width >= 1080 -%}{{ collection.image | image_url: width: 1080 }} 1080w,{%- endif -%}
+                {{ collection.image | image_url }} {{ collection.image.width }}w
+              "
+              src="{{ collection.image | image_url: width: 720 }}"
+              sizes="(min-width: 990px) 38vw, (min-width: 750px) 44vw, 100vw"
+              alt="{{ collection.image.alt | escape }}"
+              width="{{ collection.image.width }}"
+              height="{{ collection.image.height }}"
+              loading="eager"
+            >
+          </div>
+        {%- endif -%}
       </div>
     {%- endif -%}
   </div>
+
+  {%- if section.settings.show_ticker -%}
+    {%- liquid
+      assign ticker_items = 'NO RESTOCKS,250 PER CHAPTER,FREE OVER €120,FROM EASTERN EUROPE,SS26 // VOL.04' | split: ','
+    -%}
+    <div class="rw-collection-ticker" aria-hidden="true">
+      <div class="rw-collection-ticker__track">
+        {%- for _i in (1..2) -%}
+          {%- for item in ticker_items -%}
+            <span class="rw-collection-ticker__item">
+              <span class="rw-collection-ticker__text">{{ item | strip }}</span>
+              <span class="rw-collection-ticker__diamond"></span>
+            </span>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
 </div>
 
 {% schema %}
@@ -51,8 +114,36 @@
   "class": "section",
   "settings": [
     {
+      "type": "select",
+      "id": "banner_style",
+      "label": "Banner style",
+      "options": [
+        { "value": "editorial", "label": "Editorial — image + description" },
+        { "value": "minimal", "label": "Minimal — title only" }
+      ],
+      "default": "editorial"
+    },
+    {
       "type": "paragraph",
       "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.main-collection-banner.settings.kicker.label",
+      "default": "// COLLECTION"
+    },
+    {
+      "type": "text",
+      "id": "meta_label_2",
+      "label": "t:sections.main-collection-banner.settings.meta_label_2.label",
+      "default": "4 CHAPTERS"
+    },
+    {
+      "type": "text",
+      "id": "meta_label_3",
+      "label": "t:sections.main-collection-banner.settings.meta_label_3.label",
+      "default": "SHIPS WORLDWIDE"
     },
     {
       "type": "checkbox",
@@ -63,14 +154,28 @@
     {
       "type": "checkbox",
       "id": "show_collection_image",
-      "default": false,
+      "default": true,
       "label": "t:sections.main-collection-banner.settings.show_collection_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ticker",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_ticker.label"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "presets": [
+    {
+      "name": "t:sections.main-collection-banner.name"
     }
   ]
 }

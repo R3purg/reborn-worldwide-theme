@@ -1,0 +1,318 @@
+{%- style -%}
+  #rw-newsletter-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="rw-newsletter" id="rw-newsletter-{{ section.id }}">
+  <div class="rw-newsletter__ghost" aria-hidden="true">REBORN // WORLDWIDE</div>
+
+  <div class="rw-newsletter__content">
+    {%- if section.settings.kicker != blank -%}
+      <div class="rw-newsletter__kicker">{{ section.settings.kicker | escape }}</div>
+    {%- endif -%}
+
+    <h2 class="rw-newsletter__heading">
+      {{ section.settings.heading_line_1 | escape -}}
+      <br>
+      <span class="rw-newsletter__heading-accent">{{ section.settings.heading_line_2 | escape }}</span>
+    </h2>
+
+    {%- if section.settings.subtext != blank -%}
+      <p class="rw-newsletter__subtext">{{ section.settings.subtext | escape }}</p>
+    {%- endif -%}
+
+    {%- assign nl_form_id = 'rw-newsletter-form-' | append: section.id -%}
+    {%- assign nl_email_id = 'rw-newsletter-email-' | append: section.id -%}
+    {%- form 'customer', id: nl_form_id, class: 'rw-newsletter__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+
+      {%- if form.posted_successfully? -%}
+        <p class="rw-newsletter__success" role="status">
+          <span class="rw-newsletter__success-dot" aria-hidden="true"></span>
+          YOU'RE IN. SEE YOU AT THE NEXT DROP.
+        </p>
+      {%- else -%}
+        <div class="rw-newsletter__form-inner">
+          <label for="{{ nl_email_id }}" class="visually-hidden">
+            {{ section.settings.placeholder | default: 'your@email.com' }}
+          </label>
+          <input
+            id="{{ nl_email_id }}"
+            class="rw-newsletter__input"
+            type="email"
+            name="contact[email]"
+            autocomplete="email"
+            required
+            placeholder="{{ section.settings.placeholder | default: 'you@somewhere.cool' | escape }}"
+            aria-required="true"
+          >
+          <button type="submit" class="rw-newsletter__submit">
+            {{ section.settings.button_label | default: 'Get on the list' | escape }}
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+            </svg>
+          </button>
+        </div>
+
+        {%- if form.errors -%}
+          <p class="rw-newsletter__error" role="alert">
+            {{ form.errors.translated_fields.email | capitalize }}
+            {{ form.errors.messages.email }}
+          </p>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .rw-newsletter {
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rw-newsletter__ghost {
+    position: absolute;
+    inset: auto 0 -8% 0;
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-size: clamp(14rem, 22vw, 36rem);
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .rw-newsletter__content {
+    max-width: 110rem;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .rw-newsletter__kicker {
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 1.8rem;
+    font-weight: 500;
+  }
+
+  .rw-newsletter__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(4.8rem, 7vw, 11.2rem);
+    line-height: 0.9;
+    margin: 0;
+    color: rgb(var(--color-background));
+  }
+
+  .rw-newsletter__heading-accent {
+    color: rgba(var(--color-button), 1);
+  }
+
+  .rw-newsletter__subtext {
+    font-size: 1.7rem;
+    opacity: 0.78;
+    max-width: 56rem;
+    margin: 2.4rem auto 0;
+    line-height: 1.55;
+  }
+
+  .rw-newsletter__form {
+    margin-top: 3.2rem;
+  }
+
+  .rw-newsletter__form-inner {
+    display: flex;
+    max-width: 52rem;
+    margin: 0 auto;
+    border: 1px solid rgb(var(--color-background));
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .rw-newsletter__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 1.8rem 2.2rem;
+    color: rgb(var(--color-background));
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    min-width: 0;
+  }
+
+  .rw-newsletter__input::placeholder {
+    color: rgba(var(--color-background), 0.45);
+  }
+
+  .rw-newsletter__submit {
+    background: rgba(var(--color-button), 1);
+    color: rgb(var(--color-foreground));
+    border: none;
+    padding: 0 2.8rem;
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .rw-newsletter__submit:hover {
+    opacity: 0.85;
+  }
+
+  .rw-newsletter__success {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 3.2rem;
+    padding: 2.2rem 2.8rem;
+    border: 1px solid rgba(var(--color-button), 1);
+    border-radius: 999px;
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .rw-newsletter__success-dot {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 999px;
+    background: rgba(var(--color-button), 1);
+    flex-shrink: 0;
+  }
+
+  .rw-newsletter__error {
+    color: rgba(var(--color-button), 1);
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    margin-top: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 749px) {
+    .rw-newsletter {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .rw-newsletter__form-inner {
+      flex-direction: column;
+      border-radius: 1.2rem;
+      overflow: hidden;
+    }
+
+    .rw-newsletter__submit {
+      padding: 1.6rem 2.4rem;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rw-newsletter__submit {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "RW Newsletter",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "// SUBSCRIBE FOR NOTHING"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading — line 1",
+      "default": "Drops first."
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading — line 2 (accent color)",
+      "default": "Spam never."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "One email per chapter — 24 hours before the public drop. You'll know when. Nobody else will."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "you@somewhere.cool"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit button label",
+      "default": "Get on the list"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW Newsletter"
+    }
+  ]
+}
+{% endschema %}

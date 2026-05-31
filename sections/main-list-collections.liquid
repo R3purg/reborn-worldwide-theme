@@ -1,62 +1,294 @@
+{% comment %}
+  ACCENT COLORS — Per-collection hover tint + index dot
+  ─────────────────────────────────────────────────────
+  Each collection card reads: collection.metafields.custom.accent_color
+
+  To set up in Shopify admin:
+  1. Settings → Custom data → Collections → Add definition
+     - Namespace & key : custom.accent_color
+     - Type           : Color
+     - Name           : Accent color
+  2. Open each collection in the admin and set its accent color value
+  3. Cards without a value gracefully fall back to the theme's
+     primary button colour (--color-button / orange).
+{% endcomment %}
+
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
-<div class="page-width">
-  <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ section.settings.title }}
-  </h1>
+{%- liquid
+  assign active_sort = request.params.sort_by | default: section.settings.sort
+
+  case active_sort
+    when 'products_high', 'products_low'
+      assign collections = collections | sort: 'all_products_count'
+    when 'date', 'date_reversed'
+      assign collections = collections | sort: 'published_at'
+  endcase
+
+  if active_sort == 'products_high' or active_sort == 'date_reversed' or active_sort == 'alphabetical_reversed'
+    assign collections = collections | reverse
+  endif
+
+  assign moduloResult = 28 | modulo: section.settings.columns_desktop
+  assign paginate_by = 30
+  if moduloResult == 0
+    assign paginate_by = 28
+  endif
+-%}
+
+<section class="rw-collist__hero page-width">
+  <nav class="rw-collist__breadcrumb" aria-label="{{ 'accessibility.breadcrumbs' | t }}">
+    <ol>
+      <li>
+        <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t | upcase }}</a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page">COLLECTIONS</li>
+    </ol>
+  </nav>
+
+  <div class="rw-collist__header">
+    <div class="rw-collist__header-left">
+      {%- if section.settings.kicker != blank -%}
+        <p class="rw-collist__kicker">{{ section.settings.kicker | escape }}</p>
+      {%- endif -%}
+      <h1 class="rw-collist__title">COLL<span class="rw-collist__title-accent">E</span>CTIONS</h1>
+    </div>
+    {%- if section.settings.description != blank -%}
+      <p class="rw-collist__description">{{ section.settings.description | escape }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<div class="rw-collist__hero-spacer" aria-hidden="true"></div>
+
+{%- if section.settings.show_ticker -%}
   {%- liquid
-    case section.settings.sort
-      when 'products_high', 'products_low'
-        assign collections = collections | sort: 'all_products_count'
-      when 'date', 'date_reversed'
-        assign collections = collections | sort: 'published_at'
-    endcase
-
-    if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
-      assign collections = collections | reverse
-    endif
-
-    assign moduloResult = 28 | modulo: section.settings.columns_desktop
-    assign paginate_by = 30
-    if moduloResult == 0
-      assign paginate_by = 28
-    endif
+    assign ticker_items = 'EIGHT COLLECTIONS,FOUR CHAPTERS,NO RESTOCKS,SS26 // VOL.04,FROM EASTERN EUROPE' | split: ','
   -%}
-  {%- paginate collections by paginate_by -%}
+  <div class="rw-collection-ticker" aria-hidden="true">
+    <div class="rw-collection-ticker__track">
+      {%- for _i in (1..2) -%}
+        {%- for item in ticker_items -%}
+          <span class="rw-collection-ticker__item">
+            <span class="rw-collection-ticker__text">{{ item | strip }}</span>
+            <span class="rw-collection-ticker__diamond"></span>
+          </span>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{%- paginate collections by paginate_by -%}
+  <div class="rw-collist__sort-bar">
+    <div class="rw-collist__sort-bar-inner page-width">
+      <span class="rw-collist__sort-count">{{ collections.count }} COLLECTIONS</span>
+      <form method="get" class="rw-collist__sort-form">
+        <label class="rw-collist__sort-label" for="rw-sort-select">SORT BY</label>
+        <select
+          id="rw-sort-select"
+          name="sort_by"
+          class="rw-collist__sort-select"
+          onchange="this.form.submit()"
+          aria-label="{{ 'products.facets.sort_by_label' | t }}"
+        >
+          <option
+            value="alphabetical"
+            {% if active_sort == 'alphabetical' %}
+              selected
+            {% endif %}
+          >
+            A–Z
+          </option>
+          <option
+            value="alphabetical_reversed"
+            {% if active_sort == 'alphabetical_reversed' %}
+              selected
+            {% endif %}
+          >
+            Z–A
+          </option>
+          <option
+            value="date_reversed"
+            {% if active_sort == 'date_reversed' %}
+              selected
+            {% endif %}
+          >
+            Newest
+          </option>
+          <option
+            value="date"
+            {% if active_sort == 'date' %}
+              selected
+            {% endif %}
+          >
+            Oldest
+          </option>
+          <option
+            value="products_high"
+            {% if active_sort == 'products_high' %}
+              selected
+            {% endif %}
+          >
+            Most pieces
+          </option>
+          <option
+            value="products_low"
+            {% if active_sort == 'products_low' %}
+              selected
+            {% endif %}
+          >
+            Fewest pieces
+          </option>
+        </select>
+      </form>
+    </div>
+  </div>
+
+  <section class="rw-collist__grid-section page-width" aria-label="{{ 'general.collection_labels.collections' | t }}">
     <ul
-      class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+      class="rw-collist__grid"
+      style="--rw-cols: {{ section.settings.columns_desktop }}; --rw-cols-mob: {{ section.settings.columns_mobile }};"
       role="list"
     >
       {%- for collection in collections -%}
-        <li
-          class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          {% render 'card-collection',
-            card_collection: collection,
-            media_aspect_ratio: section.settings.image_ratio,
-            columns: 3
-          %}
+        {%- liquid
+          assign accent_color = collection.metafields.custom.accent_color.value | default: ''
+
+          assign loading_attr = 'lazy'
+          if forloop.index <= 3
+            assign loading_attr = 'eager'
+          endif
+
+          if section.settings.image_ratio == 'adapt'
+            if collection.featured_image
+              assign img_ratio = collection.featured_image.width | append: '/' | append: collection.featured_image.height
+            else
+              assign img_ratio = '4/3'
+            endif
+          elsif section.settings.image_ratio == 'portrait'
+            assign img_ratio = '3/4'
+          else
+            assign img_ratio = '1/1'
+          endif
+
+          if collection.all_products_count < 10
+            assign count_display = collection.all_products_count | prepend: '0'
+          else
+            assign count_display = collection.all_products_count
+          endif
+
+          if forloop.index < 10
+            assign index_display = forloop.index | prepend: '0'
+          else
+            assign index_display = forloop.index
+          endif
+        -%}
+
+        <li class="rw-collist__card-wrap">
+          <a
+            href="{{ collection.url }}"
+            class="rw-collist__card"
+          >
+            <div
+              class="rw-collist__card-image"
+              style="aspect-ratio: {{ img_ratio }};"
+            >
+              {%- if collection.featured_image -%}
+                <img
+                  srcset="
+                    {%- if collection.featured_image.width >= 400 -%}{{ collection.featured_image | image_url: width: 400 }} 400w,{%- endif -%}
+                    {%- if collection.featured_image.width >= 800 -%}{{ collection.featured_image | image_url: width: 800 }} 800w,{%- endif -%}
+                    {%- if collection.featured_image.width >= 1200 -%}{{ collection.featured_image | image_url: width: 1200 }} 1200w{%- endif -%}
+                  "
+                  src="{{ collection.featured_image | image_url: width: 800 }}"
+                  sizes="(min-width: 990px) {{ 100 | divided_by: section.settings.columns_desktop }}vw, (min-width: 750px) 50vw, 100vw"
+                  alt="{{ collection.featured_image.alt | default: collection.title | escape }}"
+                  width="{{ collection.featured_image.width }}"
+                  height="{{ collection.featured_image.height }}"
+                  loading="{{ loading_attr }}"
+                >
+              {%- else -%}
+                <div class="rw-collist__card-placeholder" aria-hidden="true">
+                  <span class="visually-hidden">{{ collection.title | escape }}</span>
+                </div>
+              {%- endif -%}
+
+              <div
+                class="rw-collist__card-tint"
+                aria-hidden="true"
+                {% if accent_color != '' %}
+                  style="background: {{ accent_color }};"
+                {% endif %}
+              ></div>
+
+              <div class="rw-collist__card-index" aria-hidden="true">
+                <span
+                  class="rw-collist__card-dot"
+                  {% if accent_color != '' %}
+                    style="background: {{ accent_color }};"
+                  {% endif %}
+                ></span>
+                <span class="rw-collist__card-index-num">{{ index_display }}</span>
+              </div>
+
+              <div class="rw-collist__card-count" aria-hidden="true">{{ count_display }} PIECES</div>
+
+              <div class="rw-collist__card-bottom">
+                <span class="rw-collist__card-title">{{ collection.title | escape }}</span>
+                <span class="rw-collist__card-cta" aria-hidden="true">
+                  <span>Shop collection</span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14"/>
+                    <path d="m13 6 6 6-6 6"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
         </li>
       {%- endfor -%}
     </ul>
-    {% render 'pagination', paginate: paginate %}
-  {%- endpaginate -%}
-</div>
+
+    {%- if paginate.pages > 1 -%}
+      {% render 'pagination', paginate: paginate %}
+    {%- endif -%}
+  </section>
+{%- endpaginate -%}
+
 {% schema %}
 {
   "name": "t:sections.main-list-collections.name",
   "class": "section",
   "settings": [
     {
-      "type": "inline_richtext",
-      "id": "title",
-      "label": "t:sections.main-list-collections.settings.title.label",
-      "default": "t:sections.main-list-collections.settings.title.default"
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "// THE FULL CATALOGUE"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Every chapter, every regular, every last piece. Eight collections, four stories, one studio. Browse by drop or by what's left."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ticker",
+      "label": "Show ticker",
+      "default": true
     },
     {
       "type": "select",
@@ -107,14 +339,14 @@
           "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
         }
       ],
-      "default": "adapt",
+      "default": "square",
       "label": "t:sections.main-list-collections.settings.image_ratio.label"
     },
     {
       "type": "range",
       "id": "columns_desktop",
-      "min": 1,
-      "max": 6,
+      "min": 2,
+      "max": 4,
       "step": 1,
       "default": 3,
       "label": "t:sections.main-list-collections.settings.columns_desktop.label"
@@ -134,6 +366,11 @@
       ],
       "default": "2",
       "label": "t:sections.main-list-collections.settings.columns_mobile.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.main-list-collections.name"
     }
   ]
 }

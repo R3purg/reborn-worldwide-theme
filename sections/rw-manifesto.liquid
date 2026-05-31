@@ -1,0 +1,352 @@
+{%- style -%}
+  #rw-manifesto-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="rw-manifesto" id="rw-manifesto-{{ section.id }}">
+  <div class="page-width rw-manifesto__inner">
+    {%- comment -%} Main split grid {%- endcomment -%}
+    <div class="rw-manifesto__grid">
+      <div class="rw-manifesto__content">
+        {%- if section.settings.kicker != blank -%}
+          <div class="rw-manifesto__kicker">{{ section.settings.kicker | escape }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.quote_text != blank -%}
+          <div class="rw-manifesto__quote">{{ section.settings.quote_text }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.body_text != blank -%}
+          <div class="rw-manifesto__body">{{ section.settings.body_text }}</div>
+        {%- endif -%}
+
+        <div class="rw-manifesto__buttons">
+          {%- if section.settings.button_label_1 != blank -%}
+            <a href="{{ section.settings.button_url_1 }}" class="rw-manifesto__btn rw-manifesto__btn--solid">
+              {{ section.settings.button_label_1 | escape }}
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+              </svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button_label_2 != blank -%}
+            <a href="{{ section.settings.button_url_2 }}" class="rw-manifesto__btn rw-manifesto__btn--ghost">
+              {{ section.settings.button_label_2 | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="rw-manifesto__image-wrap">
+        {%- if section.settings.image != blank -%}
+          {%- assign manifesto_image_alt = section.settings.image.alt | default: 'Reborn Worldwide studio' -%}
+          {{
+            section.settings.image
+            | image_url: width: 900
+            | image_tag: loading: 'lazy', class: 'rw-manifesto__image', alt: manifesto_image_alt
+          }}
+        {%- else -%}
+          <div class="rw-manifesto__image-placeholder">
+            {{ 'image' | placeholder_svg_tag: 'rw-manifesto__placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Stats row {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="rw-manifesto__stats">
+        {%- for block in section.blocks -%}
+          <div class="rw-manifesto__stat" {{ block.shopify_attributes }}>
+            <div class="rw-manifesto__stat-number">{{ block.settings.number | escape }}</div>
+            <div class="rw-manifesto__stat-label">{{ block.settings.label | escape }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .rw-manifesto {
+    background: rgba(var(--color-button), 1);
+    color: rgb(var(--color-foreground));
+    border-top: 1px solid rgb(var(--color-foreground));
+    border-bottom: 1px solid rgb(var(--color-foreground));
+  }
+
+  .rw-manifesto__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 6.4rem;
+    align-items: start;
+  }
+
+  .rw-manifesto__kicker {
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+    font-weight: 500;
+  }
+
+  .rw-manifesto__quote {
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.6rem, 5vw, 7.2rem);
+    line-height: 0.95;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .rw-manifesto__quote p {
+    margin: 0;
+  }
+
+  .rw-manifesto__body {
+    font-size: 1.8rem;
+    line-height: 1.55;
+    margin-top: 2.8rem;
+    max-width: 56rem;
+    font-weight: 500;
+    text-wrap: pretty;
+  }
+
+  .rw-manifesto__body p {
+    margin: 0;
+  }
+
+  .rw-manifesto__buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3.2rem;
+    flex-wrap: wrap;
+  }
+
+  .rw-manifesto__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 1.4rem 2.2rem;
+    border-radius: 999px;
+    border: 1px solid rgb(var(--color-foreground));
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .rw-manifesto__btn--solid {
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+  }
+
+  .rw-manifesto__btn--solid:hover {
+    opacity: 0.85;
+  }
+
+  .rw-manifesto__btn--ghost {
+    background: transparent;
+    color: rgb(var(--color-foreground));
+  }
+
+  .rw-manifesto__btn--ghost:hover {
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+  }
+
+  .rw-manifesto__image-wrap {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .rw-manifesto__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .rw-manifesto__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rw-manifesto__placeholder-svg {
+    width: 40%;
+    opacity: 0.25;
+  }
+
+  /* Stats row */
+  .rw-manifesto__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.4rem;
+    border-top: 1px solid rgb(var(--color-foreground));
+    margin-top: 6.4rem;
+    padding-top: 3.2rem;
+  }
+
+  .rw-manifesto__stat-number {
+    font-family: var(--font-heading-family);
+    font-size: clamp(5.6rem, 7vw, 9.6rem);
+    line-height: 0.9;
+  }
+
+  .rw-manifesto__stat-label {
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+    opacity: 0.75;
+    font-weight: 500;
+  }
+
+  /* Mobile */
+  @media (max-width: 749px) {
+    .rw-manifesto__grid {
+      grid-template-columns: 1fr;
+      gap: 3.2rem;
+    }
+
+    .rw-manifesto__image-wrap {
+      order: -1;
+    }
+
+    .rw-manifesto__stats {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 4rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rw-manifesto__btn {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "RW Manifesto",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "// MANIFESTO — 002"
+    },
+    {
+      "type": "richtext",
+      "id": "quote_text",
+      "label": "Display quote",
+      "default": "<p>We make clothes for people who were told to sit down. We don't sit down.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "<p>Reborn is a four-person studio working out of a garage in Kraków, a basement in Berlin and a kitchen in Lisbon. Every piece is small-batch, screen-printed by hand and never restocked. When it's gone, it's gone. That's the whole pitch.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Primary button label",
+      "default": "Read the full story"
+    },
+    {
+      "type": "url",
+      "id": "button_url_1",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Secondary button label",
+      "default": "Studio visits"
+    },
+    {
+      "type": "url",
+      "id": "button_url_2",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Studio image"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "00"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "stat label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW Manifesto",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "04", "label": "chapters / year" } },
+        { "type": "stat", "settings": { "number": "250", "label": "pieces / chapter" } },
+        { "type": "stat", "settings": { "number": "00", "label": "restocks. ever." } },
+        { "type": "stat", "settings": { "number": "12", "label": "cities shipped" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

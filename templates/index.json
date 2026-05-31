@@ -11,29 +11,50 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
+      "disabled": true,
       "blocks": {
+        "text_brand_meta": {
+          "type": "text",
+          "settings": {
+            "text": "VOL.04 — SS26 // FROM THE STREETS OF EASTERN EUROPE",
+            "text_style": "subtitle"
+          }
+        },
         "heading_CQcgti": {
           "type": "heading",
           "settings": {
-            "heading": "Limited as f*ck.",
+            "heading": "REBORN // WORLDWIDE",
             "heading_size": "hxxl"
+          }
+        },
+        "buttons_hero": {
+          "type": "button",
+          "settings": {
+            "button_label_1": "Shop Chapter 04",
+            "button_link_1": "/collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "See all chapters",
+            "button_link_2": "/collections/all",
+            "button_style_secondary_2": true
           }
         }
       },
       "block_order": [
-        "heading_CQcgti"
+        "text_brand_meta",
+        "heading_CQcgti",
+        "buttons_hero"
       ],
       "settings": {
         "image": "shopify://shop_images/IBM_Plex_Mono.png",
-        "image_overlay_opacity": 60,
-        "image_height": "medium",
-        "image_behavior": "fixed",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-left",
+        "desktop_content_alignment": "left",
         "show_text_box": false,
         "color_scheme": "scheme-4",
         "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
+        "mobile_content_alignment": "left",
         "show_text_below": false
       }
     },
@@ -54,294 +75,100 @@
         "show_text_below": false
       }
     },
-    "ss_flexible_tabs_zpX39t": {
-      "type": "ss-flexible-tabs",
+    "rw_chapters": {
+      "type": "rw-chapters",
       "blocks": {
-        "tab_4Xi69b": {
-          "type": "tab",
+        "chapter_ms": {
+          "type": "chapter",
           "settings": {
-            "title": "// Eastern Europe",
-            "icon": "globe"
+            "chapter_number": "01",
+            "chapter_code": "MS-001",
+            "title": "MY SWAMP",
+            "accent_color": "#7BAF2C",
+            "kicker": "Chapter 01 — The Anti-Hero Awakens",
+            "body": "He doesn't live in the swamp. He owns it. Cheap cigarettes, cheaper dreams, and a lease nobody signed.",
+            "edition_pieces": "15 PIECES",
+            "edition_size": "EDITION OF 250",
+            "ships_label": "SHIPS MAY 22",
+            "cta_label": "See the drop",
+            "cta_link": "/products/my-swamp"
           }
         },
-        "nested_tabs_aTQiTi": {
-          "type": "nested_tabs",
+        "chapter_md": {
+          "type": "chapter",
           "settings": {
-            "full_width": true,
-            "background_size": "auto",
-            "background_position": "center center",
-            "background_color": "#ffffff",
-            "background_overlay_opacity": 0,
-            "background_overlay_color": "#000000",
-            "tab_font_custom": false,
-            "tab_font_family": "montserrat_n4",
-            "tab_font_size": 16,
-            "tab_font_size_mobile": 14,
-            "tab_font_weight": "500",
-            "content_font_custom": false,
-            "content_font_family": "montserrat_n4",
-            "content_font_size": 16,
-            "content_font_size_mobile": 14,
-            "content_line_height": 150,
-            "animation_type": "scale",
-            "animation_duration": 300,
-            "animation_easing": "ease-in-out",
-            "nested_tab_1_title": "Chapter 1: The Anti-Hero Awakens.",
-            "nested_tab_1_content": "<p>He doesn't live in a swamp, he owns it. Cheap cigarettes and cheaper dreams. The hero they never asked for, the problem they can't ignore.</p>",
-            "nested_tab_1_icon": "shopify://shop_images/8.png",
-            "nested_tab_1_background_image": "shopify://shop_images/CHAOS_B_MySwamp.png",
-            "nested_tab_1_product": "my-swamp",
-            "nested_tab_1_custom_badge": "",
-            "nested_tab_1_button_text": "",
-            "nested_tab_1_product_alignment": "center",
-            "nested_tab_1_product_title_font": "oswald_n4",
-            "nested_tab_1_product_title_size": 24,
-            "nested_tab_1_product_title_size_mobile": 20,
-            "nested_tab_1_product_title_color": "#333333",
-            "nested_tab_1_product_price_font": "montserrat_n4",
-            "nested_tab_1_product_price_size": 18,
-            "nested_tab_1_product_price_color": "#666666",
-            "nested_tab_1_product_title_image": "shopify://shop_images/Text_-_My_Swamp.png",
-            "nested_tab_1_product_title_image_width": 100,
-            "nested_tab_1_text_color": "#333333",
-            "nested_tab_1_text_color_active": "#ffffff",
-            "nested_tab_1_bg_color": "#f0f0f0",
-            "nested_tab_1_bg_color_active": "#78ae28",
-            "nested_tab_1_border_color": "#cccccc",
-            "nested_tab_2_title": "Chapter 2: The Door Was Never Locked.",
-            "nested_tab_2_content": "<p>He always came back. Monsters don't knock, they just walk in, smoke in hand, and pretend it's still their home. He knew what the light meant, but monsters always find a way in.<br/></p>",
-            "nested_tab_2_icon": "shopify://shop_images/18.png",
-            "nested_tab_2_background_image": "shopify://shop_images/CHAOS_B.png",
-            "nested_tab_2_product": "monsters-drink",
-            "nested_tab_2_custom_badge": "",
-            "nested_tab_2_button_text": "",
-            "nested_tab_2_product_alignment": "center",
-            "nested_tab_2_product_title_font": "oswald_n4",
-            "nested_tab_2_product_title_size": 24,
-            "nested_tab_2_product_title_size_mobile": 20,
-            "nested_tab_2_product_title_color": "#333333",
-            "nested_tab_2_product_price_font": "montserrat_n4",
-            "nested_tab_2_product_price_size": 18,
-            "nested_tab_2_product_price_color": "#666666",
-            "nested_tab_2_product_title_image": "shopify://shop_images/Text_-_CHAOS_B.png",
-            "nested_tab_2_product_title_image_width": 100,
-            "nested_tab_2_text_color": "#333333",
-            "nested_tab_2_text_color_active": "#ffffff",
-            "nested_tab_2_bg_color": "#f0f0f0",
-            "nested_tab_2_bg_color_active": "#547996",
-            "nested_tab_2_border_color": "#cccccc",
-            "nested_tab_3_title": "Chapter 3: Broadcast From a Better World.",
-            "nested_tab_3_content": "<p>In the morning, she sat in silence, but her soul was loud. The world around her changed, but she never did. Through all the winters, heartbreaks and power cuts, she held onto the only thing that never left.</p>",
-            "nested_tab_3_icon": "shopify://shop_images/NEEDS_WORK.png",
-            "nested_tab_3_background_image": "shopify://shop_images/CHAOS_B_ANIMEFAN.png",
-            "nested_tab_3_product": "anime-fan",
-            "nested_tab_3_custom_badge": "",
-            "nested_tab_3_button_text": "",
-            "nested_tab_3_product_alignment": "center",
-            "nested_tab_3_product_title_font": "oswald_n4",
-            "nested_tab_3_product_title_size": 24,
-            "nested_tab_3_product_title_size_mobile": 20,
-            "nested_tab_3_product_title_color": "#333333",
-            "nested_tab_3_product_price_font": "montserrat_n4",
-            "nested_tab_3_product_price_size": 18,
-            "nested_tab_3_product_price_color": "#666666",
-            "nested_tab_3_product_title_image": "shopify://shop_images/Text_-_CHAOS_B_ANIMEFAN.png",
-            "nested_tab_3_product_title_image_width": 100,
-            "nested_tab_3_text_color": "#333333",
-            "nested_tab_3_text_color_active": "#ffffff",
-            "nested_tab_3_bg_color": "#f0f0f0",
-            "nested_tab_3_bg_color_active": "#00b5c0",
-            "nested_tab_3_border_color": "#cccccc",
-            "nested_tab_4_title": "Chapter 4: BIKINI BLING.",
-            "nested_tab_4_content": "<p>Crawled straight from the pineapple under the sea, and now he's out, roaming the streets with a chain thicker than your leash.</p><p>Adidas drapes, secret recipe E34, pimped out Sandy and Patrick built like a fridge - even Gary's going fast up in this bitch.</p><p>Bikini Bling - because how else would they know who's the real one?</p>",
-            "nested_tab_4_icon": "shopify://shop_images/CHAOS_B_Bada_right_sleeve.png",
-            "nested_tab_4_background_image": "shopify://shop_images/CHAOS_B_Bottom_Bada.png",
-            "nested_tab_4_product": "bottom-badass",
-            "nested_tab_4_custom_badge": "",
-            "nested_tab_4_button_text": "",
-            "nested_tab_4_product_alignment": "center",
-            "nested_tab_4_product_title_font": "oswald_n4",
-            "nested_tab_4_product_title_size": 24,
-            "nested_tab_4_product_title_size_mobile": 20,
-            "nested_tab_4_product_title_color": "#333333",
-            "nested_tab_4_product_price_font": "montserrat_n4",
-            "nested_tab_4_product_price_size": 18,
-            "nested_tab_4_product_price_color": "#666666",
-            "nested_tab_4_product_title_image": "shopify://shop_images/Stage_2_designs_1.png",
-            "nested_tab_4_product_title_image_width": 100,
-            "nested_tab_4_text_color": "#333333",
-            "nested_tab_4_text_color_active": "#ffffff",
-            "nested_tab_4_bg_color": "#f0f0f0",
-            "nested_tab_4_bg_color_active": "#f8f145",
-            "nested_tab_4_border_color": "#cccccc",
-            "nested_tabs_count": 4,
-            "tab_text_color": "#333333",
-            "tab_text_color_active": "#ffffff",
-            "tab_bg_color": "#f0f0f0",
-            "tab_bg_color_active": "#8a2be2",
-            "tab_border_color": "#cccccc",
-            "content_text_color": "#333333",
-            "content_bg_color": "#ffffff",
-            "content_border_color": "#dddddd"
+            "chapter_number": "02",
+            "chapter_code": "MD-014",
+            "title": "MONSTERS DRINK",
+            "accent_color": "#3F6F8C",
+            "kicker": "Chapter 02 — The Door Was Never Locked",
+            "body": "They don't knock. They walk in, smoke in hand, like the place is still theirs. He always knew the light meant home.",
+            "edition_pieces": "15 PIECES",
+            "edition_size": "EDITION OF 250",
+            "ships_label": "SHIPS MAY 22",
+            "cta_label": "See the drop",
+            "cta_link": "/products/monsters-drink"
           }
         },
-        "tab_PBeiby": {
-          "type": "tab",
+        "chapter_af": {
+          "type": "chapter",
           "settings": {
-            "title": "// ?",
-            "icon": "mobile"
+            "chapter_number": "03",
+            "chapter_code": "AF-208",
+            "title": "ANIME FAN",
+            "accent_color": "#0098A2",
+            "kicker": "Chapter 03 — Broadcast From a Better World",
+            "body": "In the morning she sat in silence, but her soul was loud. Through every winter, every power cut, she held on.",
+            "edition_pieces": "15 PIECES",
+            "edition_size": "EDITION OF 250",
+            "ships_label": "SHIPS MAY 22",
+            "cta_label": "See the drop",
+            "cta_link": "/products/anime-fan"
           }
         },
-        "content_JD6N8A": {
-          "type": "content",
+        "chapter_bb": {
+          "type": "chapter",
           "settings": {
-            "full_width": false,
-            "content": "<p>Coming Soon</p><p>Be Patient You F*ck</p>",
-            "text_custom": false,
-            "text_font": "montserrat_n4",
-            "text_size": 16,
-            "text_size_mobile": 16,
-            "text_height": 150,
-            "text_align": "center",
-            "text_align_mobile": "center",
-            "text_color": "#131313"
+            "chapter_number": "04",
+            "chapter_code": "BB-077",
+            "title": "BIKINI BLING",
+            "accent_color": "#E6D63A",
+            "kicker": "Chapter 04 — Pineapple Under The Concrete",
+            "body": "Crawled out of the deep end with a chain thicker than your leash. Even Gary's going fast up in this bitch.",
+            "edition_pieces": "15 PIECES",
+            "edition_size": "EDITION OF 250",
+            "ships_label": "SHIPS MAY 22",
+            "cta_label": "See the drop",
+            "cta_link": "/products/bottom-badass"
           }
         }
       },
-      "block_order": [
-        "tab_4Xi69b",
-        "nested_tabs_aTQiTi",
-        "tab_PBeiby",
-        "content_JD6N8A"
-      ],
-      "name": "SS - Flexible Tabs",
+      "block_order": ["chapter_ms", "chapter_md", "chapter_af", "chapter_bb"],
       "settings": {
-        "heading": "",
-        "heading_custom": false,
-        "heading_font": "oswald_n4",
-        "heading_size": 52,
-        "heading_size_mobile": 32,
-        "heading_height": 150,
-        "heading_align": "center",
-        "heading_align_mobile": "center",
-        "toggles_gap": 16,
-        "toggles_gap_mobile": 10,
-        "toggles_mt": 20,
-        "toggles_mt_mobile": 20,
-        "toggles_pt": 12,
-        "toggles_pt_mobile": 12,
-        "toggles_pb": 12,
-        "toggles_pb_mobile": 12,
-        "toggles_padding_sides": 14,
-        "toggles_padding_sides_mobile": 14,
-        "toggles_radius": 100,
-        "toggles_border_thickness": 0,
-        "toggles_border_full": false,
-        "toggles_align": "center",
-        "toggles_align_mobile": "center",
-        "button_custom": false,
-        "button_font": "montserrat_n4",
-        "button_size": 18,
-        "button_size_mobile": 14,
-        "button_height": 110,
-        "button_padding_vertical": 12,
-        "button_padding_horizontal": 20,
-        "button_radius": 100,
-        "button_border_thickness": 0,
-        "button_top_radius": false,
-        "body_padding_vertical": 20,
-        "body_padding_vertical_mobile": 10,
-        "body_padding_horizontal": 20,
-        "body_padding_horizontal_mobile": 10,
-        "body_gap": 20,
-        "body_gap_mobile": 16,
-        "body_mt": 16,
-        "body_radius": 0,
-        "body_radius_mobile": 0,
-        "body_radius_top": false,
-        "icon_size": 20,
-        "icon_size_mobile": 16,
-        "toggles_bg_color": "#131313",
-        "toggles_border_color": "#f0f0f0",
-        "button_color": "#f0f0f0",
-        "button_hover_color": "#ffffff",
-        "button_active_color": "#ffffff",
-        "button_bg_color": "#131313",
-        "button_bg_hover_color": "#8a2be2",
-        "button_bg_active_color": "#8a2be2",
-        "button_border_color": "#131313",
-        "button_border_hover_color": "#131313",
-        "button_border_active_color": "#131313",
-        "heading_color": "#131313",
-        "body_bg_color": "#ffffff",
-        "background_color": "#ffffff",
-        "background_gradient": "",
-        "border_color": "#000000",
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "padding_horizontal": 5,
-        "padding_horizontal_mobile": 1.5,
-        "full_width": false,
-        "content_width": 120,
-        "border_thickness": 0,
-        "lazy": true
-      }
-    },
-    "image_banner_DQiLYF": {
-      "type": "image-banner",
-      "blocks": {
-        "text_Hf8KE4": {
-          "type": "text",
-          "settings": {
-            "text": "More from",
-            "text_style": "subtitle"
-          }
-        },
-        "heading_WxwQMe": {
-          "type": "heading",
-          "settings": {
-            "heading": "REBORN // Eastern Europe",
-            "heading_size": "h1"
-          }
-        }
-      },
-      "block_order": [
-        "text_Hf8KE4",
-        "heading_WxwQMe"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/IBM_Plex_Mono.png",
-        "image_overlay_opacity": 60,
-        "image_height": "small",
-        "image_behavior": "fixed",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-4",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "kicker": "// SS26 — FOUR CHAPTERS",
+        "heading": "The lookbook",
+        "subheading": "Each chapter ships once and disappears. Read them like a comic — in order, or in the order you find them.",
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "ss_featured_collection_14_PyEQAw": {
       "type": "ss-featured-collection-14",
       "name": "SS - Featured collection #14",
       "settings": {
-        "content_align": "center",
-        "content_align_mobile": "center",
-        "sub_heading": "",
+        "content_align": "left",
+        "content_align_mobile": "left",
+        "sub_heading": "// Currently in stock",
         "sub_heading_custom": false,
         "sub_heading_font": "montserrat_n4",
-        "sub_heading_size": 20,
-        "sub_heading_size_mobile": 18,
+        "sub_heading_size": 14,
+        "sub_heading_size_mobile": 12,
         "sub_heading_height": 130,
-        "heading": "",
+        "heading": "The shop floor.",
         "heading_custom": false,
         "heading_font": "oswald_n4",
-        "heading_size": 42,
-        "heading_size_mobile": 24,
+        "heading_size": 52,
+        "heading_size_mobile": 32,
         "heading_height": 130,
         "heading_mt": 8,
         "heading_mt_mobile": 8,
@@ -349,8 +176,8 @@
         "collection_show": 10,
         "slider_mt": 8,
         "slider_mt_mobile": 8,
-        "product_content_align": "center",
-        "product_content_align_mobile": "center",
+        "product_content_align": "left",
+        "product_content_align_mobile": "left",
         "image_radius": 0,
         "image_border_thickness": 0,
         "image_ratio": "square",
@@ -359,40 +186,40 @@
         "badge_padding_vertical_mobile": 4,
         "badge_padding_horizontal": 8,
         "badge_padding_horizontal_mobile": 8,
-        "badge_radius": 4,
-        "badge_border_thickness": 0,
+        "badge_radius": 0,
+        "badge_border_thickness": 1,
         "badge_custom": false,
         "badge_font": "montserrat_n4",
-        "badge_size": 12,
-        "badge_size_mobile": 12,
+        "badge_size": 11,
+        "badge_size_mobile": 11,
         "badge_height": 100,
-        "button": "Shop now",
+        "button": "View all pieces",
         "button_custom": false,
         "button_font": "montserrat_n4",
-        "button_size": 16,
-        "button_size_mobile": 14,
+        "button_size": 13,
+        "button_size_mobile": 13,
         "button_height": 100,
         "button_padding_vertical": 14,
         "button_padding_vertical_mobile": 14,
         "button_padding_horizontal": 32,
         "button_padding_horizontal_mobile": 32,
-        "button_radius": 100,
+        "button_radius": 999,
         "button_border_thickness": 1,
         "button_mt_mobile": 16,
         "button_style": "outline",
         "title_custom": false,
         "title_font": "montserrat_n4",
-        "title_size": 18,
-        "title_size_mobile": 14,
+        "title_size": 14,
+        "title_size_mobile": 13,
         "title_height": 150,
-        "title_mt": 36,
-        "title_mt_mobile": 20,
+        "title_mt": 20,
+        "title_mt_mobile": 16,
         "price_custom": false,
         "price_font": "montserrat_n4",
-        "price_size": 16,
-        "price_size_mobile": 14,
+        "price_size": 14,
+        "price_size_mobile": 13,
         "price_height": 130,
-        "price_mt": 8,
+        "price_mt": 6,
         "price_mt_mobile": 6,
         "navigation_align": "center",
         "navigation_align_mobile": "center",
@@ -406,21 +233,21 @@
         "arrow_hover_effect": "scale",
         "arrow_show_desktop": true,
         "arrow_show_mobile": true,
-        "sub_heading_color": "#000000",
-        "heading_color": "#000000",
-        "image_border_color": "#000000",
-        "title_color": "#000000",
-        "price_color": "#000000",
-        "price_original_color": "#000000",
-        "badge_color": "#000000",
+        "sub_heading_color": "#0e0e0e",
+        "heading_color": "#0e0e0e",
+        "image_border_color": "#0e0e0e",
+        "title_color": "#0e0e0e",
+        "price_color": "#0e0e0e",
+        "price_original_color": "#0e0e0e",
+        "badge_color": "#0e0e0e",
         "badge_bg_color": "#4af279",
-        "badge_border_color": "#000000",
-        "button_color": "#000000",
+        "badge_border_color": "#0e0e0e",
+        "button_color": "#0e0e0e",
         "button_hover_color": "#ffffff",
         "button_bg_color": "#ffffff",
-        "button_bg_hover_color": "#000000",
-        "button_border_color": "#000000",
-        "button_border_hover_color": "#000000",
+        "button_bg_hover_color": "#0e0e0e",
+        "button_border_color": "#0e0e0e",
+        "button_border_hover_color": "#0e0e0e",
         "dots_color": "#f7f7f7",
         "arrow_color": "#2c2b2b",
         "arrow_hover_color": "#2c2b2b",
@@ -428,15 +255,15 @@
         "arrow_bg_hover_color": "",
         "arrow_border_color": "#c7c7c7",
         "arrow_border_hover_color": "#c7c7c7",
-        "background_color": "#ffffff",
+        "background_color": "#ede7da",
         "background_gradient": "",
-        "border_color": "#000000",
+        "border_color": "#0e0e0e",
         "margin_top": 0,
         "margin_bottom": 0,
         "margin_horizontal": 0,
         "margin_horizontal_mobile": 0,
-        "padding_top": 36,
-        "padding_bottom": 36,
+        "padding_top": 60,
+        "padding_bottom": 60,
         "padding_horizontal": 5,
         "padding_horizontal_mobile": 1.5,
         "full_width": true,
@@ -444,6 +271,136 @@
         "border_thickness": 0,
         "section_radius": 0,
         "lazy": true
+      }
+    },
+    "manifesto_iwt_cRaK9T": {
+      "type": "image-with-text",
+      "disabled": true,
+      "blocks": {
+        "caption_manifest": {
+          "type": "caption",
+          "settings": {
+            "caption": "// MANIFESTO — 002",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading_manifest": {
+          "type": "heading",
+          "settings": {
+            "heading": "We make clothes for people who were told to sit down. We don't sit down.",
+            "heading_size": "h1"
+          }
+        },
+        "text_manifest": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Reborn is a four-person studio working out of a garage in Kraków, a basement in Berlin and a kitchen in Lisbon. Every piece is small-batch, screen-printed by hand and never restocked. When it's gone, it's gone. That's the whole pitch.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_manifest": {
+          "type": "button",
+          "settings": {
+            "button_label": "Read the full story",
+            "button_link": "/pages/about",
+            "button_style_secondary": false
+          }
+        },
+        "button_manifest_2": {
+          "type": "button",
+          "settings": {
+            "button_label": "Studio visits",
+            "button_link": "/pages/about",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "caption_manifest",
+        "heading_manifest",
+        "text_manifest",
+        "button_manifest",
+        "button_manifest_2"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/IBM_Plex_Mono.png",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "image_second",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "manifesto_stats_mCkL7P": {
+      "type": "multicolumn",
+      "disabled": true,
+      "blocks": {
+        "col_chapters": {
+          "type": "column",
+          "settings": {
+            "title": "04",
+            "text": "<p>chapters / year</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "col_pieces": {
+          "type": "column",
+          "settings": {
+            "title": "250",
+            "text": "<p>pieces / chapter</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "col_restocks": {
+          "type": "column",
+          "settings": {
+            "title": "00",
+            "text": "<p>restocks. ever.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "col_cities": {
+          "type": "column",
+          "settings": {
+            "title": "12",
+            "text": "<p>cities shipped</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "col_chapters",
+        "col_pieces",
+        "col_restocks",
+        "col_cities"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-4",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "ss_instafeed_3F3K9R": {
@@ -522,15 +479,48 @@
         "text-color": "#f0f0f0",
         "hide_image_mobile": 0,
         "insta_url": "https://www.instagram.com/reborn.wxrldwide/",
-        "instafeed_title": "",
+        "instafeed_title": "// From Instagram",
         "hashtag_title": "@reborn.wxrldwide",
         "insta_handle": "",
-        "header_size": 18,
-        "hashtag_size": 28,
+        "header_size": 14,
+        "hashtag_size": 36,
         "handle_size": 6,
         "padding_image": 2,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "newsletter_drop_list": {
+      "type": "newsletter",
+      "disabled": true,
+      "blocks": {
+        "heading_nl": {
+          "type": "heading",
+          "settings": {
+            "heading": "Drops first. <em>Spam never.</em>",
+            "heading_size": "hxxl"
+          }
+        },
+        "paragraph_nl": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>One email per chapter — 24 hours before the public drop. You'll know when. Nobody else will.</p>"
+          }
+        },
+        "email_form_nl": {
+          "type": "email_form"
+        }
+      },
+      "block_order": [
+        "heading_nl",
+        "paragraph_nl",
+        "email_form_nl"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "ss_back_to_top_button_9j8xME": {
@@ -548,15 +538,126 @@
         "horizontal_dst_to_edge": 20,
         "vertical_dst_to_edge": 20
       }
+    },
+    "rw_hero": {
+      "type": "rw-hero",
+      "settings": {
+        "meta_label": "VOL.04 — SS26 // FROM THE STREETS OF EASTERN EUROPE",
+        "image": "shopify://shop_images/IBM_Plex_Mono.png",
+        "show_stickers": true,
+        "countdown_target": "2026-06-14T22:00:00",
+        "countdown_label": "NEXT DROP // CHAPTER 04 — BIKINI BLING",
+        "countdown_date_label": "FRI 22:00 CET",
+        "countdown_cta_label": "Notify me",
+        "manifesto_blurb": "Built for the kid that never asked permission. Four chapters a year. Two hundred fifty pieces each. No restocks.",
+        "button_label_1": "Shop chapter 04",
+        "button_url_1": "/collections/all",
+        "button_label_2": "Read the lookbook",
+        "button_url_2": "/collections",
+        "descriptor_text": "04 CHAPTERS · 250 PIECES EACH · NO RESTOCKS",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rw_marquee": {
+      "type": "rw-marquee",
+      "settings": {
+        "show": true
+      }
+    },
+    "rw_manifesto": {
+      "type": "rw-manifesto",
+      "blocks": {
+        "stat_chapters": {
+          "type": "stat",
+          "settings": { "number": "04", "label": "chapters / year" }
+        },
+        "stat_pieces": {
+          "type": "stat",
+          "settings": { "number": "250", "label": "pieces / chapter" }
+        },
+        "stat_restocks": {
+          "type": "stat",
+          "settings": { "number": "00", "label": "restocks. ever." }
+        },
+        "stat_cities": {
+          "type": "stat",
+          "settings": { "number": "12", "label": "cities shipped" }
+        }
+      },
+      "block_order": ["stat_chapters", "stat_pieces", "stat_restocks", "stat_cities"],
+      "settings": {
+        "kicker": "// MANIFESTO — 002",
+        "quote_text": "<p>We make clothes for people who were told to sit down. We don\u2019t sit down.</p>",
+        "body_text": "<p>Reborn is a four-person studio working out of a garage in Krak\u00f3w, a basement in Berlin and a kitchen in Lisbon. Every piece is small-batch, screen-printed by hand and never restocked. When it\u2019s gone, it\u2019s gone. That\u2019s the whole pitch.</p>",
+        "button_label_1": "Read the full story",
+        "button_url_1": "/pages/about",
+        "button_label_2": "Studio visits",
+        "button_url_2": "/pages/about",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "rw_newsletter": {
+      "type": "rw-newsletter",
+      "settings": {
+        "kicker": "// SUBSCRIBE FOR NOTHING",
+        "heading_line_1": "Drops first.",
+        "heading_line_2": "Spam never.",
+        "subtext": "One email per chapter — 24 hours before the public drop. You\u2019ll know when. Nobody else will.",
+        "placeholder": "you@somewhere.cool",
+        "button_label": "Get on the list",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "image_banner_DQiLYF": {
+      "type": "image-banner",
+      "disabled": true,
+      "blocks": {
+        "text_Hf8KE4": {
+          "type": "text",
+          "settings": {
+            "text": "More from",
+            "text_style": "subtitle"
+          }
+        },
+        "heading_WxwQMe": {
+          "type": "heading",
+          "settings": {
+            "heading": "REBORN // Eastern Europe",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "text_Hf8KE4",
+        "heading_WxwQMe"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/IBM_Plex_Mono.png",
+        "image_overlay_opacity": 60,
+        "image_height": "small",
+        "image_behavior": "fixed",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
     }
   },
   "order": [
-    "image_banner",
-    "image_banner_fgQaCM",
-    "ss_flexible_tabs_zpX39t",
-    "image_banner_DQiLYF",
+    "rw_hero",
+    "rw_marquee",
+    "rw_chapters",
     "ss_featured_collection_14_PyEQAw",
+    "rw_manifesto",
     "ss_instafeed_3F3K9R",
+    "rw_newsletter",
     "ss_back_to_top_button_9j8xME"
   ]
 }
